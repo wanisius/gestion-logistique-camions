@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "835220010834",
+    "project_id": "icelog-7be27",
+    "storage_bucket": "icelog-7be27.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835220010834:android:a40f159f4130b143baec8b",
+        "android_client_info": {
+          "package_name": "com.logistique.camions"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBImdsUYa7XD6_YOaQANcQJkLyVSPdAJXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

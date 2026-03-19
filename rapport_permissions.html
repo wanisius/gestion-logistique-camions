@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport Audit Permissions Android</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+             padding: 2rem; text-align: center; border-bottom: 1px solid #334155; }
+  .header h1 { font-size: 1.8rem; color: #60a5fa; margin-bottom: .5rem; }
+  .header .meta { color: #94a3b8; font-size: .9rem; }
+  .device-info { background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+                  padding: 1.2rem; margin: 1.5rem auto; max-width: 900px;
+                  display: flex; gap: 2rem; flex-wrap: wrap; }
+  .device-info span { color: #94a3b8; }
+  .device-info strong { color: #e2e8f0; }
+  .stats { display: flex; gap: 1rem; max-width: 900px; margin: 0 auto 1.5rem;
+            flex-wrap: wrap; justify-content: center; padding: 0 1rem; }
+  .stat-card { flex: 1; min-width: 150px; background: #1e293b; border-radius: 12px;
+                padding: 1.2rem; text-align: center; border: 1px solid #334155; }
+  .stat-card .num { font-size: 2rem; font-weight: 700; }
+  .stat-card .lbl { font-size: .8rem; color: #94a3b8; margin-top: .3rem; }
+  .filters { text-align: center; margin-bottom: 1.5rem; }
+  .filters button { background: #334155; border: 1px solid #475569; color: #e2e8f0;
+                     padding: .5rem 1rem; border-radius: 8px; cursor: pointer;
+                     margin: .25rem; font-size: .85rem; transition: all .2s; }
+  .filters button:hover, .filters button.active { background: #3b82f6; border-color: #3b82f6; }
+  .apps-grid { display: grid; gap: 1rem; max-width: 900px; margin: 0 auto;
+                padding: 0 1rem 2rem; }
+  .app-card { background: #1e293b; border-radius: 12px; border: 1px solid #334155;
+               overflow: hidden; transition: transform .2s; }
+  .app-card:hover { transform: translateY(-2px); }
+  .app-header { display: flex; align-items: center; gap: 1rem;
+                 padding: 1rem 1.2rem; border-bottom: 1px solid #334155; }
+  .risk-badge { padding: .3rem .8rem; border-radius: 20px; font-size: .75rem;
+                 font-weight: 600; color: white; white-space: nowrap; }
+  .app-name { font-weight: 600; flex: 1; }
+  .package { font-size: .75rem; color: #64748b; }
+  .score { font-size: .85rem; color: #94a3b8; }
+  .perms-list { padding: .8rem 1.2rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+  .perm-tag { padding: .25rem .6rem; border-radius: 6px; font-size: .75rem;
+               font-weight: 500; }
+  .perm-tag.critique { background: #450a0a; color: #fca5a5; border: 1px solid #991b1b; }
+  .perm-tag.eleve { background: #431407; color: #fdba74; border: 1px solid #9a3412; }
+  .perm-tag.modere { background: #422006; color: #fde68a; border: 1px solid #92400e; }
+  .no-perms { padding: .8rem 1.2rem; color: #64748b; font-size: .85rem; }
+  .search { display: flex; justify-content: center; margin-bottom: 1rem; padding: 0 1rem; }
+  .search input { background: #1e293b; border: 1px solid #334155; color: #e2e8f0;
+                   padding: .6rem 1rem; border-radius: 8px; width: 100%; max-width: 400px;
+                   font-size: .9rem; }
+  .search input:focus { outline: none; border-color: #3b82f6; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔍 Audit Permissions Android</h1>
+  <p class="meta">Généré le 15/03/2026 à 19:45 · 229 applications analysées</p>
+</div>
+
+<div class="device-info" style="margin:1.5rem auto; padding: 1rem 1.5rem;">
+  <div><span>Appareil : </span><strong>samsung SM-S908B</strong></div>
+  <div><span>Android : </span><strong>16</strong></div>
+  <div><span>SDK : </span><strong>36</strong></div>
+</div>
+
+<div class="stats">
+  <div class="stat-card"><div class="num" style="color:#dc2626">17</div>
+    <div class="lbl">🔴 Apps critiques</div></div>
+  <div class="stat-card"><div class="num" style="color:#ea580c">34</div>
+    <div class="lbl">🟠 Apps risque élevé</div></div>
+  <div class="stat-card"><div class="num" style="color:#ca8a04">7</div>
+    <div class="lbl">🟡 Apps modérées</div></div>
+  <div class="stat-card"><div class="num" style="color:#16a34a">171</div>
+    <div class="lbl">🟢 Apps faibles</div></div>
+</div>
+
+<div class="search">
+  <input type="text" id="search" placeholder="🔍 Rechercher une app ou une permission…"
+         oninput="filtrer()">
+</div>
+
+<div class="filters">
+  <button class="active" onclick="filtreNiveau('tous', this)">Tous</button>
+  <button onclick="filtreNiveau('critique', this)">🔴 Critique</button>
+  <button onclick="filtreNiveau('eleve', this)">🟠 Élevé</button>
+  <button onclick="filtreNiveau('modere', this)">🟡 Modéré</button>
+  <button onclick="filtreNiveau('faible', this)">🟢 Faible</button>
+</div>
+
+<div class="apps-grid" id="grid">
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Samuraiiiall</div>
+      <div class="package">com.madfingergames.SamuraiIIAll</div>
+    </div>
+    <div class="score">Score : 80</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Accès aux comptes</span><span class="perm-tag critique">Accès aux comptes</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">État du téléphone (IMEI…)</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">État du téléphone (IMEI…)</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Recorderall</div>
+      <div class="package">com.GoldenCamel.RecorderAll</div>
+    </div>
+    <div class="score">Score : 60</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Microphone</span><span class="perm-tag critique">Lecture contacts</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">État du téléphone (IMEI…)</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ims</div>
+      <div class="package">com.google.android.ims</div>
+    </div>
+    <div class="score">Score : 60</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Journal des appels</span><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Interception des appels</span><span class="perm-tag critique">Microphone</span><span class="perm-tag critique">Lecture contacts</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Passer des appels</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ardrawing</div>
+      <div class="package">com.samsung.android.ardrawing</div>
+    </div>
+    <div class="score">Score : 60</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Microphone</span><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Microphone</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès vidéos</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Bizcal</div>
+      <div class="package">com.appgenix.bizcal</div>
+    </div>
+    <div class="score">Score : 40</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Modification contacts</span><span class="perm-tag critique">Accès aux comptes</span><span class="perm-tag critique">Lecture contacts</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Speedtest</div>
+      <div class="package">org.zwanoo.android.speedtest</div>
+    </div>
+    <div class="score">Score : 40</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">État du téléphone (IMEI…)</span><span class="perm-tag eleve">Localisation en arrière-plan</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">État du téléphone (IMEI…)</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Coolmobilesolution</div>
+      <div class="package">com.coolmobilesolution</div>
+    </div>
+    <div class="score">Score : 35</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Wmau</div>
+      <div class="package">com.nikon.wu.wmau</div>
+    </div>
+    <div class="score">Score : 35</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Fifafootballagentexam</div>
+      <div class="package">com.victvs.fifafootballagentexam</div>
+    </div>
+    <div class="score">Score : 30</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Microphone</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Find</div>
+      <div class="package">com.samsung.android.app.find</div>
+    </div>
+    <div class="score">Score : 29</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">Localisation en arrière-plan</span><span class="perm-tag modere">Connexion Bluetooth</span><span class="perm-tag modere">Scan Bluetooth</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Anatomyandphysiology</div>
+      <div class="package">com.argosy.vb.anatomyandphysiology</div>
+    </div>
+    <div class="score">Score : 25</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Moonreaderp</div>
+      <div class="package">com.flyersoft.moonreaderp</div>
+    </div>
+    <div class="score">Score : 25</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ereader</div>
+      <div class="package">com.prestigio.ereader</div>
+    </div>
+    <div class="score">Score : 25</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Accès photos</span><span class="perm-tag eleve">Accès audio</span><span class="perm-tag eleve">Accès vidéos</span><span class="perm-tag eleve">Écriture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Chatgpt</div>
+      <div class="package">com.openai.chatgpt</div>
+    </div>
+    <div class="score">Score : 20</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag critique">Microphone</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Cheapflights</div>
+      <div class="package">com.ryanair.cheapflights</div>
+    </div>
+    <div class="score">Score : 20</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ticket</div>
+      <div class="package">com.uefa.blockchain.android.ticket</div>
+    </div>
+    <div class="score">Score : 20</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="critique">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.what3words.android</div>
+    </div>
+    <div class="score">Score : 20</div>
+    <div class="risk-badge" style="background:#dc2626">🔴 Critique</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Marpharma</div>
+      <div class="package">com.apps.marpharma</div>
+    </div>
+    <div class="score">Score : 15</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Distquake</div>
+      <div class="package">com.finazzi.distquake</div>
+    </div>
+    <div class="score">Score : 15</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Salati</div>
+      <div class="package">com.masarat.salati</div>
+    </div>
+    <div class="score">Score : 15</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag eleve">Localisation en arrière-plan</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lydec</div>
+      <div class="package">com.mobiblanc.lydec</div>
+    </div>
+    <div class="score">Score : 15</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Lecture stockage</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Wiz2</div>
+      <div class="package">com.wizconnected.wiz2</div>
+    </div>
+    <div class="score">Score : 14</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag modere">Connexion Bluetooth</span><span class="perm-tag modere">Scan Bluetooth</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Waze</div>
+      <div class="package">com.waze</div>
+    </div>
+    <div class="score">Score : 12</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span><span class="perm-tag modere">Connexion Bluetooth</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Bdiw</div>
+      <div class="package">be.belgium.bdiw</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Itsme</div>
+      <div class="package">be.bmid.itsme</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">ch.protonmail.android</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Selfcare</div>
+      <div class="package">com.MT.selfCare</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Anydeskandroid</div>
+      <div class="package">com.anydesk.anydeskandroid</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Microphone</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Main</div>
+      <div class="package">com.attijariwafabank.main</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Authenticator</div>
+      <div class="package">com.azure.authenticator</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Eatthismuch</div>
+      <div class="package">com.eatthismuch</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Docs</div>
+      <div class="package">com.google.android.apps.docs</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Translate</div>
+      <div class="package">com.google.android.apps.translate</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Microphone</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Calendar</div>
+      <div class="package">com.google.android.calendar</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Earth</div>
+      <div class="package">com.google.earth</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Com</div>
+      <div class="package">com.ikea.inter.ma.com</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Banking</div>
+      <div class="package">com.ing.banking</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Facerrel</div>
+      <div class="package">com.jeremysteckling.facerrel</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Measuredistancemappro</div>
+      <div class="package">com.landareameasurementapp.measuredistancemappro</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">com.mapswithme.maps.pro</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Copilot</div>
+      <div class="package">com.microsoft.copilot</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Nusukapp</div>
+      <div class="package">com.moh.nusukapp</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Qatar</div>
+      <div class="package">com.pl.qatar</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Privateshare</div>
+      <div class="package">com.samsung.android.privateshare</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.shazam.android</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Microphone</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Reservation</div>
+      <div class="package">com.sixt.reservation</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mail</div>
+      <div class="package">com.yahoo.mobile.client.android.mail</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Lecture contacts</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Eid</div>
+      <div class="package">ma.gov.dgsn.eid</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Covid_controle_vaccination</div>
+      <div class="package">maroccovid.covid_controle_vaccination</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Shahid</div>
+      <div class="package">net.mbc.shahid</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="eleve">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Netfly</div>
+      <div class="package">xyz.netfly</div>
+    </div>
+    <div class="score">Score : 10</div>
+    <div class="risk-badge" style="background:#ea580c">🟠 Élevé</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag critique">Caméra</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Postecontrole</div>
+      <div class="package">ma.goodex.postecontrole</div>
+    </div>
+    <div class="score">Score : 8</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag modere">Connexion Bluetooth</span><span class="perm-tag modere">Scan Bluetooth</span><span class="perm-tag modere">Connexion Bluetooth</span><span class="perm-tag modere">Scan Bluetooth</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Hello</div>
+      <div class="package">be.belgacom.hello</div>
+    </div>
+    <div class="score">Score : 5</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.getyourguide.android</div>
+    </div>
+    <div class="score">Score : 5</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Outlook</div>
+      <div class="package">com.microsoft.office.outlook</div>
+    </div>
+    <div class="score">Score : 5</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Lecture stockage</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Radarbot_free</div>
+      <div class="package">com.vialsoft.radarbot_free</div>
+    </div>
+    <div class="score">Score : 5</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation précise (GPS)</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Main</div>
+      <div class="package">net.skyscanner.android.main</div>
+    </div>
+    <div class="score">Score : 5</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag eleve">Localisation approx.</span></div>
+</div>
+<div class="app-card" data-niveau="modere">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Aosp</div>
+      <div class="package">com.amazon.storm.lightning.client.aosp</div>
+    </div>
+    <div class="score">Score : 4</div>
+    <div class="risk-badge" style="background:#ca8a04">🟡 Modéré</div>
+  </div>
+  <div class="perms-list"><span class="perm-tag modere">Connexion Bluetooth</span><span class="perm-tag modere">Scan Bluetooth</span></div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Grok</div>
+      <div class="package">ai.x.grok</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Rbfa</div>
+      <div class="package">be.rbfa</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Tda</div>
+      <div class="package">be.tuifly.tda</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">M</div>
+      <div class="package">be.tweedehands.m</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mathriddles</div>
+      <div class="package">com.BlackGames.MathRiddles</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">com.a0soft.gphone.app2sd.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Matchendirect</div>
+      <div class="package">com.activaweb.matchendirect</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Reader</div>
+      <div class="package">com.adobe.reader</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.adobe.scan.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.airbnb.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Claude</div>
+      <div class="package">com.anthropic.claude</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ad1</div>
+      <div class="package">com.anydesk.adcontrol.ad1</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Uniease</div>
+      <div class="package">com.app.unified.uniease</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Unimons</div>
+      <div class="package">com.appscho.appschov2.unimons</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Autoscout24</div>
+      <div class="package">com.autoscout24</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Bein</div>
+      <div class="package">com.bein.beIN</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Andcontent</div>
+      <div class="package">com.beinsports.andcontent</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Adblocksbrowser</div>
+      <div class="package">com.betafish.adblocksbrowser</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">com.bittorrent.client.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Blockchainvault</div>
+      <div class="package">com.blockchainvault</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Booking</div>
+      <div class="package">com.booking</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Globalblue</div>
+      <div class="package">com.buuuk.globalblue</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Editor</div>
+      <div class="package">com.canva.editor</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Smart</div>
+      <div class="package">com.cofar.smart</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Enduser</div>
+      <div class="package">com.connect.enduser</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Studio</div>
+      <div class="package">com.design.studio</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.dropbox.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Temu</div>
+      <div class="package">com.einnovation.temu</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Portal</div>
+      <div class="package">com.epicgames.portal</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pop</div>
+      <div class="package">com.estrongs.android.pop</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Evernote</div>
+      <div class="package">com.evernote</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Katana</div>
+      <div class="package">com.facebook.katana</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Orca</div>
+      <div class="package">com.facebook.orca</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Fifaqatar</div>
+      <div class="package">com.feverup.fifaqatar</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.fifa.fifaapp.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.fifa.plus.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Authenticator2</div>
+      <div class="package">com.google.android.apps.authenticator2</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Googleassistant</div>
+      <div class="package">com.google.android.apps.googleassistant</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Tailwind</div>
+      <div class="package">com.google.android.apps.labs.language.tailwind</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Walletnfcrel</div>
+      <div class="package">com.google.android.apps.walletnfcrel</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Contactkeys</div>
+      <div class="package">com.google.android.contactkeys</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Games</div>
+      <div class="package">com.google.android.play.games</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Safetycore</div>
+      <div class="package">com.google.android.safetycore</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Videos</div>
+      <div class="package">com.google.android.videos</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Babyapp</div>
+      <div class="package">com.hp.babyapp</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Smarthome</div>
+      <div class="package">com.huawei.smarthome</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">com.indra.haramain.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Eureka</div>
+      <div class="package">com.infinitygames.eureka</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Camscanner</div>
+      <div class="package">com.intsig.camscanner</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">com.ironmeta.security.turbo.proxy.vpntomato.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Subwaysurf</div>
+      <div class="package">com.kiloo.subwaysurf</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Fid</div>
+      <div class="package">com.labelvie.fid</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lanthier2013</div>
+      <div class="package">com.lanthier2013</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lvoverseas</div>
+      <div class="package">com.lemon.lvoverseas</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Nuts</div>
+      <div class="package">com.lgeha.nuts</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.linkedin.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Quran_reader</div>
+      <div class="package">com.logicdev.quran_reader</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Camions</div>
+      <div class="package">com.logistique.camions</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Qr</div>
+      <div class="package">com.m.qr</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Makeen</div>
+      <div class="package">com.makeen_quran.makeen</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">App</div>
+      <div class="package">com.marjane.app</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Copymydata</div>
+      <div class="package">com.mediamushroom.copymydata</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Emmx</div>
+      <div class="package">com.microsoft.emmx</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Flow</div>
+      <div class="package">com.microsoft.flow</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Excel</div>
+      <div class="package">com.microsoft.office.excel</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Officehubrow</div>
+      <div class="package">com.microsoft.office.officehubrow</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Powerpoint</div>
+      <div class="package">com.microsoft.office.powerpoint</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Word</div>
+      <div class="package">com.microsoft.office.word</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Todos</div>
+      <div class="package">com.microsoft.todos</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ai</div>
+      <div class="package">com.minimax.ai</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mobiscanner</div>
+      <div class="package">com.mobisystems.mobiscanner</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Kimichat</div>
+      <div class="package">com.moonshot.kimichat</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Iosmubawab</div>
+      <div class="package">com.mubawab.iosmubawab</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Search</div>
+      <div class="package">com.mufumbo.android.recipe.search</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Smartersplayerpro</div>
+      <div class="package">com.nst.smartersplayerpro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Diagnosticsettherapeutique</div>
+      <div class="package">com.odysys.diagnosticsettherapeutique</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">P2pmobile</div>
+      <div class="package">com.paypal.android.p2pmobile</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pinterest</div>
+      <div class="package">com.pinterest</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Androidquran</div>
+      <div class="package">com.quran.labs.androidquran</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Rar</div>
+      <div class="package">com.rarlab.rar</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Calculator_plus</div>
+      <div class="package">com.roamingsquirrel.android.calculator_plus</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">App</div>
+      <div class="package">com.royalairmaroc.app</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Assistant</div>
+      <div class="package">com.ryanair.assistant</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_ar_ae_m00</div>
+      <div class="package">com.samsung.SMT.lang_ar_ae_m00</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_en_us_g02</div>
+      <div class="package">com.samsung.SMT.lang_en_us_g02</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_es_es_g01</div>
+      <div class="package">com.samsung.SMT.lang_es_es_g01</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_es_es_l01</div>
+      <div class="package">com.samsung.SMT.lang_es_es_l01</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_fr_fr_g01</div>
+      <div class="package">com.samsung.SMT.lang_fr_fr_g01</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Lang_fr_fr_l01</div>
+      <div class="package">com.samsung.SMT.lang_fr_fr_l01</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Accessory</div>
+      <div class="package">com.samsung.accessory</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Fridaymgr</div>
+      <div class="package">com.samsung.accessory.fridaymgr</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Zenithmgr</div>
+      <div class="package">com.samsung.accessory.zenithmgr</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Objectremovalmodels</div>
+      <div class="package">com.samsung.aimodelprovider.objectremovalmodels</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Reflectionremovalmodels</div>
+      <div class="package">com.samsung.aimodelprovider.reflectionremovalmodels</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Shadowremovalmodels</div>
+      <div class="package">com.samsung.aimodelprovider.shadowremovalmodels</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Galaxyraw</div>
+      <div class="package">com.samsung.android.app.galaxyraw</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Tips</div>
+      <div class="package">com.samsung.android.app.tips</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Watchmanager</div>
+      <div class="package">com.samsung.android.app.watchmanager</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Arae</div>
+      <div class="package">com.samsung.android.bixby.ondevice.arae</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Enus</div>
+      <div class="package">com.samsung.android.bixby.ondevice.enus</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Eses</div>
+      <div class="package">com.samsung.android.bixby.ondevice.eses</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Frfr</div>
+      <div class="package">com.samsung.android.bixby.ondevice.frfr</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Service</div>
+      <div class="package">com.samsung.android.bixby.service</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Provider</div>
+      <div class="package">com.samsung.android.email.provider</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Galaxy</div>
+      <div class="package">com.samsung.android.galaxy</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Galaxycontinuity</div>
+      <div class="package">com.samsung.android.galaxycontinuity</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Geargplugin</div>
+      <div class="package">com.samsung.android.geargplugin</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Enar</div>
+      <div class="package">com.samsung.android.nmt.apps.t2t.languagepack.enar</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Enes</div>
+      <div class="package">com.samsung.android.nmt.apps.t2t.languagepack.enes</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Enfr</div>
+      <div class="package">com.samsung.android.nmt.apps.t2t.languagepack.enfr</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Oneconnect</div>
+      <div class="package">com.samsung.android.oneconnect</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Health</div>
+      <div class="package">com.samsung.android.service.health</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Videolist</div>
+      <div class="package">com.samsung.android.videolist</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Voc</div>
+      <div class="package">com.samsung.android.voc</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Kidshome</div>
+      <div class="package">com.sec.android.app.kidshome</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Popupcalculator</div>
+      <div class="package">com.sec.android.app.popupcalculator</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Sbrowser</div>
+      <div class="package">com.sec.android.app.sbrowser</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">W16540a91492714c9f0eafb09cb5d328c1</div>
+      <div class="package">com.sec.android.app.sbrowser.webapk.w16540a91492714c9f0eafb09cb5d328c1</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Shealth</div>
+      <div class="package">com.sec.android.app.shealth</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Voicenote</div>
+      <div class="package">com.sec.android.app.voicenote</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Penup</div>
+      <div class="package">com.sec.penup</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Songpal</div>
+      <div class="package">com.sony.songpal</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Zad_academy</div>
+      <div class="package">com.tech.zad_academy</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Trivago</div>
+      <div class="package">com.trivago</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Truecaller</div>
+      <div class="package">com.truecaller</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ucl</div>
+      <div class="package">com.uefa.ucl</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Frmfticketwallet</div>
+      <div class="package">com.uxbert.FRMFTicketWallet</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mahjong</div>
+      <div class="package">com.vitastudio.mahjong</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">com.webook.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Whatsapp</div>
+      <div class="package">com.whatsapp</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Airarabia</div>
+      <div class="package">com.winit.airarabia</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Wonder</div>
+      <div class="package">com.wonder</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ticketing</div>
+      <div class="package">com.wydad.ticketing</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Smarthome</div>
+      <div class="package">com.xiaomi.smarthome</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Sendfilestotv</div>
+      <div class="package">com.yablio.sendfilestotv</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Player</div>
+      <div class="package">com.ytv.player</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pronew</div>
+      <div class="package">com.ytv.pronew</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Smartcamera</div>
+      <div class="package">com.yunyi.smartcamera</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Zeropage</div>
+      <div class="package">de.axelspringer.yana.zeropage</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">App</div>
+      <div class="package">de.flixbus.app</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Flugradarpro</div>
+      <div class="package">de.sammy.flugradarpro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Tutanota</div>
+      <div class="package">de.tutao.tutanota</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Vpnmaster</div>
+      <div class="package">free.vpn.unblock.proxy.vpnmaster</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Decryptopro</div>
+      <div class="package">info.valky.decryptopro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Fwc22</div>
+      <div class="package">io.tixngo.app.fwc22</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Urgdegarde17_18</div>
+      <div class="package">jle.urgdegarde17_18</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Addcamion</div>
+      <div class="package">ma.bforce.addcamion</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Goodex</div>
+      <div class="package">ma.bforce.goodex</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Tadakir</div>
+      <div class="package">ma.brome.tadakir</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">ma.electroplanet.mobiarchitects.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mobile</div>
+      <div class="package">ma.gov.tgr.mobile</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Macnss</div>
+      <div class="package">ma.neoxia.macnss</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Oncfmobileapp</div>
+      <div class="package">ma.oncf.oncfmobileapp</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Wakalaty_android</div>
+      <div class="package">ma.onee.wakalaty_android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Live</div>
+      <div class="package">ma.snrt.live</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Daribati</div>
+      <div class="package">ma.tax.dgi.daribati</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Sahamassurance</div>
+      <div class="package">ma.tnc.sahamassurance</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">main.common.mathlab.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mobilefor_4411</div>
+      <div class="package">marlon.mobilefor_4411</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Openvpn</div>
+      <div class="package">net.openvpn.openvpn</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Id</div>
+      <div class="package">notion.id</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Firefox</div>
+      <div class="package">org.mozilla.firefox</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Browser</div>
+      <div class="package">pi.browser</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Mena</div>
+      <div class="package">ptv.bein.mena</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Ma</div>
+      <div class="package">ro.ascendnet.bringo.ma</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Pro</div>
+      <div class="package">ru.andr7e.deviceinfohw.pro</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Morocco</div>
+      <div class="package">se.scmv.morocco</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Client</div>
+      <div class="package">taxi.android.client</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Agecalculator</div>
+      <div class="package">theapp.gallery.agecalculator</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Off</div>
+      <div class="package">ver3.ycntivi.off</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+<div class="app-card" data-niveau="faible">
+  <div class="app-header">
+    <div>
+      <div class="app-name">Android</div>
+      <div class="package">world.frs.dfds.booking.android</div>
+    </div>
+    <div class="score">Score : 0</div>
+    <div class="risk-badge" style="background:#16a34a">🟢 Faible</div>
+  </div>
+  <div class="no-perms">Aucune permission sensible accordée</div>
+</div>
+</div>
+
+<script>
+let niveauActif = 'tous';
+function filtreNiveau(niveau, btn) {
+  niveauActif = niveau;
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filtrer();
+}
+function filtrer() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.app-card').forEach(card => {
+    const niveau = card.dataset.niveau;
+    const texte = card.textContent.toLowerCase();
+    const ok = (niveauActif === 'tous' || niveau === niveauActif) &&
+               (!q || texte.includes(q));
+    card.classList.toggle('hidden', !ok);
+  });
+}
+</script>
+</body>
+</html>

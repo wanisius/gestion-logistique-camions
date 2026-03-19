@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organisation Apps par Dossiers</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 1rem; }
+  .header { text-align: center; padding: 2rem 1rem; }
+  .header h1 { font-size: 1.6rem; color: #60a5fa; }
+  .header p { color: #94a3b8; margin-top: .5rem; font-size: .9rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+  .folder { background: #1e293b; border-radius: 16px; border: 1px solid #334155;
+            overflow: hidden; transition: transform .2s; }
+  .folder:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+  .folder-header { padding: 1rem 1.2rem; border-bottom: 1px solid #334155;
+                   display: flex; align-items: center; gap: .8rem; }
+  .folder-icon { font-size: 1.8rem; }
+  .folder-name { font-size: 1.1rem; font-weight: 700; }
+  .folder-count { margin-left: auto; background: #334155; color: #94a3b8;
+                  padding: .2rem .6rem; border-radius: 12px; font-size: .75rem; }
+  .apps-list { padding: .8rem 1.2rem; }
+  .app-item { display: flex; align-items: center; gap: .6rem;
+              padding: .4rem 0; border-bottom: 1px solid #1e293b; }
+  .app-item:last-child { border-bottom: none; }
+  .app-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .app-label { font-size: .85rem; color: #cbd5e1; }
+  .app-pkg { font-size: .7rem; color: #475569; }
+  .tip { background: #172554; border: 1px solid #1e40af; border-radius: 12px;
+         padding: 1rem 1.2rem; margin: 1.5rem auto; max-width: 1200px; }
+  .tip strong { color: #60a5fa; }
+  .tip p { color: #94a3b8; font-size: .85rem; margin-top: .3rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📂 Organisation des Apps par Dossiers</h1>
+  <p>Samsung SM-S908B — 229 applications — Suggestion d'arrangement</p>
+</div>
+
+<div class="tip">
+  <strong>💡 Comment créer un dossier sur Samsung ?</strong>
+  <p>Appui long sur une app → glisse-la sur une autre app → le dossier se crée automatiquement. Renomme-le selon les noms ci-dessous.</p>
+</div>
+
+<div class="grid">
+
+<!-- ═══════ VOYAGES & TRANSPORT ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">✈️</span>
+    <span class="folder-name">Voyages & Transport</span>
+    <span class="folder-count">18 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Booking</div><div class="app-pkg">com.booking</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Airbnb</div><div class="app-pkg">com.airbnb.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Ryanair</div><div class="app-pkg">com.ryanair.cheapflights</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Ryanair Assistant</div><div class="app-pkg">com.ryanair.assistant</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">TUI fly</div><div class="app-pkg">be.tuifly.tda</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Royal Air Maroc</div><div class="app-pkg">com.royalairmaroc.app</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Air Arabia</div><div class="app-pkg">com.winit.airarabia</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Skyscanner</div><div class="app-pkg">net.skyscanner.android.main</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">FlixBus</div><div class="app-pkg">de.flixbus.app</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">ONCF</div><div class="app-pkg">ma.oncf.oncfmobileapp</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Sixt</div><div class="app-pkg">com.sixt.reservation</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">GetYourGuide</div><div class="app-pkg">com.getyourguide.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Trivago</div><div class="app-pkg">com.trivago</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">DFDS Booking</div><div class="app-pkg">world.frs.dfds.booking.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Waze</div><div class="app-pkg">com.waze</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Maps.me</div><div class="app-pkg">com.mapswithme.maps.pro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Google Earth</div><div class="app-pkg">com.google.earth</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#3b82f6"></div><div><div class="app-label">Flightradar24</div><div class="app-pkg">de.sammy.flugradarpro</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ BANQUE & FINANCE ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🏦</span>
+    <span class="folder-name">Banque & Finance</span>
+    <span class="folder-count">9 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Attijariwafa bank</div><div class="app-pkg">com.attijariwafabank.main</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">ING Banking</div><div class="app-pkg">com.ing.banking</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">PayPal</div><div class="app-pkg">com.paypal.android.p2pmobile</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Google Wallet</div><div class="app-pkg">com.google.android.apps.walletnfcrel</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Blockchain Vault</div><div class="app-pkg">com.blockchainvault</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Global Blue</div><div class="app-pkg">com.buuuk.globalblue</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Sahan Assurance</div><div class="app-pkg">ma.tnc.sahamassurance</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">TGR Mobile</div><div class="app-pkg">ma.gov.tgr.mobile</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#16a34a"></div><div><div class="app-label">Daribati (DGI)</div><div class="app-pkg">ma.tax.dgi.daribati</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ RÉSEAUX SOCIAUX ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">💬</span>
+    <span class="folder-name">Réseaux Sociaux</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">WhatsApp</div><div class="app-pkg">com.whatsapp</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">Facebook</div><div class="app-pkg">com.facebook.katana</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">Messenger</div><div class="app-pkg">com.facebook.orca</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">LinkedIn</div><div class="app-pkg">com.linkedin.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">Pinterest</div><div class="app-pkg">com.pinterest</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">Truecaller</div><div class="app-pkg">com.truecaller</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#8b5cf6"></div><div><div class="app-label">2ememain</div><div class="app-pkg">be.tweedehands.m</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ IA & ASSISTANTS ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🤖</span>
+    <span class="folder-name">IA & Assistants</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">ChatGPT</div><div class="app-pkg">com.openai.chatgpt</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Claude</div><div class="app-pkg">com.anthropic.claude</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Grok</div><div class="app-pkg">ai.x.grok</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Microsoft Copilot</div><div class="app-pkg">com.microsoft.copilot</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Google Gemini</div><div class="app-pkg">com.google.android.apps.labs.language.tailwind</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Kimi Chat</div><div class="app-pkg">com.moonshot.kimichat</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">MiniMax AI</div><div class="app-pkg">com.minimax.ai</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ MICROSOFT OFFICE ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">📎</span>
+    <span class="folder-name">Microsoft Office</span>
+    <span class="folder-count">8 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Outlook</div><div class="app-pkg">com.microsoft.office.outlook</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Word</div><div class="app-pkg">com.microsoft.office.word</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Excel</div><div class="app-pkg">com.microsoft.office.excel</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">PowerPoint</div><div class="app-pkg">com.microsoft.office.powerpoint</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Office Hub</div><div class="app-pkg">com.microsoft.office.officehubrow</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Microsoft To Do</div><div class="app-pkg">com.microsoft.todos</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Power Automate</div><div class="app-pkg">com.microsoft.flow</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#2563eb"></div><div><div class="app-label">Edge</div><div class="app-pkg">com.microsoft.emmx</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ GOOGLE ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🔵</span>
+    <span class="folder-name">Google</span>
+    <span class="folder-count">8 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Docs</div><div class="app-pkg">com.google.android.apps.docs</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Translate</div><div class="app-pkg">com.google.android.apps.translate</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Calendar</div><div class="app-pkg">com.google.android.calendar</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Assistant</div><div class="app-pkg">com.google.android.apps.googleassistant</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Authenticator</div><div class="app-pkg">com.google.android.apps.authenticator2</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Play Games</div><div class="app-pkg">com.google.android.play.games</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Videos</div><div class="app-pkg">com.google.android.videos</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ea4335"></div><div><div class="app-label">Google Safety</div><div class="app-pkg">com.google.android.safetycore</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SPORT & FOOTBALL ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">⚽</span>
+    <span class="folder-name">Sport & Football</span>
+    <span class="folder-count">11 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">beIN SPORTS</div><div class="app-pkg">com.beinsports.andcontent</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">beIN</div><div class="app-pkg">com.bein.beIN</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">beIN MENA</div><div class="app-pkg">ptv.bein.mena</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">FIFA App</div><div class="app-pkg">com.fifa.fifaapp.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">FIFA+</div><div class="app-pkg">com.fifa.plus.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">UEFA Champions League</div><div class="app-pkg">com.uefa.ucl</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">UEFA Ticket</div><div class="app-pkg">com.uefa.blockchain.android.ticket</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">RBFA (Belgique)</div><div class="app-pkg">be.rbfa</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">Match en Direct</div><div class="app-pkg">com.activaweb.matchendirect</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">FRMF Ticket</div><div class="app-pkg">com.uxbert.FRMFTicketWallet</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#22c55e"></div><div><div class="app-label">Wydad Ticketing</div><div class="app-pkg">com.wydad.ticketing</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SHOPPING ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🛒</span>
+    <span class="folder-name">Shopping</span>
+    <span class="folder-count">9 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Amazon</div><div class="app-pkg">com.amazon.storm.lightning.client.aosp</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Temu</div><div class="app-pkg">com.einnovation.temu</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">IKEA Maroc</div><div class="app-pkg">com.ikea.inter.ma.com</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Marjane</div><div class="app-pkg">com.marjane.app</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Electroplanet</div><div class="app-pkg">ma.electroplanet.mobiarchitects.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Label'Vie</div><div class="app-pkg">com.labelvie.fid</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">AutoScout24</div><div class="app-pkg">com.autoscout24</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Mubawab</div><div class="app-pkg">com.mubawab.iosmubawab</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ec4899"></div><div><div class="app-label">Bringo</div><div class="app-pkg">ro.ascendnet.bringo.ma</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ EMAIL & COMMUNICATION ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">📧</span>
+    <span class="folder-name">Email</span>
+    <span class="folder-count">4 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#6366f1"></div><div><div class="app-label">ProtonMail</div><div class="app-pkg">ch.protonmail.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#6366f1"></div><div><div class="app-label">Tutanota</div><div class="app-pkg">de.tutao.tutanota</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#6366f1"></div><div><div class="app-label">Yahoo Mail</div><div class="app-pkg">com.yahoo.mobile.client.android.mail</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#6366f1"></div><div><div class="app-label">Samsung Email</div><div class="app-pkg">com.samsung.android.email.provider</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SÉCURITÉ & VPN ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🔒</span>
+    <span class="folder-name">Sécurité & VPN</span>
+    <span class="folder-count">6 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">OpenVPN</div><div class="app-pkg">net.openvpn.openvpn</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">VPN Master</div><div class="app-pkg">free.vpn.unblock.proxy.vpnmaster</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">VPN Tomato</div><div class="app-pkg">com.ironmeta.security.turbo.proxy.vpntomato.pro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">itsme</div><div class="app-pkg">be.bmid.itsme</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">Azure Authenticator</div><div class="app-pkg">com.azure.authenticator</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#14b8a6"></div><div><div class="app-label">DGSN eID</div><div class="app-pkg">ma.gov.dgsn.eid</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ RELIGION ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🕌</span>
+    <span class="folder-name">Religion</span>
+    <span class="folder-count">5 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#a78bfa"></div><div><div class="app-label">Quran (Android)</div><div class="app-pkg">com.quran.labs.androidquran</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#a78bfa"></div><div><div class="app-label">Quran Reader</div><div class="app-pkg">com.logicdev.quran_reader</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#a78bfa"></div><div><div class="app-label">Makeen Quran</div><div class="app-pkg">com.makeen_quran.makeen</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#a78bfa"></div><div><div class="app-label">Salati</div><div class="app-pkg">com.masarat.salati</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#a78bfa"></div><div><div class="app-label">Haramain</div><div class="app-pkg">com.indra.haramain.pro</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SCANNER & DOCS ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">📄</span>
+    <span class="folder-name">Scanner & Documents</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">CamScanner</div><div class="app-pkg">com.intsig.camscanner</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">Adobe Scan</div><div class="app-pkg">com.adobe.scan.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">Adobe Reader</div><div class="app-pkg">com.adobe.reader</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">MDScan</div><div class="app-pkg">com.mobisystems.mobiscanner</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">QR Scanner</div><div class="app-pkg">com.m.qr</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">RAR</div><div class="app-pkg">com.rarlab.rar</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f97316"></div><div><div class="app-label">Decrypt Pro</div><div class="app-pkg">info.valky.decryptopro</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ NOTES & PRODUCTIVITÉ ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">📝</span>
+    <span class="folder-name">Notes & Productivité</span>
+    <span class="folder-count">6 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Notion</div><div class="app-pkg">notion.id</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Evernote</div><div class="app-pkg">com.evernote</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Canva</div><div class="app-pkg">com.canva.editor</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Dropbox</div><div class="app-pkg">com.dropbox.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Business Calendar</div><div class="app-pkg">com.appgenix.bizcal</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#0ea5e9"></div><div><div class="app-label">Samsung Voice Note</div><div class="app-pkg">com.sec.android.app.voicenote</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ MÉDIAS & STREAMING ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🎬</span>
+    <span class="folder-name">Médias & Streaming</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">Shahid</div><div class="app-pkg">net.mbc.shahid</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">SNRT Live</div><div class="app-pkg">ma.snrt.live</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">YTV Player</div><div class="app-pkg">com.ytv.player</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">YTV Pro</div><div class="app-pkg">com.ytv.pronew</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">Smarters Player</div><div class="app-pkg">com.nst.smartersplayerpro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">Shazam</div><div class="app-pkg">com.shazam.android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#ef4444"></div><div><div class="app-label">Tivi</div><div class="app-pkg">ver3.ycntivi.off</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ LECTURE ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">📚</span>
+    <span class="folder-name">Lecture</span>
+    <span class="folder-count">3 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#d946ef"></div><div><div class="app-label">Moon+ Reader</div><div class="app-pkg">com.flyersoft.moonreaderp</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#d946ef"></div><div><div class="app-label">Prestigio eReader</div><div class="app-pkg">com.prestigio.ereader</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#d946ef"></div><div><div class="app-label">Lanthier</div><div class="app-pkg">com.lanthier2013</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SANTÉ ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🏥</span>
+    <span class="folder-name">Santé & Bien-être</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Samsung Health</div><div class="app-pkg">com.sec.android.app.shealth</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Samsung Health Service</div><div class="app-pkg">com.samsung.android.service.health</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Eat This Much</div><div class="app-pkg">com.eatthismuch</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Anatomy & Physiology</div><div class="app-pkg">com.argosy.vb.anatomyandphysiology</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Diagnostics & Thérapeutique</div><div class="app-pkg">com.odysys.diagnosticsettherapeutique</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">Urg de Garde</div><div class="app-pkg">jle.urgdegarde17_18</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#10b981"></div><div><div class="app-label">MarPharma</div><div class="app-pkg">com.apps.marpharma</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SERVICES MAROC ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🇲🇦</span>
+    <span class="folder-name">Services Maroc</span>
+    <span class="folder-count">10 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">CNSS</div><div class="app-pkg">ma.neoxia.macnss</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Lydec</div><div class="app-pkg">com.mobiblanc.lydec</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">ONEE Wakalaty</div><div class="app-pkg">ma.onee.wakalaty_android</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Tadakir</div><div class="app-pkg">ma.brome.tadakir</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Nusuk (Hajj)</div><div class="app-pkg">com.moh.nusukapp</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">COFAR Smart</div><div class="app-pkg">com.cofar.smart</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Taxi App</div><div class="app-pkg">taxi.android.client</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Selfcare (MT)</div><div class="app-pkg">com.MT.selfCare</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Covid Vaccination</div><div class="app-pkg">maroccovid.covid_controle_vaccination</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#dc2626"></div><div><div class="app-label">Belgacom Hello</div><div class="app-pkg">be.belgacom.hello</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ JEUX ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🎮</span>
+    <span class="folder-name">Jeux</span>
+    <span class="folder-count">6 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Subway Surfers</div><div class="app-pkg">com.kiloo.subwaysurf</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Samurai II</div><div class="app-pkg">com.madfingergames.SamuraiIIAll</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Mahjong</div><div class="app-pkg">com.vitastudio.mahjong</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Math Riddles</div><div class="app-pkg">com.BlackGames.MathRiddles</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Eureka</div><div class="app-pkg">com.infinitygames.eureka</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#eab308"></div><div><div class="app-label">Epic Games</div><div class="app-pkg">com.epicgames.portal</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ OUTILS ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🔧</span>
+    <span class="folder-name">Outils</span>
+    <span class="folder-count">12 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">AnyDesk</div><div class="app-pkg">com.anydesk.anydeskandroid</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Speedtest</div><div class="app-pkg">org.zwanoo.android.speedtest</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">ES File Explorer</div><div class="app-pkg">com.estrongs.android.pop</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">App2SD Pro</div><div class="app-pkg">com.a0soft.gphone.app2sd.pro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Device Info HW</div><div class="app-pkg">ru.andr7e.deviceinfohw.pro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Calculatrice+</div><div class="app-pkg">com.roamingsquirrel.android.calculator_plus</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Enregistreur d'appels</div><div class="app-pkg">com.GoldenCamel.RecorderAll</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Copy My Data</div><div class="app-pkg">com.mediamushroom.copymydata</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Send Files to TV</div><div class="app-pkg">com.yablio.sendfilestotv</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Radarbot</div><div class="app-pkg">com.vialsoft.radarbot_free</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">BitTorrent</div><div class="app-pkg">com.bittorrent.client.pro</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#64748b"></div><div><div class="app-label">Earthquake</div><div class="app-pkg">com.finazzi.distquake</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ MAISON CONNECTÉE ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🏠</span>
+    <span class="folder-name">Maison Connectée</span>
+    <span class="folder-count">7 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">Xiaomi Home</div><div class="app-pkg">com.xiaomi.smarthome</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">Huawei Smart Home</div><div class="app-pkg">com.huawei.smarthome</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">LG ThinQ</div><div class="app-pkg">com.lgeha.nuts</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">Sony Songpal</div><div class="app-pkg">com.sony.songpal</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">WiZ (éclairage)</div><div class="app-pkg">com.wizconnected.wiz2</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">Nikon (caméra)</div><div class="app-pkg">com.nikon.wu.wmau</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#06b6d4"></div><div><div class="app-label">Smart Camera (Yi)</div><div class="app-pkg">com.yunyi.smartcamera</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ NAVIGATEURS ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🌐</span>
+    <span class="folder-name">Navigateurs</span>
+    <span class="folder-count">5 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#f472b6"></div><div><div class="app-label">Firefox</div><div class="app-pkg">org.mozilla.firefox</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f472b6"></div><div><div class="app-label">Samsung Internet</div><div class="app-pkg">com.sec.android.app.sbrowser</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f472b6"></div><div><div class="app-label">Adblock Browser</div><div class="app-pkg">com.betafish.adblocksbrowser</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f472b6"></div><div><div class="app-label">Pi Browser</div><div class="app-pkg">pi.browser</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f472b6"></div><div><div class="app-label">Netfly</div><div class="app-pkg">xyz.netfly</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ LOGISTIQUE (Travail) ═══════ -->
+<div class="folder">
+  <div class="folder-header">
+    <span class="folder-icon">🚛</span>
+    <span class="folder-name">Logistique (Travail)</span>
+    <span class="folder-count">3 apps</span>
+  </div>
+  <div class="apps-list">
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Présence Camions</div><div class="app-pkg">com.logistique.camions</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Add Camion</div><div class="app-pkg">ma.bforce.addcamion</div></div></div>
+    <div class="app-item"><div class="app-dot" style="background:#f59e0b"></div><div><div class="app-label">Goodex / Poste Contrôle</div><div class="app-pkg">ma.bforce.goodex / ma.goodex.postecontrole</div></div></div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

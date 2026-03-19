@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarklet Sage X3 → PresenceCamions</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #f0f2f5; color: #333; }
+    .header { background: #0A1628; color: #fff; padding: 20px 32px; }
+    .header .badge { display:inline-block; background: #D4A843; color: #0A1628; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-bottom:6px; }
+    .header h1 { font-size: 20px; font-weight: 700; }
+    .header .sub { font-size: 13px; color: #8A9BB0; margin-top: 2px; }
+    .container { max-width: 860px; margin: 32px auto; padding: 0 20px 40px; }
+    .card { background: #fff; border-radius: 8px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .card h2 { font-size: 16px; color: #0A1628; border-left: 4px solid #D4A843; padding-left: 10px; margin-bottom: 14px; }
+    .bm-box { background: #f8f9fb; border: 2px dashed #D4A843; border-radius: 8px; padding: 24px; text-align: center; margin: 8px 0 16px; }
+    .bm-box p { font-size: 13px; color: #666; margin-bottom: 12px; }
+    a.bm-link { display:inline-block; background:#D4A843; color:#0A1628; font-size:16px; font-weight:700; padding:12px 28px; border-radius:8px; text-decoration:none; cursor:grab; box-shadow:0 2px 8px rgba(212,168,67,0.35); border:2px solid #b8922a; user-select:none; }
+    a.bm-link:hover { background: #F0C96A; }
+    .arrow { font-size: 20px; display: block; margin-bottom: 10px; }
+    ol { padding-left: 20px; }
+    ol li { margin-bottom: 10px; line-height: 1.55; font-size: 14px; }
+    code { background:#eef; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; color:#0A1628; }
+    .schema { background:#f5f5f5; border-radius:6px; padding:14px 18px; font-family:monospace; font-size:12px; color:#333; margin:10px 0; line-height:1.8; }
+    .schema .hdr { color:#0A1628; font-weight:700; }
+    .schema .val { color:#2E7D32; }
+    .tip { background:#e8f4fd; border-left:4px solid #1565C0; padding:10px 14px; border-radius:0 6px 6px 0; font-size:13px; color:#1565C0; margin:12px 0; }
+    .warn { background:#fff3cd; border-left:4px solid #ffc107; padding:10px 14px; border-radius:0 6px 6px 0; font-size:13px; color:#856404; margin:12px 0; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { background:#0A1628; color:#D4A843; padding:8px 10px; text-align:left; }
+    td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; }
+    tr:nth-child(even) td { background:#f8f9fb; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+    textarea { width:100%; height:80px; margin-top:8px; font-size:10px; font-family:monospace; border:1px solid #ccc; border-radius:4px; padding:6px; resize:none; color:#555; }
+    p.note { font-size:11px; color:#999; margin-top:4px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">SODALMU LOGISTIQUE</div>
+  <h1>Bookmarklet — Extraction Commandes ADV</h1>
+  <div class="sub">Sage X3 Web &rarr; PresenceCamions Android</div>
+</div>
+
+<div class="container">
+
+  <!-- INSTALLATION -->
+  <div class="card">
+    <h2>&#9312; Installation du bookmarklet</h2>
+    <div class="bm-box">
+      <span class="arrow">&#11015; Glissez ce bouton dans la barre des favoris du navigateur</span>
+      <p>Ou clic droit sur le bouton &rarr; <em>Ajouter aux favoris</em></p>
+      <!-- BOOKMARKLET LINK — remplacez le href par le contenu de bookmarklet.txt -->
+      <a class="bm-link" id="bm-anchor" href="#">&#128246; Extraire ADV Sage X3</a>
+    </div>
+    <p style="font-size:13px;color:#666;"><strong>Alternative :</strong> copiez le contenu du fichier <code>bookmarklet.txt</code> (dans ce dossier) et collez-le comme URL d'un nouveau favori.</p>
+    <p class="note">Le bookmarklet fonctionne sur Chrome, Firefox et Edge. Il ne nécessite aucune installation de logiciel.</p>
+  </div>
+
+  <!-- UTILISATION -->
+  <div class="card">
+    <h2>&#9313; Utilisation pas à pas</h2>
+    <ol>
+      <li>Ouvrez Sage X3 dans votre navigateur et naviguez vers la liste des <strong>Commandes de vente</strong> (écran <code>GESSDH</code>).</li>
+      <li>Appliquez vos filtres habituels (période, statut, site…) pour afficher les commandes voulues. Assurez-vous que toutes les lignes sont visibles à l'écran.</li>
+      <li>Cliquez sur le favori <strong>&#128246; Extraire ADV Sage X3</strong> dans votre barre de favoris.</li>
+      <li>Une fenêtre apparaît avec un <strong>aperçu des données détectées</strong> et des listes déroulantes pour mapper les colonnes.</li>
+      <li>Vérifiez le mapping, sélectionnez le type de transport par défaut, puis cliquez <strong>&#11015; Télécharger CSV</strong>.</li>
+      <li>Transférez le fichier <code>commandes_adv_YYYY-MM-DD.csv</code> sur l'appareil Android (USB, email, Google Drive…).</li>
+      <li>Dans PresenceCamions, connectez-vous en tant qu'<strong>ADV</strong>, puis utilisez le bouton <strong>Importer commandes</strong>.</li>
+    </ol>
+    <div class="tip">
+      &#128161; Cliquer à nouveau sur le bookmarklet (ou en dehors de la fenêtre) la ferme sans rien exporter.
+    </div>
+  </div>
+
+  <!-- FORMAT CSV -->
+  <div class="card">
+    <h2>&#9314; Format du fichier CSV généré</h2>
+    <p style="font-size:13px;margin-bottom:10px;">Fichier <strong>UTF-8 avec BOM</strong> (compatible Excel), séparateur <strong>point-virgule</strong> :</p>
+    <div class="schema">
+      <span class="hdr">client;destination;tonnage;dateLivraison;typeTransport</span><br>
+      <span class="val">DUPONT SA;Casablanca;14T;2026-03-20;Location</span><br>
+      <span class="val">ATLAS DIST;Marrakech;25T;2026-03-22;LUI-MEME</span>
+    </div>
+    <table style="margin-top:14px;">
+      <tr><th>Colonne</th><th>Description</th><th>Transformation automatique</th></tr>
+      <tr><td><strong>client</strong></td><td>Raison sociale / code tiers</td><td>Aucune</td></tr>
+      <tr><td><strong>destination</strong></td><td>Adresse ou ville de livraison</td><td>Aucune</td></tr>
+      <tr><td><strong>tonnage</strong></td><td>Quantité / tonnage commandé</td><td>Ajout du suffixe <code>T</code> si absent (14 &rarr; 14T)</td></tr>
+      <tr><td><strong>dateLivraison</strong></td><td>Date de livraison prévue</td><td>Conversion DD/MM/YYYY &rarr; YYYY-MM-DD</td></tr>
+      <tr><td><strong>typeTransport</strong></td><td>Mode de transport</td><td><code>LOCATION</code> &rarr; <code>Location</code> ; valeur par défaut si non mappé</td></tr>
+    </table>
+  </div>
+
+  <!-- MAPPING SAGE X3 -->
+  <div class="card">
+    <h2>&#9315; Mapping recommandé — Colonnes Sage X3 GESSDH</h2>
+    <p style="font-size:13px;margin-bottom:12px;">Le bookmarklet tente de détecter automatiquement les colonnes. Voici les correspondances habituelles :</p>
+    <table>
+      <tr><th>Champ PresenceCamions</th><th>Champ Sage X3 typique</th><th>Libellé français</th></tr>
+      <tr><td><strong>Client</strong></td><td><code>BPCNAM</code> ou <code>BPCORD</code></td><td>Raison sociale / Tiers acheteur</td></tr>
+      <tr><td><strong>Destination</strong></td><td><code>XDELY</code> ou <code>RYNAM</code></td><td>Adresse livraison / Site de livraison</td></tr>
+      <tr><td><strong>Tonnage</strong></td><td><code>QTY</code> ou <code>TONQTY</code></td><td>Quantité totale / Tonnage</td></tr>
+      <tr><td><strong>Date livraison</strong></td><td><code>SHIDAT</code> ou <code>DEMDLVDAT</code></td><td>Date livraison prévue / demandée</td></tr>
+      <tr><td><strong>Type transport</strong></td><td><code>MDT</code> (optionnel)</td><td>Mode de transport</td></tr>
+    </table>
+    <div class="warn" style="margin-top:14px;">
+      &#9888; Si la colonne <strong>Tonnage</strong> n'est pas visible dans la liste, ajoutez-la à votre vue personnalisée Sage X3, ou laissez le champ non mappé et complétez manuellement dans l'app.
+    </div>
+  </div>
+
+  <!-- DÉPANNAGE -->
+  <div class="card">
+    <h2>&#9316; Dépannage</h2>
+    <table>
+      <tr><th>Problème</th><th>Solution</th></tr>
+      <tr><td>« Aucune donnée trouvée »</td><td>Assurez-vous d'être sur la <strong>liste</strong> GESSDH (pas sur une fiche individuelle). Faites défiler la liste pour charger les lignes si Sage X3 utilise un chargement lazy.</td></tr>
+      <tr><td>Colonnes mal détectées</td><td>Ajustez manuellement le mapping dans la fenêtre du bookmarklet avant d'exporter.</td></tr>
+      <tr><td>Dates incorrectes</td><td>Vérifiez le format affiché dans Sage X3 (DD/MM/YYYY est le défaut FR/MA). Le bookmarklet convertit automatiquement vers YYYY-MM-DD.</td></tr>
+      <tr><td>Caractères spéciaux corrompus</td><td>Le fichier est en UTF-8 avec BOM. Si Excel l'ouvre mal : <em>Données &rarr; Depuis texte/CSV &rarr; choisir UTF-8</em>.</td></tr>
+      <tr><td>Bookmarklet bloqué (CSP)</td><td>Certains serveurs Sage X3 bloquent les bookmarklets. Solution : ouvrez la console navigateur (<kbd>F12</kbd>) et collez directement le contenu de <code>source.js</code>.</td></tr>
+      <tr><td>Mauvaises lignes sélectionnées</td><td>Si le bookmarklet capte des lignes de menu ou d'en-tête, mappez uniquement les colonnes utiles — les lignes sans client ni destination sont automatiquement ignorées.</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  // Chargement dynamique de l'URL du bookmarklet depuis bookmarklet.txt
+  fetch('bookmarklet.txt')
+    .then(function(r) { return r.text(); })
+    .then(function(url) {
+      var a = document.getElementById('bm-anchor');
+      if (a && url.startsWith('javascript:')) {
+        a.href = url.trim();
+      }
+    })
+    .catch(function() {
+      // Si fetch échoue (file://) : afficher un message
+      var a = document.getElementById('bm-anchor');
+      if (a) {
+        a.title = 'Copiez le contenu de bookmarklet.txt comme URL de ce favori';
+        a.style.opacity = '0.7';
+      }
+      var box = document.querySelector('.bm-box');
+      if (box) {
+        var note = document.createElement('p');
+        note.style = 'color:#856404;font-size:12px;margin-top:10px;';
+        note.innerHTML = '&#9888; Ouvrez cette page via un serveur local (ou double-clic) et copiez le contenu de <code>bookmarklet.txt</code> dans l\'URL du favori manuellement.';
+        box.appendChild(note);
+      }
+    });
+</script>
+
+</body>
+</html>
