@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    kotlin("kapt")
     id("com.google.gms.google-services")
 }
 
@@ -79,8 +78,9 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     // Room — base de données locale (offline-first)
+    // annotationProcessor : natif pour fichiers Java, compatible AGP 9.x built-in Kotlin
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.compiler)
 
     // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
