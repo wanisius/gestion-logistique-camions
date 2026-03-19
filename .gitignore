@@ -1,52 +1,29 @@
-<<<<<<< HEAD
+# Fichiers générés Android
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
-=======
-# Gradle files
-.gradle/
-build/
 
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.aab
-*.apk
-output-metadata.json
-
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-
-# Keystore files
-*.jks
+# Clés Firebase (NE JAMAIS COMMITTER)
+mobile/app/google-services.json
 *.keystore
+*.jks
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# Exports générés (données, non versionnés)
+data/exports/
+*.csv
+*.pdf
 
-# Android Profiling
-*.hprof
->>>>>>> 0da0a816b342aaef0e44f6d55a7fd1f64313e711
+# Config locale Claude Code
+.claude/settings.local.json
+
+# Dépendances
+node_modules/
+
+# Logs
+*.log
