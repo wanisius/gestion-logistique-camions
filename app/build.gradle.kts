@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
+    kotlin("kapt")
     id("com.google.gms.google-services")
 }
 
@@ -80,7 +80,7 @@ dependencies {
 
     // Room — base de données locale (offline-first)
     implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 
     // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
