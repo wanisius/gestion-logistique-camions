@@ -34,10 +34,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
     buildFeatures {
         compose = true
     }
@@ -60,6 +56,12 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
+
 configurations.all {
     exclude(group = "stax", module = "stax-api")
     exclude(group = "xml-apis", module = "xml-apis")
@@ -78,7 +80,6 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     // Room — base de données locale (offline-first)
-    // annotationProcessor : natif pour fichiers Java, compatible AGP 9.x built-in Kotlin
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
 
