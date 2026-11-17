@@ -27,7 +27,7 @@ Android / tablette : servir `dist/` (ou ouvrir le fichier autonome) dans Chrome.
 
 ## Contenu jouable (version 0.1)
 
-**Scénario 4 — Canettes en aluminium** (jouable de bout en bout, ~45 étapes) : 4 080 000 canettes, 20 conteneurs 40' HC, trois fournisseurs (Espagne, Turquie, Chine) avec arbitrage coût / délai / origine.
+**Scénario 4 — Canettes en aluminium** (jouable de bout en bout, 48 étapes dont incidents et branches conditionnelles) : 4 080 000 canettes, 20 conteneurs 40' HC, trois fournisseurs (Espagne, Turquie, Chine) avec arbitrage coût / délai / origine.
 
 - Phases A à I : préparation commerciale, réglementation, PortNet et domiciliation, expédition, transport, arrivée, dédouanement, contrôle sanitaire (non applicable ici, et le jeu explique pourquoi), sortie et livraison.
 - Types d'interaction : décisions, choix multiples, **détection d'anomalies** sur des documents volontairement erronés (pro forma, packing list, B/L), formulaires **PortNet** et **BADR** simulés, **calcul des droits et taxes** par le joueur, scènes animées (carte maritime, port, circuit douanier, camions, entrepôt).
@@ -37,7 +37,7 @@ Android / tablette : servir `dist/` (ou ouvrir le fichier autonome) dans Chrome.
 - HUD : budget, calendrier/échéance, conformité, score. Bureau virtuel avec 12 espaces cliquables, messagerie, tableau de missions.
 - Bibliothèque de 28 documents (émetteur, destinataire, utilité, moment, statut, liens), export **PDF** pédagogique.
 - **Calculateur** interactif : FOB → CIF → valeur en douane → DI, TPI, TVA → coût de revient rendu usine et unitaire ; Incoterm, change, quantités et frais modifiables.
-- Glossaire (43 termes), quiz, historique des erreurs, base réglementaire filtrable, évaluation finale détaillée (PDF).
+- Glossaire (44 termes), quiz, historique des erreurs, base réglementaire filtrable, évaluation finale détaillée (PDF).
 - Sauvegarde automatique (navigateur), plusieurs parties, export/import de sauvegarde en JSON.
 
 Les scénarios 1, 2, 3 et 5 sont annoncés dans le catalogue et restent **en préparation**.
