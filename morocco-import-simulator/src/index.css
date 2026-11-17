@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body { @apply bg-ink-900 text-slate-100 font-sans antialiased; }
+
+@layer components {
+  .card { @apply bg-ink-800/90 border border-ink-600 rounded-xl shadow-lg; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium transition active:scale-[.98] disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-sea-500 hover:bg-sea-400 text-white; }
+  .btn-ghost { @apply btn bg-ink-700 hover:bg-ink-600 text-slate-100 border border-ink-500; }
+  .btn-gold { @apply btn bg-sand-400 hover:bg-sand-500 text-ink-900; }
+  .chip { @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold; }
+  .input { @apply w-full rounded-lg bg-ink-900 border border-ink-500 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-sea-400; }
+  .label { @apply text-xs uppercase tracking-wide text-slate-400; }
+}
+
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
+@keyframes wave { from { transform: translateX(0) } to { transform: translateX(-80px) } }
+@keyframes crane { 0%,100% { transform: translateX(0) } 50% { transform: translateX(60px) } }
+@keyframes lift { 0%,100% { transform: translateY(0) } 50% { transform: translateY(28px) } }
+@keyframes drive { from { transform: translateX(-140px) } to { transform: translateX(110%) } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(233,196,106,.7) } 100% { box-shadow: 0 0 0 14px rgba(233,196,106,0) } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98) } to { opacity: 1; transform: none } }
+@keyframes spin-slow { to { transform: rotate(360deg) } }
+@keyframes stamp { 0% { transform: scale(2.2) rotate(-18deg); opacity: 0 } 60% { transform: scale(.9) rotate(-12deg); opacity: 1 } 100% { transform: scale(1) rotate(-12deg); opacity: 1 } }
+.anim-bob { animation: bob 2.4s ease-in-out infinite; }
+.anim-wave { animation: wave 6s linear infinite; }
+.anim-crane { animation: crane 5s ease-in-out infinite; }
+.anim-lift { animation: lift 5s ease-in-out infinite; }
+.anim-drive { animation: drive 7s linear infinite; }
+.anim-pulse { animation: pulse-ring 1.6s ease-out infinite; }
+.anim-pop { animation: pop .35s ease-out both; }
+.anim-spin { animation: spin-slow 3s linear infinite; }
+.anim-stamp { animation: stamp .6s ease-out both; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media print {
+  body { background: white; color: black; }
+}

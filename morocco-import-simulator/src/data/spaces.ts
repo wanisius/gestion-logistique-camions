@@ -1,0 +1,18 @@
+import type { SpaceId } from '../engine/types';
+
+export const SPACES: Record<SpaceId, { name: string; icon: string; desc: string; actors: string; knowledge: string[]; bg: string }> = {
+  bureau: { name: 'Bureau du responsable import', icon: '🖥️', desc: "Ton poste de travail : messagerie, tableau de missions, dossier d'importation, contrats et clôture.", actors: 'Direction achats, usine', knowledge: ['donnees-fictives'], bg: 'from-slate-600 to-slate-800' },
+  fournisseurs: { name: 'Gestion des fournisseurs', icon: '🌍', desc: 'Recherche, vérification, RFQ, comparaison des offres, négociation, suivi de fabrication.', actors: 'Fournisseurs étrangers', knowledge: ['incoterms', 'origine-ue'], bg: 'from-indigo-700 to-indigo-900' },
+  portnet: { name: 'PortNet (simulé)', icon: '🌐', desc: "Guichet unique : engagement d'importation, domiciliation, BAD, rendez-vous d'enlèvement, fiche de visite.", actors: 'Importateur, banques, ADII, agents maritimes', knowledge: ['portnet', 'engagement-import'], bg: 'from-sky-700 to-sky-900' },
+  banque: { name: 'Banque domiciliataire', icon: '🏦', desc: "Domiciliation, crédit documentaire, remise documentaire, virements, imputations, déclaration à l'Office des Changes.", actors: 'Chargée commerce international', knowledge: ['engagement-import', 'modes-reglement', 'igoc-version'], bg: 'from-emerald-700 to-emerald-900' },
+  transitaire: { name: 'Bureau du transitaire', icon: '🧑‍💼', desc: 'Classement tarifaire, dossier de dédouanement, DUM, relation avec la douane et l’agent maritime.', actors: 'Déclarant en douane agréé', knowledge: ['classement-sh', 'badr-dum'], bg: 'from-amber-700 to-amber-900' },
+  port: { name: 'Port maritime', icon: '⚓', desc: "Accostage, manifeste, déchargement, bon à délivrer par l'agent maritime.", actors: 'Armateur, agent maritime, autorité portuaire', knowledge: ['bad'], bg: 'from-blue-700 to-blue-950' },
+  terminal: { name: 'Terminal à conteneurs', icon: '🏗️', desc: 'Stockage sous douane, positionnement pour visite, frais de manutention, franchise et surestaries, sortie.', actors: 'Exploitant du terminal', knowledge: ['surestaries'], bg: 'from-orange-700 to-orange-950' },
+  douane: { name: 'Bureau de douane (BADR simulé)', icon: '🛃', desc: 'Régime, DUM, liquidation des droits et taxes, circuits de contrôle, mainlevée.', actors: 'ADII, déclarant', knowledge: ['badr-dum', 'valeur-douane', 'tva-import', 'tpi'], bg: 'from-green-800 to-green-950' },
+  labo: { name: 'Laboratoire / contrôle sanitaire', icon: '🔬', desc: 'Exigences sanitaires, phytosanitaires et de conformité ; contrôles ONSSA lorsque la marchandise en relève.', actors: 'ONSSA, organismes de contrôle, qualité interne', knowledge: ['onssa', 'contact-alimentaire', 'conformite-industrielle'], bg: 'from-teal-700 to-teal-950' },
+  camions: { name: 'Flotte de camions', icon: '🚛', desc: 'Transport national du port à l’usine, planning d’enlèvement, retour des conteneurs vides.', actors: 'Transporteurs routiers', knowledge: ['surestaries'], bg: 'from-stone-600 to-stone-800' },
+  entrepot: { name: 'Entrepôt de réception', icon: '📦', desc: 'Contrôle des scellés, déchargement, comptage, contrôle qualité, réserves, entrée en stock.', actors: 'Magasiniers, qualité', knowledge: ['sscc', 'reserves'], bg: 'from-yellow-700 to-yellow-900' },
+  carte: { name: 'Carte des itinéraires', icon: '🗺️', desc: 'Suivi du navire, escales, délais, risques de retard.', actors: 'Armateur, agent maritime', knowledge: ['incoterms'], bg: 'from-cyan-700 to-cyan-950' },
+};
+
+export const SPACE_ORDER: SpaceId[] = ['bureau', 'fournisseurs', 'banque', 'portnet', 'transitaire', 'carte', 'port', 'terminal', 'douane', 'labo', 'camions', 'entrepot'];

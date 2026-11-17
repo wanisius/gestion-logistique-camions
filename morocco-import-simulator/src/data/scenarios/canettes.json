@@ -1,0 +1,2924 @@
+{
+  "id": "canettes",
+  "title": "Scénario 4 — Canettes en aluminium",
+  "subtitle": "20 conteneurs pour une usine de boissons à Casablanca",
+  "level": "Intermédiaire — industriel",
+  "available": true,
+  "summary": "Importer 4 080 000 canettes vides en aluminium (33 cl, imprimées) livrées en 20 conteneurs 40' HC, avec preuve d'origine, domiciliation bancaire, dédouanement BADR et livraisons échelonnées à l'usine.",
+  "company": {
+    "name": "Atlas Boissons SA (fictive)",
+    "ice": "001234567000089",
+    "city": "Casablanca — Aïn Sebaâ",
+    "activity": "Fabrication de boissons gazeuses",
+    "rc": "RC Casablanca 456789 (fictif)"
+  },
+  "goods": {
+    "description": "Canettes vides en aluminium 33 cl, corps imprimé 4 couleurs, vernis intérieur pour boissons gazeuses (couvercles achetés séparément)",
+    "quantity": 4080000,
+    "unit": "canettes",
+    "containers": 20,
+    "containerType": "40' HC",
+    "perContainer": 204000,
+    "palletsPerContainer": 24,
+    "grossKgPerContainer": 3050,
+    "hsCode": "7612.90",
+    "hsLabel": "Réservoirs, fûts, tambours, bidons, boîtes et récipients similaires en aluminium, d'une contenance n'excédant pas 300 l — autres",
+    "nationalCode": "7612.90.00.90 (fictif)"
+  },
+  "deadlineDays": 60,
+  "stockoutPenaltyPerDay": 60000,
+  "budgetMAD": 5600000,
+  "fx": {
+    "EUR": 10.85,
+    "USD": 9.95,
+    "MAD": 1
+  },
+  "fxNote": "Cours fictifs indicatifs — en opération réelle, utiliser le cours de la banque / Bank Al-Maghrib du jour.",
+  "incotermPriceAdjust": {
+    "exportFormalities": 60,
+    "fobLoading": 45,
+    "freightMargin": 1.08,
+    "ddpRisk": 400
+  },
+  "fees": {
+    "insuranceRate": 0.0035,
+    "tpiRate": 0.0025,
+    "vatRate": 0.2,
+    "portPerContainer": 2400,
+    "brokerFlat": 6000,
+    "brokerPerContainer": 350,
+    "bankRate": {
+      "credoc": 0.006,
+      "remdoc": 0.003,
+      "mixte": 0.0025,
+      "virement": 0.0015
+    },
+    "bankMin": 1500,
+    "inlandPerContainer": 1800,
+    "freeDaysPort": 7,
+    "demurragePerContainerDay": 650
+  },
+  "suppliers": [
+    {
+      "id": "ES",
+      "name": "IberLata Packaging S.L. (fictif)",
+      "country": "Espagne",
+      "flag": "🇪🇸",
+      "city": "Sagunto",
+      "port": "Valencia",
+      "currency": "EUR",
+      "unitPrice": 0.092,
+      "productionDays": 14,
+      "transitDays": 4,
+      "freightPerContainer": 850,
+      "preCarriagePerContainer": 220,
+      "dutyRate": 0,
+      "dutyStatus": "0 % avec preuve d'origine UE (accord d'association — démantèlement des produits industriels, à vérifier sur ADIL)",
+      "originProof": "EUR.1 ou déclaration d'origine sur facture (exportateur agréé)",
+      "agreement": "Accord d'association Maroc-UE",
+      "rating": {
+        "qualite": 5,
+        "fiabilite": 5,
+        "certifs": [
+          "FSSC 22000",
+          "ISO 9001",
+          "Déclaration de conformité contact alimentaire (CE 1935/2004)"
+        ]
+      },
+      "notes": "Prix le plus élevé, mais délai court, références chez de grands embouteilleurs, audit possible sous 48 h.",
+      "route": [
+        [
+          499,
+          140
+        ],
+        [
+          492,
+          148
+        ],
+        [
+          484,
+          151
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "TR",
+      "name": "Anatolia Kutu A.Ş. (fictif)",
+      "country": "Turquie",
+      "flag": "🇹🇷",
+      "city": "Manisa",
+      "port": "Izmir (Aliağa)",
+      "currency": "EUR",
+      "unitPrice": 0.086,
+      "productionDays": 20,
+      "transitDays": 9,
+      "freightPerContainer": 1350,
+      "preCarriagePerContainer": 200,
+      "dutyRate": 0,
+      "dutyStatus": "0 % FICTIF avec EUR.1 (ALE Maroc-Turquie amendé — taux réel à vérifier sur ADIL)",
+      "originProof": "EUR.1",
+      "agreement": "ALE Maroc-Turquie (à vérifier)",
+      "rating": {
+        "qualite": 4,
+        "fiabilite": 4,
+        "certifs": [
+          "ISO 9001",
+          "BRCGS Packaging"
+        ]
+      },
+      "notes": "Prix intermédiaire. Délai total plus long. Déclaration de conformité contact alimentaire à demander.",
+      "route": [
+        [
+          575,
+          143
+        ],
+        [
+          566,
+          150
+        ],
+        [
+          545,
+          154
+        ],
+        [
+          520,
+          150
+        ],
+        [
+          495,
+          148
+        ],
+        [
+          484,
+          151
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "CN",
+      "name": "Shandong Brightcan Co., Ltd. (fictif)",
+      "country": "Chine",
+      "flag": "🇨🇳",
+      "city": "Qingdao",
+      "port": "Qingdao",
+      "currency": "USD",
+      "unitPrice": 0.069,
+      "productionDays": 21,
+      "transitDays": 32,
+      "freightPerContainer": 2900,
+      "preCarriagePerContainer": 180,
+      "dutyRate": 0.175,
+      "dutyStatus": "17,5 % FICTIF — droit commun (pas d'accord préférentiel). Taux réel à vérifier sur ADIL.",
+      "originProof": "Certificat d'origine non préférentiel (CCPIT)",
+      "agreement": "Aucun — droit commun",
+      "rating": {
+        "qualite": 3,
+        "fiabilite": 3,
+        "certifs": [
+          "ISO 9001",
+          "GB 4806 (norme chinoise contact alimentaire)"
+        ]
+      },
+      "notes": "Prix unitaire le plus bas, mais fabrication + transit (transbordement) incompatibles avec l'échéance de J+60.",
+      "route": [
+        [
+          834,
+          150
+        ],
+        [
+          835,
+          168
+        ],
+        [
+          810,
+          205
+        ],
+        [
+          788,
+          246
+        ],
+        [
+          722,
+          233
+        ],
+        [
+          660,
+          222
+        ],
+        [
+          621,
+          215
+        ],
+        [
+          598,
+          185
+        ],
+        [
+          590,
+          166
+        ],
+        [
+          570,
+          158
+        ],
+        [
+          540,
+          152
+        ],
+        [
+          505,
+          149
+        ],
+        [
+          485,
+          150
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    }
+  ],
+  "characters": {
+    "samira": {
+      "name": "Samira Alaoui",
+      "role": "Directrice des achats (ta responsable)",
+      "avatar": "👩‍💼"
+    },
+    "karim": {
+      "name": "Karim Tazi",
+      "role": "Directeur d'usine",
+      "avatar": "👷"
+    },
+    "benali": {
+      "name": "Youssef Benali",
+      "role": "Transitaire — déclarant en douane agréé",
+      "avatar": "🧑‍💼"
+    },
+    "idrissi": {
+      "name": "Nadia El Idrissi",
+      "role": "Chargée commerce international — Banque Maghreb Commerce (fictive)",
+      "avatar": "🏦"
+    },
+    "agent": {
+      "name": "Omar Fassi",
+      "role": "Agent maritime — MedLine Shipping (fictif)",
+      "avatar": "⚓"
+    },
+    "douane": {
+      "name": "Inspecteur ADII",
+      "role": "Bureau de douane du port (personnage fictif)",
+      "avatar": "🛃"
+    },
+    "fournisseur": {
+      "name": "Service export du fournisseur",
+      "role": "Commercial export",
+      "avatar": "🤝"
+    },
+    "assureur": {
+      "name": "Leila Bennani",
+      "role": "Courtière en assurance transport",
+      "avatar": "🛡️"
+    },
+    "hafid": {
+      "name": "Hafid",
+      "role": "Chef magasinier",
+      "avatar": "📦"
+    },
+    "rachid": {
+      "name": "Rachid",
+      "role": "Transporteur routier",
+      "avatar": "🚛"
+    },
+    "systeme": {
+      "name": "Système",
+      "role": "PortNet / BADR (simulés)",
+      "avatar": "💻"
+    },
+    "labo": {
+      "name": "Dr Salma Ouazzani",
+      "role": "Responsable qualité / laboratoire",
+      "avatar": "🔬"
+    }
+  },
+  "steps": [
+    {
+      "id": "A1-besoin",
+      "phase": "A",
+      "title": "Identifier le besoin d'achat",
+      "location": "bureau",
+      "actor": "karim",
+      "type": "choice",
+      "intro": "Karim : « La nouvelle ligne de remplissage démarre dans 60 jours. Il nous faut 4 080 000 canettes 33 cl, soit 20 conteneurs. Rédige l'expression de besoin pour lancer les achats. »",
+      "hint": "Une bonne expression de besoin est mesurable : quantité, spécifications techniques, qualité, délai, conditionnement.",
+      "explanation": "L'expression de besoin est la base de la demande de cotation, du contrat et, plus tard, du contrôle à la réception. Une spécification vague empêche de comparer les offres et de réclamer en cas de non-conformité.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Spécification complète",
+          "detail": "4 080 000 canettes 33 cl, alliage et vernis intérieur compatibles boissons gazeuses, impression 4 couleurs selon BAT, palettisées (24 palettes / 40' HC), livrées à l'usine avant J+60, couvercles achetés séparément.",
+          "quality": "best",
+          "feedback": "Parfait : tous les critères mesurables sont présents et serviront au contrat et au PV de réception.",
+          "effects": {
+            "days": 2,
+            "docs": [
+              "besoin"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "« 4 millions de canettes 33 cl imprimées, livraison rapide »",
+          "quality": "ok",
+          "feedback": "Quantité approximative et délai non daté : les fournisseurs répondront sur des bases différentes.",
+          "effects": {
+            "days": 2,
+            "docs": [
+              "besoin"
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "label": "« Des canettes, le moins cher possible »",
+          "quality": "bad",
+          "feedback": "Sans spécification, impossible de comparer ni de réclamer. Le prix seul n'est pas un critère d'achat industriel.",
+          "effects": {
+            "days": 3,
+            "docs": [
+              "besoin"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "donnees-fictives"
+      ]
+    },
+    {
+      "id": "A2-verification",
+      "phase": "A",
+      "title": "Vérifier les fournisseurs",
+      "location": "fournisseurs",
+      "actor": "samira",
+      "type": "multi",
+      "intro": "Samira : « Trois fabricants ont répondu à notre annonce : en Espagne, en Turquie et en Chine. Quelles vérifications réalises-tu avant de leur envoyer une demande de cotation ? » (plusieurs réponses)",
+      "hint": "Pense à l'existence légale, à la capacité réelle, à la sécurité alimentaire de l'emballage et aux références.",
+      "explanation": "La vérification (due diligence) réduit le risque de fraude, de non-livraison et de non-conformité. Pour un emballage alimentaire, les certifications de sécurité des emballages (FSSC 22000, BRCGS Packaging) et la déclaration de conformité contact alimentaire sont déterminantes pour le client industriel.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Existence légale (registre du commerce, numéro de TVA intracommunautaire / équivalent)",
+          "quality": "best",
+          "feedback": "Indispensable : on ne paie jamais une société non identifiée."
+        },
+        {
+          "id": "b",
+          "label": "Références clients et audit (visite ou audit à distance)",
+          "quality": "best",
+          "feedback": "Les références d'embouteilleurs comparables sont un excellent indicateur."
+        },
+        {
+          "id": "c",
+          "label": "Certifications sécurité des emballages (FSSC 22000, BRCGS Packaging, ISO 9001)",
+          "quality": "best",
+          "feedback": "Exigées par le système qualité de l'usine de boissons."
+        },
+        {
+          "id": "d",
+          "label": "Capacité de production et délai réel pour 4 millions d'unités",
+          "quality": "best",
+          "feedback": "Essentiel avec une échéance ferme."
+        },
+        {
+          "id": "e",
+          "label": "Se fier au site web et aux photos du fournisseur",
+          "quality": "bad",
+          "feedback": "Un site web ne prouve rien : c'est la porte d'entrée classique des fraudes."
+        },
+        {
+          "id": "f",
+          "label": "Payer un échantillon depuis un compte personnel pour aller plus vite",
+          "quality": "bad",
+          "feedback": "Les règlements d'une société doivent passer par ses comptes et respecter la réglementation des changes."
+        }
+      ],
+      "effects": {
+        "days": 3,
+        "cost": {
+          "label": "Échantillons et audit à distance",
+          "amount": 8000,
+          "category": "autres"
+        }
+      },
+      "sources": [
+        "contact-alimentaire",
+        "modes-reglement"
+      ]
+    },
+    {
+      "id": "A3-rfq",
+      "phase": "A",
+      "title": "Rédiger la demande de cotation (RFQ)",
+      "location": "bureau",
+      "actor": "samira",
+      "type": "multi",
+      "intro": "Samira : « Prépare la RFQ commune aux trois fournisseurs. Que doit-elle contenir ? »",
+      "hint": "La RFQ doit permettre de comparer des offres « à périmètre identique ».",
+      "explanation": "Une RFQ identique pour tous garantit des offres comparables : mêmes spécifications, même Incoterm de référence, mêmes documents exigés. Demander une facture minorée est une fraude douanière (fausse déclaration de valeur).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Spécifications, BAT d'impression et tolérance de quantité (±2 %)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Incoterm de référence et lieu (ex. FCA terminal du port de départ)",
+          "quality": "best",
+          "feedback": "Oui : sans Incoterm commun, les prix ne sont pas comparables."
+        },
+        {
+          "id": "c",
+          "label": "Délai de fabrication et date de mise à disposition",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Documents exigés : facture, packing list, preuve d'origine, déclaration contact alimentaire",
+          "quality": "best",
+          "feedback": "Oui : cela conditionnera le droit applicable et la conformité."
+        },
+        {
+          "id": "e",
+          "label": "Conditions de paiement proposées et validité de l'offre",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "f",
+          "label": "Indiquer notre budget maximum",
+          "quality": "bad",
+          "feedback": "Erreur de négociation : les offres s'aligneront sur votre budget."
+        },
+        {
+          "id": "g",
+          "label": "Demander une facture minorée « pour réduire les droits »",
+          "quality": "bad",
+          "feedback": "Fraude : fausse déclaration de valeur en douane, passible de sanctions prévues par le Code des douanes."
+        }
+      ],
+      "effects": {
+        "days": 0,
+        "docs": [
+          "rfq"
+        ]
+      },
+      "sources": [
+        "valeur-douane",
+        "incoterms"
+      ]
+    },
+    {
+      "id": "A4-choix",
+      "phase": "A",
+      "title": "Comparer les offres et choisir le fournisseur",
+      "location": "fournisseurs",
+      "actor": "samira",
+      "type": "choice",
+      "widget": "suppliers",
+      "intro": "Les trois devis sont arrivés (base FCA port de départ). Compare le coût complet rendu usine ET le délai total par rapport à l'échéance de J+60 (aujourd'hui : J+{{day}}). Une journée d'arrêt de la ligne coûte 60 000 MAD (fictif).",
+      "hint": "Le prix unitaire le plus bas n'est pas le coût le plus bas : ajoute fret, droits (selon l'origine) et pénalités de retard.",
+      "explanation": "Le choix du fournisseur se fait sur le coût total rendu (« landed cost ») et sur le risque : délai, qualité, origine préférentielle. Une origine UE avec preuve d'origine valable bénéficie du tarif préférentiel ; une origine chinoise paie le droit commun et subit un transit long.",
+      "options": [
+        {
+          "id": "ES",
+          "label": "🇪🇸 IberLata (Espagne)",
+          "detail": "0,092 €/u — fabrication 14 j — transit 4 j",
+          "quality": "best",
+          "feedback": "Choix robuste : délai compatible avec J+60, origine préférentielle, certifications alimentaires complètes.",
+          "effects": {
+            "set": {
+              "supplier": "ES"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        },
+        {
+          "id": "TR",
+          "label": "🇹🇷 Anatolia Kutu (Turquie)",
+          "detail": "0,086 €/u — fabrication 20 j — transit 9 j",
+          "quality": "ok",
+          "feedback": "Moins cher, mais le délai total laisse très peu de marge avant J+60 et le régime préférentiel est à vérifier.",
+          "effects": {
+            "set": {
+              "supplier": "TR"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        },
+        {
+          "id": "CN",
+          "label": "🇨🇳 Shandong Brightcan (Chine)",
+          "detail": "0,069 $/u — fabrication 21 j — transit 32 j",
+          "quality": "bad",
+          "feedback": "Prix bas, mais droit commun, fret élevé et surtout délai incompatible : l'usine sera arrêtée plusieurs semaines.",
+          "effects": {
+            "set": {
+              "supplier": "CN"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "origine-ue",
+        "origine-tr",
+        "origine-cn",
+        "di-taux"
+      ]
+    },
+    {
+      "id": "A5-negociation",
+      "phase": "A",
+      "title": "Négocier les conditions",
+      "location": "fournisseurs",
+      "actor": "fournisseur",
+      "type": "choice",
+      "intro": "Visioconférence avec {{supplier.name}}. Le commercial attend ta position.",
+      "hint": "Une bonne négociation échange une contrepartie contre une concession et sécurise le délai.",
+      "explanation": "La négociation porte sur le prix, mais aussi sur le délai, les pénalités, la tolérance de quantité et les documents. Une demande de sous-facturation est une fraude, et une pression excessive peut dégrader la relation (priorité de production).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Remise de 2 % contre un volume annuel indicatif + pénalités de retard de 0,5 %/jour plafonnées",
+          "quality": "best",
+          "feedback": "Accord obtenu : -2 % sur le prix et une clause de pénalité qui sécurise ton délai.",
+          "effects": {
+            "set": {
+              "discount": 0.02
+            },
+            "days": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Accepter le prix sans discussion",
+          "quality": "ok",
+          "feedback": "Rapide, mais tu laisses de la valeur sur la table et aucune garantie de délai.",
+          "effects": {
+            "set": {
+              "discount": 0
+            },
+            "days": 1
+          }
+        },
+        {
+          "id": "c",
+          "label": "Exiger -15 % sous peine de rompre",
+          "quality": "bad",
+          "feedback": "Le fournisseur refuse et repousse ta commande dans son planning (+5 jours).",
+          "effects": {
+            "set": {
+              "discount": 0
+            },
+            "days": 5
+          }
+        },
+        {
+          "id": "d",
+          "label": "Demander deux factures : une minorée pour la douane, une réelle pour le paiement",
+          "quality": "bad",
+          "feedback": "Fraude caractérisée (fausse déclaration de valeur + infraction de change). Le fournisseur sérieux refuse, et ta conformité chute.",
+          "effects": {
+            "set": {
+              "discount": 0
+            },
+            "days": 1,
+            "compliance": -20
+          }
+        }
+      ],
+      "sources": [
+        "valeur-douane",
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "A6-devise",
+      "phase": "A",
+      "title": "Choisir la devise de facturation",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "intro": "Nadia (banque) : « En quelle devise allez-vous contracter ? Le dirham n'est pas librement convertible. »",
+      "hint": "La devise doit être cohérente sur le contrat, la facture, l'engagement d'importation et le règlement.",
+      "explanation": "La devise du contrat se retrouve dans l'engagement d'importation et dans le règlement. Le risque de change peut être couvert par une opération à terme auprès de la banque (couverture autorisée par la réglementation des changes, dans les conditions de l'IGOC).",
+      "options": [
+        {
+          "id": "a",
+          "label": "La devise de l'offre ({{supplier.currency}}) avec étude d'une couverture à terme",
+          "quality": "best",
+          "feedback": "Cohérent et prudent : le coût en MAD est sécurisé si la couverture est mise en place.",
+          "effects": {
+            "days": 0,
+            "set": {
+              "currency": "offer"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Imposer une facturation en dirhams (MAD)",
+          "quality": "bad",
+          "feedback": "Le MAD n'est pas une devise de règlement international librement convertible : le fournisseur refuse ou intègre une forte marge de risque.",
+          "effects": {
+            "days": 2
+          }
+        },
+        {
+          "id": "c",
+          "label": "Décider de la devise au moment du paiement selon le meilleur cours",
+          "quality": "bad",
+          "feedback": "Incohérence entre contrat, engagement d'importation et règlement : la banque ne pourrait pas domicilier ni payer.",
+          "effects": {
+            "days": 0,
+            "compliance": -5
+          }
+        }
+      ],
+      "sources": [
+        "engagement-import",
+        "modes-reglement"
+      ]
+    },
+    {
+      "id": "A7-incoterm",
+      "phase": "A",
+      "title": "Choisir l'Incoterm",
+      "location": "bureau",
+      "actor": "samira",
+      "type": "choice",
+      "widget": "incoterms",
+      "intro": "Samira : « Marchandise en conteneurs, remise au terminal de {{supplier.port}}. Quel Incoterm 2020 retiens-tu ? »",
+      "hint": "Pour du conteneur, la CCI recommande les règles « tous modes » (FCA/CPT/CIP) plutôt que FOB/CFR/CIF.",
+      "explanation": "FCA terminal de départ : le vendeur dédouane à l'export et remet le conteneur au transporteur choisi par l'acheteur ; l'acheteur maîtrise le fret et l'assurance. FOB/CIF sont conçus pour la marchandise en vrac chargée à bord. EXW impose à l'acheteur les formalités d'export ; DDP est inapplicable au Maroc pour un vendeur étranger.",
+      "options": [
+        {
+          "id": "FCA",
+          "label": "FCA — {{supplier.port}}, terminal à conteneurs (Incoterms® 2020)",
+          "quality": "best",
+          "feedback": "Excellent : transfert des risques à la remise au terminal, tu choisis transporteur et assurance.",
+          "effects": {
+            "set": {
+              "incoterm": "FCA"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "FOB",
+          "label": "FOB — {{supplier.port}}",
+          "quality": "ok",
+          "feedback": "Utilisable et très répandu, mais inadapté au conteneur : le risque entre la remise au terminal et le chargement à bord est flou.",
+          "effects": {
+            "set": {
+              "incoterm": "FOB"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "CIF",
+          "label": "CIF — Casablanca",
+          "quality": "ok",
+          "feedback": "Simple, mais le vendeur choisit le transporteur et ne doit qu'une assurance minimale ICC (C) ; tu perds le contrôle du fret.",
+          "effects": {
+            "set": {
+              "incoterm": "CIF",
+              "insurance": "seller-c"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "EXW",
+          "label": "EXW — usine du fournisseur",
+          "quality": "bad",
+          "feedback": "Tu devras accomplir les formalités d'exportation dans le pays du vendeur : complexe et risqué pour un importateur marocain.",
+          "effects": {
+            "set": {
+              "incoterm": "EXW"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "DDP",
+          "label": "DDP — usine Atlas Boissons",
+          "quality": "bad",
+          "feedback": "Le vendeur étranger devrait dédouaner au Maroc, payer TVA et droits : irréaliste (déclarant, domiciliation…). Le fournisseur propose finalement du DAP.",
+          "effects": {
+            "set": {
+              "incoterm": "DAP"
+            },
+            "days": 2
+          }
+        }
+      ],
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "A8-paiement",
+      "phase": "A",
+      "title": "Choisir le mode de règlement",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "widget": "payment",
+      "intro": "Nadia : « Premier achat avec ce fournisseur, environ {{calc.invoiceCurrency}} {{supplier.currency}}. Quel instrument de paiement souhaitez-vous ? »",
+      "hint": "Premier achat + montant élevé = sécuriser par des documents et un engagement bancaire.",
+      "explanation": "Le crédit documentaire protège les deux parties : la banque paie uniquement contre des documents conformes. La remise documentaire est moins chère mais sans engagement bancaire. Le paiement 100 % d'avance concentre tout le risque sur l'acheteur et ses conditions sont encadrées par la réglementation des changes.",
+      "options": [
+        {
+          "id": "credoc",
+          "label": "Crédit documentaire irrévocable, payable à vue contre documents",
+          "quality": "best",
+          "feedback": "Le plus sûr pour un premier achat important. Coût bancaire plus élevé, exigence de documents parfaitement conformes.",
+          "effects": {
+            "set": {
+              "payment": "credoc"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "remdoc",
+          "label": "Remise documentaire (documents contre paiement)",
+          "quality": "ok",
+          "feedback": "Moins cher, mais la banque ne s'engage pas : le fournisseur peut hésiter à expédier.",
+          "effects": {
+            "set": {
+              "payment": "remdoc"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "mixte",
+          "label": "Acompte 30 % par virement + 70 % contre copie des documents",
+          "quality": "ok",
+          "feedback": "Courant avec un fournisseur connu ; l'acompte expose 30 % du montant et doit respecter les conditions de l'IGOC.",
+          "effects": {
+            "set": {
+              "payment": "mixte"
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "virement",
+          "label": "Virement de 100 % à la commande",
+          "quality": "bad",
+          "feedback": "Risque maximal : en cas de défaillance, tu as payé sans marchandise. Paiement anticipé encadré par la réglementation des changes.",
+          "effects": {
+            "set": {
+              "payment": "virement"
+            },
+            "days": 0
+          }
+        }
+      ],
+      "sources": [
+        "modes-reglement",
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "A9-proforma",
+      "phase": "A",
+      "title": "Contrôler la facture pro forma",
+      "location": "bureau",
+      "actor": "fournisseur",
+      "type": "docCheck",
+      "document": "proforma",
+      "intro": "La facture pro forma vient d'arriver. Elle servira à la domiciliation : la banque vérifie sa concordance avec l'engagement d'importation. Clique sur chaque champ qui te paraît erroné, puis valide.",
+      "hint": "Compare avec ce qui a été négocié : quantité, Incoterm, position tarifaire.",
+      "explanation": "La pro forma doit être identique au contrat : toute discordance avec l'engagement d'importation entraîne une demande de correction ou un rejet de la domiciliation par la banque.",
+      "effects": {
+        "docs": [
+          "proforma"
+        ],
+        "days": 1
+      },
+      "sources": [
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "A10-contrat",
+      "phase": "A",
+      "title": "Valider le contrat commercial et le bon de commande",
+      "location": "bureau",
+      "actor": "samira",
+      "type": "multi",
+      "intro": "Samira : « Avant signature, quelles clauses doivent figurer au contrat ? »",
+      "hint": "Le contrat doit permettre d'agir en cas de retard, de non-conformité ou de litige.",
+      "explanation": "Le contrat international précise l'Incoterm et sa version, les spécifications, le prix et la devise, les délais et pénalités, les documents, le mode de paiement, la loi applicable et le mode de règlement des litiges (souvent l'arbitrage).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Incoterm avec lieu précis et mention « Incoterms® 2020 »",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Spécifications, BAT, tolérance de quantité, critères d'acceptation",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Délais, pénalités de retard et force majeure",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Paiement : instrument, échéance, documents exigés",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Loi applicable et clause d'arbitrage",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "f",
+          "label": "Aucune : la pro forma suffit",
+          "quality": "bad",
+          "feedback": "Pour 4 millions de dirhams, un contrat écrit est indispensable."
+        },
+        {
+          "id": "g",
+          "label": "Clause prévoyant une facture « douane » distincte",
+          "quality": "bad",
+          "feedback": "Clause frauduleuse."
+        }
+      ],
+      "effects": {
+        "days": 2,
+        "docs": [
+          "contrat",
+          "bc"
+        ]
+      },
+      "sources": [
+        "incoterms",
+        "modes-reglement"
+      ]
+    },
+    {
+      "id": "B1-sh",
+      "phase": "B",
+      "title": "Classer la marchandise (code SH)",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Youssef Benali (transitaire) : « Avant l'engagement d'importation, il faut la position tarifaire. Quelle position SH pour des canettes vides en aluminium ? »",
+      "hint": "Cherche la position des « récipients » en aluminium, pas la matière première.",
+      "explanation": "Les canettes vides relèvent de la position 76.12 (récipients en aluminium ≤ 300 l), sous-position 7612.90. 76.06 vise les tôles (matière), 76.15 les articles de ménage, 83.09 les couvercles et capsules. La sous-position nationale à 10 chiffres se recherche dans ADIL ; celle du jeu est fictive.",
+      "options": [
+        {
+          "id": "a",
+          "label": "7612.90 — Récipients en aluminium ≤ 300 l, autres",
+          "quality": "best",
+          "feedback": "Correct (RGI 1 et 6).",
+          "effects": {
+            "set": {
+              "hsOk": true
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "b",
+          "label": "7606.12 — Tôles et bandes en alliages d'aluminium",
+          "quality": "bad",
+          "feedback": "C'est la matière première, pas un récipient fini.",
+          "effects": {
+            "set": {
+              "hsOk": false
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "c",
+          "label": "7615.10 — Articles de ménage en aluminium",
+          "quality": "bad",
+          "feedback": "Les canettes industrielles ne sont pas des articles de ménage.",
+          "effects": {
+            "set": {
+              "hsOk": false
+            },
+            "days": 0
+          }
+        },
+        {
+          "id": "d",
+          "label": "8309.90 — Bouchons, couvercles et capsules",
+          "quality": "bad",
+          "feedback": "Position des couvercles (achetés séparément), pas des corps de canettes.",
+          "effects": {
+            "set": {
+              "hsOk": false
+            },
+            "days": 0
+          }
+        }
+      ],
+      "sources": [
+        "classement-sh"
+      ]
+    },
+    {
+      "id": "B2-regime",
+      "phase": "B",
+      "title": "Libre importation ou licence ?",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "« ADIL ne mentionne pas de restriction pour cette position (dans notre simulation). Quel titre d'importation faut-il souscrire sur PortNet ? »",
+      "hint": "Le principe est la liberté du commerce extérieur.",
+      "explanation": "Une marchandise libre à l'importation nécessite un engagement d'importation souscrit sur PortNet et domicilié en banque. La licence n'est requise que pour les marchandises soumises à restriction.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Engagement d'importation (marchandise libre)",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {
+            "days": 0
+          }
+        },
+        {
+          "id": "b",
+          "label": "Licence d'importation",
+          "quality": "bad",
+          "feedback": "Inutile : la licence concerne les marchandises soumises à restriction.",
+          "effects": {
+            "days": 3
+          }
+        },
+        {
+          "id": "c",
+          "label": "Aucun titre : on paie librement le fournisseur",
+          "quality": "bad",
+          "feedback": "Faux : le règlement en devises suppose un titre domicilié avant le dédouanement.",
+          "effects": {
+            "compliance": -5
+          }
+        }
+      ],
+      "sources": [
+        "liberte-import",
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "B3-exigences",
+      "phase": "B",
+      "title": "Exigences techniques, sanitaires et certificats",
+      "location": "labo",
+      "actor": "labo",
+      "type": "multi",
+      "intro": "Dr Ouazzani (qualité) : « Quelles exigences s'appliquent à ces emballages destinés au contact des boissons ? » (plusieurs réponses)",
+      "hint": "Distingue ce qui est imposé par un texte vérifié, ce qui est contractuel, et ce qui ne s'applique pas.",
+      "explanation": "Aucune procédure ONSSA spécifique aux canettes vides n'a pu être vérifiée : le simulateur n'impose pas de contrôle ONSSA (à confirmer auprès de l'ONSSA pour une opération réelle). La déclaration de conformité contact alimentaire est une exigence contractuelle du client. La liste des produits industriels soumis au contrôle de conformité doit être vérifiée. La preuve d'origine conditionne le tarif préférentiel.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Déclaration de conformité « contact alimentaire » du fabricant (exigence contractuelle)",
+          "quality": "best",
+          "feedback": "Oui — exigée par le système qualité de l'usine."
+        },
+        {
+          "id": "b",
+          "label": "Vérifier si le produit figure sur la liste du contrôle de conformité des produits industriels (MCINET)",
+          "quality": "best",
+          "feedback": "Oui — vérification systématique (hypothèse du jeu : non concerné)."
+        },
+        {
+          "id": "c",
+          "label": "Preuve d'origine préférentielle",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "best",
+              "TR": "best",
+              "CN": "ok"
+            }
+          },
+          "feedback": "Pour une origine UE ou Turquie, elle conditionne le tarif préférentiel ; pour la Chine, aucun accord n'existe."
+        },
+        {
+          "id": "d",
+          "label": "Certificat phytosanitaire",
+          "quality": "bad",
+          "feedback": "Réservé aux végétaux et produits végétaux."
+        },
+        {
+          "id": "e",
+          "label": "Analyses ONSSA obligatoires au port",
+          "quality": "bad",
+          "feedback": "Non établi pour cette marchandise : on n'impose pas un contrôle sans base réglementaire vérifiée."
+        }
+      ],
+      "effects": {
+        "days": 0
+      },
+      "sources": [
+        "contact-alimentaire",
+        "conformite-industrielle",
+        "onssa",
+        "origine-ue"
+      ]
+    },
+    {
+      "id": "B4-origine",
+      "phase": "B",
+      "title": "Justifier l'origine",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "« Le taux du droit d'importation dépend de l'origine et de sa preuve. Quel document demandes-tu à {{supplier.name}} ? »",
+      "hint": "Accord d'association UE et ALE Turquie : EUR.1 (ou déclaration d'origine). Chine : pas d'accord.",
+      "explanation": "Sans preuve d'origine valable, le droit commun s'applique même si la marchandise est réellement européenne. Le certificat d'origine non préférentiel n'ouvre droit à aucune réduction.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Preuve d'origine préférentielle (EUR.1 ou déclaration d'origine sur facture)",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "best",
+              "TR": "best",
+              "CN": "bad"
+            }
+          },
+          "feedback": "Pour l'UE ou la Turquie : bon choix. Pour la Chine, aucun accord ne permet d'émettre un EUR.1.",
+          "effects": {
+            "set": {
+              "originProofOk": true
+            },
+            "days": 0,
+            "docs": []
+          }
+        },
+        {
+          "id": "b",
+          "label": "Certificat d'origine non préférentiel (chambre de commerce)",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "bad",
+              "TR": "bad",
+              "CN": "best"
+            }
+          },
+          "feedback": "Pour la Chine, c'est le bon document. Pour l'UE/Turquie, il ne donne pas droit au tarif préférentiel : droit commun appliqué.",
+          "effectsIf": {
+            "bad": {
+              "set": {
+                "originProofOk": false,
+                "mfnRate": 0.175
+              }
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Aucune : la douane déterminera l'origine elle-même",
+          "quality": "bad",
+          "feedback": "C'est à l'importateur de justifier l'origine revendiquée. Droit commun appliqué.",
+          "effects": {
+            "set": {
+              "originProofOk": false,
+              "mfnRate": 0.175
+            }
+          }
+        }
+      ],
+      "sources": [
+        "origine-ue",
+        "origine-tr",
+        "origine-cn",
+        "di-taux"
+      ]
+    },
+    {
+      "id": "B5-etiquetage",
+      "phase": "B",
+      "title": "Étiquetage, marquage et traçabilité",
+      "location": "entrepot",
+      "actor": "hafid",
+      "type": "multi",
+      "intro": "Hafid : « Pour réceptionner proprement 480 palettes, qu'est-ce qu'on exige comme marquage ? »",
+      "hint": "Traçabilité logistique + conformité de l'impression qui deviendra l'étiquette de la boisson.",
+      "explanation": "Le SSCC identifie chaque palette, le numéro de lot relie la palette à la production. L'impression de la canette constitue l'étiquette du produit fini : elle doit respecter l'étiquetage marocain des denrées (mentions obligatoires, langue arabe) — à vérifier par le service réglementaire. Apposer une fausse origine est interdit.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Étiquette SSCC (GS1) sur chaque palette",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Numéro de lot de fabrication par palette",
+          "quality": "best",
+          "feedback": "Oui : indispensable en cas de réclamation."
+        },
+        {
+          "id": "c",
+          "label": "Vérifier que la maquette imprimée respecte l'étiquetage du produit fini (mentions, arabe)",
+          "quality": "best",
+          "feedback": "Oui : la canette imprimée sera l'étiquette de la boisson."
+        },
+        {
+          "id": "d",
+          "label": "Coller « Made in Morocco » sur les palettes",
+          "quality": "bad",
+          "feedback": "Fausse indication d'origine : interdit."
+        }
+      ],
+      "effects": {
+        "days": 0
+      },
+      "sources": [
+        "sscc",
+        "contact-alimentaire"
+      ]
+    },
+    {
+      "id": "C1-portnet",
+      "phase": "C",
+      "title": "Créer l'engagement d'importation sur PortNet",
+      "location": "portnet",
+      "actor": "systeme",
+      "type": "form",
+      "intro": "Saisis l'engagement d'importation (simulation pédagogique de PortNet). Chaque champ doit concorder avec la facture pro forma et le contrat.",
+      "hint": "Reprends exactement les données du contrat : fournisseur, origine, devise, montant, Incoterm.",
+      "explanation": "L'engagement d'importation reprend les données de la facture pro forma. La banque vérifie cette concordance avant domiciliation. Toute erreur entraîne une demande de correction.",
+      "form": {
+        "system": "portnet",
+        "fields": [
+          {
+            "id": "type",
+            "label": "Type de titre d'importation",
+            "options": [
+              "Engagement d'importation",
+              "Licence d'importation",
+              "Déclaration préalable d'importation"
+            ],
+            "answer": "Engagement d'importation"
+          },
+          {
+            "id": "ice",
+            "label": "Identifiant de l'importateur (ICE)",
+            "options": [
+              "001234567000089",
+              "456789",
+              "1234567"
+            ],
+            "answer": "001234567000089",
+            "help": "ICE à 15 chiffres de l'entreprise"
+          },
+          {
+            "id": "fournisseur",
+            "label": "Fournisseur",
+            "options": [
+              "IberLata Packaging S.L. (fictif)",
+              "Anatolia Kutu A.Ş. (fictif)",
+              "Shandong Brightcan Co., Ltd. (fictif)"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "IberLata Packaging S.L. (fictif)",
+                "TR": "Anatolia Kutu A.Ş. (fictif)",
+                "CN": "Shandong Brightcan Co., Ltd. (fictif)"
+              }
+            }
+          },
+          {
+            "id": "origine",
+            "label": "Pays d'origine",
+            "options": [
+              "Espagne",
+              "Turquie",
+              "Chine",
+              "Maroc"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "Espagne",
+                "TR": "Turquie",
+                "CN": "Chine"
+              }
+            }
+          },
+          {
+            "id": "devise",
+            "label": "Devise",
+            "options": [
+              "EUR",
+              "USD",
+              "MAD"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "EUR",
+                "TR": "EUR",
+                "CN": "USD"
+              }
+            }
+          },
+          {
+            "id": "montant",
+            "label": "Montant (selon pro forma)",
+            "options": [
+              "{{calc.invoiceCurrency}}",
+              "{{calc.goodsInvoice}}",
+              "{{calc.cif}}"
+            ],
+            "answer": "{{calc.invoiceCurrency}}",
+            "help": "Montant en devise du contrat"
+          },
+          {
+            "id": "sh",
+            "label": "Nomenclature (position tarifaire)",
+            "options": [
+              "7612.90.00.90 (fictif)",
+              "7606.12.00.00 (fictif)",
+              "8309.90.00.00 (fictif)"
+            ],
+            "answer": "7612.90.00.90 (fictif)"
+          },
+          {
+            "id": "incoterm",
+            "label": "Incoterm",
+            "options": [
+              "EXW",
+              "FCA",
+              "FOB",
+              "CIF",
+              "DAP"
+            ],
+            "answer": "{{incoterm}}"
+          },
+          {
+            "id": "banque",
+            "label": "Banque domiciliataire",
+            "options": [
+              "Banque Maghreb Commerce (fictive)",
+              "Bureau de change du port",
+              "Banque du fournisseur"
+            ],
+            "answer": "Banque Maghreb Commerce (fictive)"
+          }
+        ]
+      },
+      "effects": {
+        "days": 1,
+        "docs": [
+          "engagement"
+        ]
+      },
+      "sources": [
+        "engagement-import",
+        "portnet"
+      ]
+    },
+    {
+      "id": "C2-rejet",
+      "phase": "C",
+      "title": "Demande de correction de la banque",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "requires": {
+        "var": "proformaMissed",
+        "in": [
+          true
+        ]
+      },
+      "intro": "Nadia : « Je ne peux pas domicilier : la facture pro forma contient des incohérences avec votre contrat et votre engagement (quantité / Incoterm / position). Que faites-vous ? »",
+      "hint": "Seul l'émetteur d'un document peut le corriger.",
+      "explanation": "La banque est tenue de vérifier la concordance entre le contrat commercial et l'engagement d'importation. La correction passe par une nouvelle pro forma émise par le fournisseur et, si besoin, la rectification de l'engagement.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Obtenir une pro forma rectifiée du fournisseur et rectifier l'engagement si nécessaire",
+          "quality": "best",
+          "feedback": "Bonne pratique. Coût : 2 jours.",
+          "effects": {
+            "days": 2,
+            "set": {
+              "proformaMissed": false
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Insister pour que la banque domicilie quand même",
+          "quality": "bad",
+          "feedback": "La banque refuse : 4 jours perdus avant de faire corriger le document.",
+          "effects": {
+            "days": 4
+          }
+        },
+        {
+          "id": "c",
+          "label": "Corriger soi-même la pro forma sous Word",
+          "quality": "bad",
+          "feedback": "Falsification d'un document émanant d'un tiers : faute grave.",
+          "effects": {
+            "days": 2,
+            "compliance": -15
+          }
+        }
+      ],
+      "sources": [
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "C3-domiciliation",
+      "phase": "C",
+      "title": "Dossier de domiciliation bancaire",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "multi",
+      "intro": "Nadia : « Pour domicilier l'engagement, quelles pièces me transmettez-vous ? »",
+      "hint": "On domicilie AVANT l'expédition : les documents de transport et de douane n'existent pas encore.",
+      "explanation": "La domiciliation intervient avant le dédouanement : la banque s'appuie sur l'engagement d'importation PortNet, la facture pro forma ou le contrat, et le dossier de connaissance du client. La DUM et le B/L serviront plus tard à l'apurement et au règlement.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Engagement d'importation saisi sur PortNet",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Facture pro forma et contrat commercial",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Dossier société à jour (RC, ICE, pouvoirs des signataires)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "DUM",
+          "quality": "bad",
+          "feedback": "La DUM sera établie au moment du dédouanement, bien plus tard."
+        },
+        {
+          "id": "e",
+          "label": "Connaissement (B/L)",
+          "quality": "bad",
+          "feedback": "Le B/L n'existe qu'après le chargement."
+        }
+      ],
+      "effects": {
+        "days": 2,
+        "docs": [
+          "domiciliation"
+        ],
+        "commit": [
+          "bank"
+        ]
+      },
+      "sources": [
+        "engagement-import",
+        "portnet"
+      ]
+    },
+    {
+      "id": "C4-credoc",
+      "phase": "C",
+      "title": "Documents exigés dans le crédit / la remise documentaire",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "multi",
+      "requires": {
+        "var": "payment",
+        "in": [
+          "credoc",
+          "remdoc"
+        ]
+      },
+      "intro": "Nadia : « Listez les documents que le fournisseur devra présenter pour être payé. »",
+      "hint": "Ce sont les documents dont tu auras besoin pour dédouaner et pour prouver la conformité.",
+      "explanation": "Le crédit documentaire (RUU 600) est payé contre documents conformes. Exiger les bons documents, c'est garantir que tu pourras dédouaner (facture, B/L, preuve d'origine) et que la marchandise est conforme (déclaration alimentaire).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Facture commerciale signée",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Liste de colisage (packing list)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Jeu complet de connaissements (B/L) originaux",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Preuve d'origine",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "best",
+              "TR": "best",
+              "CN": "best"
+            }
+          },
+          "feedback": "Oui (préférentielle pour UE/Turquie, non préférentielle pour la Chine)."
+        },
+        {
+          "id": "e",
+          "label": "Déclaration de conformité contact alimentaire",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "f",
+          "label": "Mainlevée douanière",
+          "quality": "bad",
+          "feedback": "Émise au Maroc par la douane, pas par le fournisseur."
+        }
+      ],
+      "effects": {
+        "days": 0,
+        "docs": [
+          "paiement"
+        ]
+      },
+      "sources": [
+        "modes-reglement"
+      ]
+    },
+    {
+      "id": "C4-virement",
+      "phase": "C",
+      "title": "Exécuter l'acompte",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "requires": {
+        "var": "payment",
+        "in": [
+          "mixte",
+          "virement"
+        ]
+      },
+      "intro": "Le fournisseur réclame le versement prévu au contrat. Comment procèdes-tu ?",
+      "hint": "Le règlement doit être rattaché au dossier domicilié.",
+      "explanation": "Le règlement d'une importation s'effectue par la banque domiciliataire, en référence au dossier domicilié, afin d'être imputé et déclaré à l'Office des Changes.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Ordre de virement via la banque domiciliataire, référencé au dossier",
+          "quality": "best",
+          "feedback": "Correct : le paiement sera imputé sur le dossier.",
+          "effects": {
+            "docs": [
+              "paiement"
+            ],
+            "days": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Payer via un ami qui a un compte à l'étranger",
+          "quality": "bad",
+          "feedback": "Infraction à la réglementation des changes.",
+          "effects": {
+            "compliance": -25,
+            "days": 1
+          }
+        }
+      ],
+      "sources": [
+        "engagement-import",
+        "modes-reglement"
+      ]
+    },
+    {
+      "id": "D1-production",
+      "phase": "D",
+      "title": "Fabrication : valider le BAT",
+      "location": "fournisseurs",
+      "actor": "fournisseur",
+      "type": "choice",
+      "scene": "factory",
+      "intro": "{{supplier.name}} envoie le bon à tirer (BAT) des impressions avant de lancer {{supplier.productionDays}} jours de production.",
+      "hint": "Une erreur d'impression sur 4 millions de canettes est irrattrapable.",
+      "explanation": "Le BAT engage l'acheteur : une fois validé, toute erreur imprimée est à sa charge. Il doit être contrôlé par le marketing et le service réglementaire (mentions obligatoires).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Faire valider le BAT par le marketing et le réglementaire, puis signer",
+          "quality": "best",
+          "feedback": "Production lancée sur une base sûre.",
+          "effects": {
+            "daysFrom": "production",
+            "days": 1,
+            "docs": [
+              "bat"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Laisser le fournisseur valider seul pour gagner du temps",
+          "quality": "bad",
+          "feedback": "Une mention obligatoire manque sur l'impression : 15 000 MAD de surcoût d'étiquetage complémentaire.",
+          "effects": {
+            "daysFrom": "production",
+            "cost": {
+              "label": "Correction d'étiquetage (mention manquante)",
+              "amount": 15000,
+              "category": "autres"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "contact-alimentaire"
+      ]
+    },
+    {
+      "id": "D2-inspection",
+      "phase": "D",
+      "title": "Inspection avant expédition",
+      "location": "fournisseurs",
+      "actor": "labo",
+      "type": "choice",
+      "intro": "Production terminée. Dr Ouazzani propose une inspection avant expédition (échantillonnage) par un organisme indépendant.",
+      "hint": "Premier achat chez ce fournisseur : il est plus économique de détecter un défaut avant le départ.",
+      "explanation": "L'inspection avant expédition n'est pas obligatoire ici (hors exigence réglementaire), mais elle limite le risque de non-conformité pour un premier achat. Les défauts découverts à l'arrivée sont bien plus coûteux à gérer.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Mandater une inspection (9 000 MAD)",
+          "quality": "best",
+          "feedback": "Un lot de 2 palettes mal vernies est écarté avant le départ et remplacé.",
+          "effects": {
+            "cost": {
+              "label": "Inspection avant expédition",
+              "amount": 9000,
+              "category": "autres"
+            },
+            "days": 0,
+            "set": {
+              "psi": true
+            },
+            "docs": [
+              "inspection"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Se contenter du certificat d'analyse du fournisseur",
+          "quality": "ok",
+          "feedback": "Acceptable avec un fournisseur bien noté, mais sans contrôle indépendant.",
+          "effects": {
+            "set": {
+              "psi": false
+            }
+          }
+        }
+      ],
+      "sources": [
+        "donnees-fictives"
+      ]
+    },
+    {
+      "id": "D3-booking",
+      "phase": "D",
+      "title": "Réserver le transport maritime",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "requires": {
+        "var": "incoterm",
+        "in": [
+          "EXW",
+          "FCA",
+          "FOB"
+        ]
+      },
+      "intro": "En {{incoterm}}, c'est à toi de réserver le transport principal pour 20 × 40' HC depuis {{supplier.port}}.",
+      "hint": "Le délai compte plus que quelques centaines d'euros par conteneur.",
+      "explanation": "En Incoterm du groupe E ou F, l'acheteur choisit le transporteur et paie le fret principal (souvent « freight collect »). Une ligne directe réduit le risque de retard lié au transbordement.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Ligne régulière directe, réservation confirmée pour les 20 conteneurs",
+          "quality": "best",
+          "feedback": "Réservation confirmée, conteneurs vides livrés au fournisseur.",
+          "effects": {
+            "days": 0,
+            "docs": [
+              "booking"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Service moins cher avec transbordement",
+          "quality": "ok",
+          "feedback": "-5 % de fret mais +4 jours de transit.",
+          "effects": {
+            "days": 5,
+            "docs": [
+              "booking"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "D4-assurance",
+      "phase": "D",
+      "title": "Assurer la marchandise",
+      "location": "bureau",
+      "actor": "assureur",
+      "type": "choice",
+      "requires": {
+        "var": "incoterm",
+        "in": [
+          "EXW",
+          "FCA",
+          "FOB",
+          "CFR"
+        ]
+      },
+      "intro": "Leila Bennani (courtière) : « Les risques du transport sont pour vous dès la remise au transporteur. Quelle couverture ? »",
+      "hint": "Des canettes vides sont légères et fragiles (écrasement, humidité).",
+      "explanation": "Clauses ICC (A) : « tous risques » sauf exclusions ; ICC (C) : événements majeurs uniquement. Sans assurance, la responsabilité du transporteur maritime est limitée et ne couvre pas tous les dommages. La police doit couvrir généralement 110 % de la valeur CIF.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Police ICC (A) — tous risques, 110 % CIF",
+          "quality": "best",
+          "feedback": "Couverture adaptée à une marchandise fragile.",
+          "effects": {
+            "set": {
+              "insurance": "icc-a"
+            },
+            "docs": [
+              "assurance"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Police ICC (C) — risques majeurs",
+          "quality": "ok",
+          "feedback": "Moins chère, mais ne couvre pas l'écrasement ou la mouille ordinaires.",
+          "effects": {
+            "set": {
+              "insurance": "icc-c"
+            },
+            "docs": [
+              "assurance"
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "label": "Pas d'assurance",
+          "quality": "bad",
+          "feedback": "Économie risquée : 4 millions de dirhams sans protection.",
+          "effects": {
+            "set": {
+              "insurance": "none"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "incoterms",
+        "reserves"
+      ]
+    },
+    {
+      "id": "D5-packing",
+      "phase": "D",
+      "title": "Contrôler la liste de colisage",
+      "location": "bureau",
+      "actor": "fournisseur",
+      "type": "docCheck",
+      "document": "packing",
+      "intro": "Le fournisseur envoie la packing list avant chargement. Elle doit concorder avec la facture et le B/L. Repère les anomalies.",
+      "hint": "Multiplie : palettes × canettes par palette. Vérifie les poids et les scellés.",
+      "explanation": "La packing list détaille le contenu de chaque conteneur (palettes, SSCC, poids, scellés). Elle sert au dédouanement, à la visite éventuelle et au contrôle à réception. Une incohérence avec la facture ou le B/L déclenche des questions de la douane.",
+      "effects": {
+        "days": 0,
+        "docs": [
+          "packing"
+        ]
+      },
+      "sources": [
+        "sscc"
+      ]
+    },
+    {
+      "id": "D6-export",
+      "phase": "D",
+      "title": "Formalités d'exportation au départ",
+      "location": "carte",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Les conteneurs sont chargés et scellés. Qui accomplit le dédouanement à l'exportation dans le pays du fournisseur (Incoterm {{incoterm}}) ?",
+      "hint": "Seul EXW laisse les formalités d'export à l'acheteur.",
+      "explanation": "Sauf en EXW, le vendeur accomplit les formalités d'exportation. En EXW, l'acheteur doit mandater un transitaire dans le pays de départ, ce qui ajoute coûts et délais.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Le vendeur",
+          "qualityBy": {
+            "var": "incoterm",
+            "map": {
+              "EXW": "bad",
+              "FCA": "best",
+              "FOB": "best",
+              "CIF": "best",
+              "DAP": "best"
+            }
+          },
+          "feedback": "Vrai pour toutes les règles sauf EXW.",
+          "effectsIf": {
+            "bad": {
+              "days": 3,
+              "commit": [
+                "preCarriage"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Moi, via un transitaire dans le pays de départ",
+          "qualityBy": {
+            "var": "incoterm",
+            "map": {
+              "EXW": "best",
+              "FCA": "bad",
+              "FOB": "bad",
+              "CIF": "bad",
+              "DAP": "bad"
+            }
+          },
+          "feedback": "Seulement en EXW.",
+          "effectsIf": {
+            "best": {
+              "days": 2,
+              "commit": [
+                "preCarriage"
+              ]
+            }
+          }
+        }
+      ],
+      "effects": {
+        "docs": [
+          "facture",
+          "origine",
+          "alimentarite",
+          "bl"
+        ]
+      },
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "E1-transit",
+      "phase": "E",
+      "title": "Transport maritime international",
+      "location": "carte",
+      "actor": "agent",
+      "type": "scene",
+      "scene": "map",
+      "intro": "Le navire quitte {{supplier.port}} avec tes 20 conteneurs. Suis le voyage jusqu'à Casablanca ({{supplier.transitDays}} jours).",
+      "explanation": "Pendant le transit, l'importateur suit le navire (ETA), prépare le dossier de dédouanement et reçoit les documents originaux via la banque (crédit ou remise documentaire) ou du fournisseur.",
+      "effects": {
+        "daysFrom": "transit",
+        "commit": [
+          "goods",
+          "insurance"
+        ]
+      },
+      "sources": [
+        "surestaries"
+      ]
+    },
+    {
+      "id": "E2-retard",
+      "phase": "E",
+      "title": "Incident : retard du navire",
+      "location": "carte",
+      "actor": "agent",
+      "type": "choice",
+      "chance": {
+        "decouverte": 0.35,
+        "professionnel": 0.5,
+        "expert": 0.9,
+        "examen": 0.6
+      },
+      "intro": "Omar (agent maritime) : « Congestion au port d'escale : l'ETA de votre navire est repoussée de 3 jours. »",
+      "hint": "Le retard est subi : l'essentiel est d'anticiper ses conséquences.",
+      "explanation": "Un retard de navire est un aléa du transport. Après la remise au transporteur (FCA/FOB), il n'est pas imputable au vendeur. La bonne réaction est d'informer, de replanifier et de préparer le dédouanement anticipé pour gagner du temps à l'arrivée.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Informer l'usine, replanifier et préparer la DUM dès maintenant",
+          "quality": "best",
+          "feedback": "Tu récupères 1 jour à l'arrivée grâce au dossier prêt.",
+          "effects": {
+            "days": 2
+          }
+        },
+        {
+          "id": "b",
+          "label": "Réclamer des pénalités au fournisseur",
+          "quality": "bad",
+          "feedback": "Le fournisseur a livré à temps au transporteur : la réclamation est rejetée. 3 jours perdus.",
+          "effects": {
+            "days": 3
+          }
+        },
+        {
+          "id": "c",
+          "label": "Affréter un avion cargo pour une partie des canettes",
+          "quality": "bad",
+          "feedback": "Coût disproportionné pour des canettes vides (volume énorme, faible valeur).",
+          "effects": {
+            "days": 3,
+            "cost": {
+              "label": "Fret aérien d'urgence partiel",
+              "amount": 180000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "incoterms",
+        "surestaries"
+      ]
+    },
+    {
+      "id": "F1-arrivee",
+      "phase": "F",
+      "title": "Arrivée du navire et déchargement",
+      "location": "port",
+      "actor": "agent",
+      "type": "scene",
+      "scene": "port",
+      "intro": "Le navire accoste au port de Casablanca. Les portiques déchargent tes 20 conteneurs vers le terminal.",
+      "explanation": "À l'arrivée, le transporteur ou son agent maritime dépose le manifeste (déclaration sommaire) qui recense les marchandises à bord. Les conteneurs sont placés sous douane au terminal jusqu'à la mainlevée.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F2-manifeste",
+      "phase": "F",
+      "title": "Manifeste et déclaration sommaire",
+      "location": "port",
+      "actor": "agent",
+      "type": "choice",
+      "intro": "Qui est responsable du dépôt du manifeste / de la déclaration sommaire de la cargaison ?",
+      "hint": "C'est la personne qui a transporté la marchandise.",
+      "explanation": "Le manifeste est déposé par le transporteur ou son représentant (agent maritime). La DUM du transitaire devra ensuite apurer la ligne du manifeste correspondant à tes conteneurs.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Le transporteur / l'agent maritime",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {}
+        },
+        {
+          "id": "b",
+          "label": "L'importateur",
+          "quality": "bad",
+          "feedback": "Non : l'importateur, via son déclarant, dépose la déclaration en détail (DUM)."
+        },
+        {
+          "id": "c",
+          "label": "La banque domiciliataire",
+          "quality": "bad",
+          "feedback": "La banque n'intervient pas dans les formalités portuaires."
+        }
+      ],
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F3-bl",
+      "phase": "F",
+      "title": "Vérifier le connaissement (B/L)",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "docCheck",
+      "document": "bl",
+      "intro": "Youssef : « Avant de lancer la DUM, vérifie le B/L : il doit concorder avec le manifeste, la facture et la packing list. »",
+      "hint": "Destinataire, nombre de conteneurs, port de déchargement, mention du fret.",
+      "explanation": "Le B/L est à la fois reçu de la marchandise, preuve du contrat de transport et titre représentatif. Une erreur de destinataire ou de quantité bloque le BAD et l'apurement du manifeste.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F4-correction-bl",
+      "phase": "F",
+      "title": "Blocage : B/L non conforme",
+      "location": "port",
+      "actor": "agent",
+      "type": "choice",
+      "requires": {
+        "var": "blMissed",
+        "in": [
+          true
+        ]
+      },
+      "intro": "Omar : « Le B/L ne correspond pas au manifeste. Je ne peux pas émettre le bon à délivrer en l'état. »",
+      "hint": "Seul le transporteur (émetteur) peut corriger le B/L.",
+      "explanation": "Une anomalie non détectée bloque la chaîne : correction du B/L par le transporteur, éventuelle rectification du manifeste, puis reprise de la DUM. Chaque jour au terminal rapproche des surestaries.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Demander au transporteur un B/L rectifié (lettre de correction) et informer le transitaire",
+          "quality": "ok",
+          "feedback": "Débloqué en 3 jours, mais cela aurait pu être évité.",
+          "effects": {
+            "portDays": 3
+          }
+        },
+        {
+          "id": "b",
+          "label": "Attendre que le problème se règle seul",
+          "quality": "bad",
+          "feedback": "6 jours perdus au terminal.",
+          "effects": {
+            "portDays": 6
+          }
+        }
+      ],
+      "sources": [
+        "bad",
+        "surestaries"
+      ]
+    },
+    {
+      "id": "F5-bad",
+      "phase": "F",
+      "title": "Obtenir le bon à délivrer (BAD)",
+      "location": "port",
+      "actor": "agent",
+      "type": "choice",
+      "intro": "Comment obtiens-tu le bon à délivrer de tes conteneurs ?",
+      "hint": "Le BAD est émis par l'agent maritime, sous forme électronique via PortNet.",
+      "explanation": "L'agent maritime émet le BAD au profit du destinataire contre remise du B/L original (endossé si à ordre) et paiement des sommes dues (fret « collect », frais d'agence). Le BAD est dématérialisé sur PortNet.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Remettre le B/L original, régler fret collect et frais d'agence → BAD électronique PortNet",
+          "quality": "best",
+          "feedback": "BAD émis.",
+          "effects": {
+            "commit": [
+              "freight"
+            ],
+            "docs": [
+              "bad"
+            ],
+            "portDays": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Le demander au bureau de douane",
+          "quality": "bad",
+          "feedback": "La douane n'émet pas le BAD. 1 jour perdu.",
+          "effects": {
+            "commit": [
+              "freight"
+            ],
+            "docs": [
+              "bad"
+            ],
+            "portDays": 2
+          }
+        },
+        {
+          "id": "c",
+          "label": "Envoyer directement les camions au terminal",
+          "quality": "bad",
+          "feedback": "Accès refusé sans BAD ni mainlevée.",
+          "effects": {
+            "commit": [
+              "freight"
+            ],
+            "docs": [
+              "bad"
+            ],
+            "portDays": 2,
+            "cost": {
+              "label": "Camions refoulés (attente)",
+              "amount": 12000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "bad",
+        "portnet"
+      ]
+    },
+    {
+      "id": "F6-dossier",
+      "phase": "F",
+      "title": "Constituer le dossier du transitaire",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "multi",
+      "intro": "Youssef : « Pour déposer la DUM, il me faut le dossier complet. Qu'est-ce que tu me remets ? »",
+      "hint": "Le transitaire agit pour ton compte : il lui faut un mandat.",
+      "explanation": "Le déclarant agréé a besoin du mandat de dédouanement, des documents commerciaux (facture, packing list), de transport (B/L, BAD), de la preuve d'origine et des références de l'engagement d'importation domicilié.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Mandat de dédouanement",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Facture commerciale et packing list",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "B/L et bon à délivrer",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Preuve d'origine",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Référence de l'engagement d'importation domicilié",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "f",
+          "label": "Bon de livraison de l'usine",
+          "quality": "bad",
+          "feedback": "Il sera établi après la livraison."
+        }
+      ],
+      "effects": {
+        "days": 0,
+        "docs": [
+          "mandat"
+        ]
+      },
+      "sources": [
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G1-regime",
+      "phase": "G",
+      "title": "Identifier le régime douanier",
+      "location": "douane",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Les canettes seront remplies et les boissons vendues au Maroc. Quel régime déclarer ?",
+      "hint": "La marchandise reste définitivement sur le territoire.",
+      "explanation": "La mise à la consommation est le régime de droit commun pour une marchandise destinée à rester au Maroc. L'admission temporaire pour perfectionnement actif suppose une réexportation des produits compensateurs ; l'entrepôt suspend les droits mais retarde la disponibilité.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Mise à la consommation",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {}
+        },
+        {
+          "id": "b",
+          "label": "Admission temporaire pour perfectionnement actif",
+          "quality": "bad",
+          "feedback": "Seulement si les boissons étaient réexportées, sous autorisation et engagement."
+        },
+        {
+          "id": "c",
+          "label": "Entrepôt de douane",
+          "quality": "ok",
+          "feedback": "Possible pour différer, mais l'usine a besoin des canettes immédiatement.",
+          "effects": {
+            "portDays": 1
+          }
+        },
+        {
+          "id": "d",
+          "label": "Transit",
+          "quality": "bad",
+          "feedback": "Le transit concerne les marchandises qui traversent le territoire."
+        }
+      ],
+      "sources": [
+        "regime-consommation"
+      ]
+    },
+    {
+      "id": "G2-dum",
+      "phase": "G",
+      "title": "Préparer la DUM (simulation BADR)",
+      "location": "douane",
+      "actor": "benali",
+      "type": "form",
+      "intro": "Renseigne la Déclaration Unique de Marchandises dans le simulateur pédagogique BADR (interface non officielle).",
+      "hint": "La valeur déclarée est celle de la facture ; le fret et l'assurance s'ajoutent pour obtenir la valeur en douane si l'Incoterm ne les inclut pas.",
+      "explanation": "La DUM reprend le régime, la position tarifaire, l'origine, la valeur, la devise, l'Incoterm, les colis et les poids, ainsi que la référence du titre d'importation. Elle doit concorder avec la facture, la packing list, le B/L et le manifeste.",
+      "form": {
+        "system": "badr",
+        "fields": [
+          {
+            "id": "regime",
+            "label": "Régime",
+            "options": [
+              "Mise à la consommation",
+              "Admission temporaire",
+              "Transit",
+              "Entrepôt"
+            ],
+            "answer": "Mise à la consommation"
+          },
+          {
+            "id": "sh",
+            "label": "Position tarifaire",
+            "options": [
+              "7612.90.00.90 (fictif)",
+              "7606.12.00.00 (fictif)",
+              "7615.10.00.00 (fictif)"
+            ],
+            "answer": "7612.90.00.90 (fictif)"
+          },
+          {
+            "id": "origine",
+            "label": "Origine",
+            "options": [
+              "Espagne",
+              "Turquie",
+              "Chine",
+              "Maroc"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "Espagne",
+                "TR": "Turquie",
+                "CN": "Chine"
+              }
+            }
+          },
+          {
+            "id": "valeur",
+            "label": "Valeur facture (devise)",
+            "options": [
+              "{{calc.invoiceCurrency}}",
+              "{{calc.cif}}",
+              "{{calc.vd}}"
+            ],
+            "answer": "{{calc.invoiceCurrency}}"
+          },
+          {
+            "id": "incoterm",
+            "label": "Condition de livraison",
+            "options": [
+              "EXW",
+              "FCA",
+              "FOB",
+              "CIF",
+              "DAP"
+            ],
+            "answer": "{{incoterm}}"
+          },
+          {
+            "id": "colis",
+            "label": "Nombre de colis (palettes)",
+            "options": [
+              "480",
+              "20",
+              "4 080 000"
+            ],
+            "answer": "480"
+          },
+          {
+            "id": "poids",
+            "label": "Poids brut total (kg)",
+            "options": [
+              "61 000",
+              "6 100",
+              "3 050"
+            ],
+            "answer": "61 000"
+          },
+          {
+            "id": "titre",
+            "label": "Titre d'importation",
+            "options": [
+              "Engagement d'importation domicilié n° EI-2026-04811",
+              "Licence n° L-2026-001",
+              "Aucun"
+            ],
+            "answer": "Engagement d'importation domicilié n° EI-2026-04811"
+          }
+        ]
+      },
+      "effects": {
+        "portDays": 1,
+        "docs": [
+          "dum"
+        ]
+      },
+      "sources": [
+        "badr-dum",
+        "valeur-douane"
+      ]
+    },
+    {
+      "id": "G3-calcul",
+      "phase": "G",
+      "title": "Calculer les droits et taxes",
+      "location": "douane",
+      "actor": "benali",
+      "type": "calc",
+      "intro": "Youssef : « Avant de signer, calcule toi-même la liquidation. Utilise le calculateur si besoin (bouton 🧮). Tolérance : 1 %. »",
+      "hint": "VD = valeur CIF en MAD. DI = VD × taux DI. TPI = VD × 0,25 %. TVA = (VD + DI + TPI) × 20 %.",
+      "explanation": "Formules du jeu : valeur en douane (base CIF) convertie en MAD ; DI selon l'origine et la preuve d'origine ; TPI 0,25 % ; TVA 20 % sur VD + DI + TPI. Les taux réels sont à vérifier sur ADIL à la date de l'opération.",
+      "calc": [
+        {
+          "id": "vd",
+          "label": "Valeur en douane (MAD)"
+        },
+        {
+          "id": "di",
+          "label": "Droit d'importation (MAD)"
+        },
+        {
+          "id": "tpi",
+          "label": "TPI (MAD)"
+        },
+        {
+          "id": "tva",
+          "label": "TVA à l'importation (MAD)"
+        }
+      ],
+      "sources": [
+        "valeur-douane",
+        "tva-import",
+        "tpi",
+        "di-taux"
+      ]
+    },
+    {
+      "id": "G4-circuit",
+      "phase": "G",
+      "title": "Enregistrement et circuit de contrôle",
+      "location": "douane",
+      "actor": "systeme",
+      "type": "scene",
+      "scene": "circuit",
+      "intro": "La DUM est signée électroniquement et enregistrée. Le système d'analyse de risque de la douane l'oriente vers un circuit…",
+      "explanation": "Après enregistrement, la déclaration est orientée vers un circuit : sans contrôle, contrôle documentaire ou visite physique. Les critères d'orientation relèvent de l'analyse de risque de l'ADII et ne sont pas publics : le jeu les tire au hasard.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G5-documentaire",
+      "phase": "G",
+      "title": "Contrôle documentaire : demande de pièces",
+      "location": "douane",
+      "actor": "douane",
+      "type": "choice",
+      "requires": {
+        "var": "circuit",
+        "in": [
+          "documentaire",
+          "visite"
+        ]
+      },
+      "intro": "L'inspecteur demande la preuve d'origine et la facture pour justifier le taux appliqué.",
+      "hint": "Réponds par les pièces justificatives, dans les délais, via ton déclarant.",
+      "explanation": "En contrôle documentaire, l'inspecteur vérifie la concordance entre la DUM et les pièces. Une preuve d'origine absente ou invalide entraîne l'application du droit commun.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Transmettre via le transitaire la facture et la preuve d'origine originale",
+          "qualityBy": {
+            "var": "originProofOk",
+            "map": {
+              "true": "best",
+              "false": "bad"
+            }
+          },
+          "feedback": "Si la preuve d'origine est valable, le taux préférentiel est confirmé ; sinon le droit commun est appliqué.",
+          "effects": {
+            "portDays": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Contester la demande",
+          "quality": "bad",
+          "feedback": "La douane est en droit d'exiger les justificatifs. 2 jours perdus.",
+          "effects": {
+            "portDays": 2
+          }
+        }
+      ],
+      "sources": [
+        "origine-ue",
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G6-visite",
+      "phase": "G",
+      "title": "Visite physique des marchandises",
+      "location": "terminal",
+      "actor": "douane",
+      "type": "choice",
+      "requires": {
+        "var": "circuit",
+        "in": [
+          "visite"
+        ]
+      },
+      "intro": "Circuit visite : l'inspecteur veut examiner 2 conteneurs. Comment t'organises-tu ?",
+      "hint": "La date se fixe via PortNet (fiche suiveuse) et le conteneur doit être positionné.",
+      "explanation": "Le déclarant propose une date de visite via PortNet, la douane la valide, le terminal positionne le conteneur, le déclarant assiste à l'ouverture. Le résultat est enregistré dans BADR.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Proposer une date via PortNet, faire positionner les conteneurs, assister à la visite",
+          "quality": "best",
+          "feedback": "Visite conforme, 1 jour.",
+          "effects": {
+            "portDays": 1,
+            "cost": {
+              "label": "Positionnement et manutention pour visite",
+              "amount": 4500,
+              "category": "port"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Ne pas se présenter",
+          "quality": "bad",
+          "feedback": "La visite est reportée : 3 jours perdus.",
+          "effects": {
+            "portDays": 3,
+            "cost": {
+              "label": "Positionnement et manutention pour visite (x2)",
+              "amount": 9000,
+              "category": "port"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "portnet",
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G7-paiement",
+      "phase": "G",
+      "title": "Payer les droits et taxes, obtenir la mainlevée",
+      "location": "douane",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "La liquidation est définitive. Comment payer pour obtenir la mainlevée ?",
+      "hint": "Les paiements sont électroniques.",
+      "explanation": "Le paiement des droits et taxes (ou leur garantie par un crédit d'enlèvement cautionné, si l'opérateur en dispose) conditionne la mainlevée. Celle-ci s'obtient en ligne sauf visite physique.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Paiement électronique (banque / paiement multicanal) puis mainlevée en ligne",
+          "quality": "best",
+          "feedback": "Mainlevée obtenue.",
+          "effects": {
+            "commit": [
+              "duties",
+              "tpi",
+              "vat",
+              "broker"
+            ],
+            "docs": [
+              "quittance",
+              "mainlevee"
+            ],
+            "portDays": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Attendre que la douane envoie une facture par courrier",
+          "quality": "bad",
+          "feedback": "Rien n'arrive par courrier : 3 jours perdus.",
+          "effects": {
+            "commit": [
+              "duties",
+              "tpi",
+              "vat",
+              "broker"
+            ],
+            "docs": [
+              "quittance",
+              "mainlevee"
+            ],
+            "portDays": 3
+          }
+        }
+      ],
+      "sources": [
+        "badr-dum",
+        "tva-import"
+      ]
+    },
+    {
+      "id": "H1-sanitaire",
+      "phase": "H",
+      "title": "Contrôle sanitaire : applicable ?",
+      "location": "labo",
+      "actor": "labo",
+      "type": "choice",
+      "scene": "lab",
+      "intro": "Un collègue affirme qu'il faut absolument un passage au laboratoire de l'ONSSA avant la sortie. Qu'en dis-tu ?",
+      "hint": "On n'impose pas un contrôle sans base réglementaire vérifiée — mais on vérifie !",
+      "explanation": "Pour les denrées, animaux et végétaux, l'ONSSA réalise contrôles documentaires, d'identité, physiques et analyses, avec des décisions d'admission, de mise en conformité, de refoulement ou de destruction. Pour des canettes vides, aucune procédure n'a pu être vérifiée : le jeu n'en impose pas. La qualité « contact alimentaire » est garantie par la déclaration du fabricant et le contrôle qualité interne. Ce module ONSSA est pleinement utilisé dans le scénario 2 (agroalimentaire).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Non dans ce scénario ; contrôle qualité interne + déclaration contact alimentaire ; confirmer auprès de l'ONSSA pour une opération réelle",
+          "quality": "best",
+          "feedback": "Réponse rigoureuse."
+        },
+        {
+          "id": "b",
+          "label": "Oui, prélèvements obligatoires",
+          "quality": "bad",
+          "feedback": "Non établi pour cette marchandise.",
+          "effects": {
+            "portDays": 2
+          }
+        },
+        {
+          "id": "c",
+          "label": "Oui, certificat phytosanitaire",
+          "quality": "bad",
+          "feedback": "Le phytosanitaire concerne les végétaux."
+        }
+      ],
+      "sources": [
+        "onssa",
+        "contact-alimentaire"
+      ]
+    },
+    {
+      "id": "I1-sortie",
+      "phase": "I",
+      "title": "Autorisations de sortie du terminal",
+      "location": "terminal",
+      "actor": "benali",
+      "type": "multi",
+      "intro": "Que faut-il pour que les camions puissent sortir les conteneurs du terminal ?",
+      "hint": "Douane, agent maritime, terminal, rendez-vous.",
+      "explanation": "La sortie suppose la mainlevée douanière, le BAD, le paiement des frais portuaires et de manutention au terminal, et un rendez-vous d'enlèvement (PortNet). Le bon de sortie est remis au transporteur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Mainlevée douanière",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Bon à délivrer",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Paiement des frais portuaires et de manutention",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Rendez-vous d'enlèvement (PortNet)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Certificat ONSSA",
+          "quality": "bad",
+          "feedback": "Non applicable ici."
+        }
+      ],
+      "effects": {
+        "commit": [
+          "port"
+        ],
+        "docs": [
+          "bon-sortie"
+        ]
+      },
+      "sources": [
+        "portnet",
+        "bad"
+      ]
+    },
+    {
+      "id": "I2-planning",
+      "phase": "I",
+      "title": "Organiser les livraisons échelonnées",
+      "location": "camions",
+      "actor": "rachid",
+      "type": "choice",
+      "scene": "trucks",
+      "intro": "L'usine peut décharger 6 conteneurs par jour. Franchise au terminal : 7 jours (cumul depuis le déchargement : {{portDays}} j). Quel planning ?",
+      "hint": "Sature la capacité de déchargement sans créer de files d'attente.",
+      "explanation": "Le planning d'enlèvement arbitre entre surestaries (conteneurs pleins au terminal), détention (conteneurs hors terminal) et capacité de déchargement. Un enlèvement aligné sur la capacité de l'usine minimise les coûts.",
+      "options": [
+        {
+          "id": "a",
+          "label": "5 conteneurs par jour pendant 4 jours",
+          "quality": "best",
+          "feedback": "Fluide : capacité respectée, enlèvement terminé en 4 jours.",
+          "effects": {
+            "portDays": 4,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Les 20 conteneurs le même jour",
+          "quality": "bad",
+          "feedback": "File de camions à l'usine : attentes facturées par le transporteur.",
+          "effects": {
+            "portDays": 1,
+            "days": 3,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ],
+            "cost": {
+              "label": "Attente des camions à l'usine",
+              "amount": 30000,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "2 conteneurs par jour",
+          "quality": "ok",
+          "feedback": "Prudent mais lent : 10 jours au terminal.",
+          "effects": {
+            "portDays": 10,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "surestaries"
+      ]
+    },
+    {
+      "id": "I3-scelle",
+      "phase": "I",
+      "title": "Incident : scellé non conforme",
+      "location": "entrepot",
+      "actor": "hafid",
+      "type": "choice",
+      "scene": "warehouse",
+      "chance": {
+        "decouverte": 0.5,
+        "professionnel": 0.6,
+        "expert": 0.9,
+        "examen": 0.7
+      },
+      "intro": "Hafid : « Le conteneur n° 14 arrive avec un numéro de scellé différent de celui du B/L ! »",
+      "hint": "Ne rien faire qui détruise la preuve.",
+      "explanation": "Un écart de scellé peut signaler une ouverture (contrôle douanier documenté, vol). On ne décharge pas avant constat : réserves écrites, information du transitaire, de l'assureur et du transporteur, vérification d'une éventuelle visite douanière.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Ne pas ouvrir, prendre des photos, réserves écrites, prévenir transitaire et assureur",
+          "quality": "best",
+          "feedback": "Le transitaire confirme qu'il s'agit d'un scellé douanier posé après la visite : tout est en règle et documenté.",
+          "effects": {
+            "days": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Ouvrir et décharger normalement",
+          "quality": "bad",
+          "feedback": "Si des palettes manquent, tu ne pourras plus prouver où.",
+          "effects": {}
+        },
+        {
+          "id": "c",
+          "label": "Refuser les 20 conteneurs",
+          "quality": "bad",
+          "feedback": "Disproportionné : un seul conteneur est concerné. L'usine attend.",
+          "effects": {
+            "days": 2
+          }
+        }
+      ],
+      "sources": [
+        "sscc",
+        "reserves"
+      ]
+    },
+    {
+      "id": "I4-reception",
+      "phase": "I",
+      "title": "Réception : quantités et qualité",
+      "location": "entrepot",
+      "actor": "hafid",
+      "type": "choice",
+      "scene": "warehouse",
+      "intro": "Comptage terminé : 478 palettes au lieu de 480, et 1 palette écrasée. Que fais-tu ?",
+      "hint": "Les réserves doivent être précises et notifiées dans les délais.",
+      "explanation": "Les écarts (manquants, avaries) doivent être notés en réserves précises sur le bon de livraison, puis formalisés dans un PV de réception. La déclaration de sinistre à l'assureur et la réclamation au responsable (transporteur ou fournisseur selon le moment du dommage) préservent les recours.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Réserves précises + PV de réception + déclaration à l'assureur + réclamation",
+          "quality": "best",
+          "feedback": "Recours préservé.",
+          "effects": {
+            "docs": [
+              "bon-livraison",
+              "pv-reception"
+            ]
+          },
+          "effectsVar": {
+            "var": "insurance",
+            "map": {
+              "icc-a": {
+                "cost": {
+                  "label": "Franchise d'assurance (3 palettes indemnisées)",
+                  "amount": 5000,
+                  "category": "autres"
+                }
+              },
+              "icc-c": {
+                "cost": {
+                  "label": "Perte non couverte en ICC (C) : 3 palettes",
+                  "amount": 23800,
+                  "category": "autres"
+                }
+              },
+              "seller-c": {
+                "cost": {
+                  "label": "Perte non couverte (assurance minimale du vendeur) : 3 palettes",
+                  "amount": 23800,
+                  "category": "autres"
+                }
+              },
+              "none": {
+                "cost": {
+                  "label": "Perte non assurée : 3 palettes",
+                  "amount": 27700,
+                  "category": "autres"
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Signer sans réserves pour ne pas retarder",
+          "quality": "bad",
+          "feedback": "Sans réserves, la livraison est présumée conforme : perte supportée par l'entreprise.",
+          "effects": {
+            "docs": [
+              "bon-livraison",
+              "pv-reception"
+            ],
+            "cost": {
+              "label": "Perte de 3 palettes sans recours",
+              "amount": 27700,
+              "category": "autres"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Refuser toute la livraison",
+          "quality": "bad",
+          "feedback": "Disproportionné : l'usine s'arrête.",
+          "effects": {
+            "days": 3,
+            "docs": [
+              "bon-livraison",
+              "pv-reception"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "reserves"
+      ]
+    },
+    {
+      "id": "I5-retour",
+      "phase": "I",
+      "title": "Restituer les conteneurs vides",
+      "location": "camions",
+      "actor": "rachid",
+      "type": "choice",
+      "intro": "Les conteneurs sont vidés. L'armateur accorde une franchise de restitution.",
+      "hint": "Un conteneur non restitué coûte chaque jour.",
+      "explanation": "Les frais de détention courent au-delà de la franchise de restitution des conteneurs vides au dépôt désigné par l'armateur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Restituer au dépôt désigné dans la franchise, avec EIR (état du conteneur)",
+          "quality": "best",
+          "feedback": "Aucun frais de détention.",
+          "effects": {
+            "days": 0
+          }
+        },
+        {
+          "id": "b",
+          "label": "Garder 5 conteneurs comme stockage provisoire",
+          "quality": "bad",
+          "feedback": "Frais de détention facturés.",
+          "effects": {
+            "cost": {
+              "label": "Détention de 5 conteneurs (15 jours)",
+              "amount": 39000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "surestaries"
+      ]
+    },
+    {
+      "id": "I6-cloture",
+      "phase": "I",
+      "title": "Clôture documentaire, bancaire et comptable",
+      "location": "bureau",
+      "actor": "samira",
+      "type": "multi",
+      "intro": "Samira : « Dernière étape : comment clôtures-tu le dossier ? »",
+      "hint": "Banque, comptabilité, archives, retour d'expérience.",
+      "explanation": "La clôture comprend l'imputation de la DUM et des règlements sur le dossier domicilié (apurement), le calcul du coût de revient (hors TVA récupérable), la comptabilisation, l'archivage et l'évaluation du fournisseur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Vérifier l'imputation de la DUM et des règlements sur le dossier domicilié (apurement)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Calculer le coût de revient unitaire (TVA récupérable exclue)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Archiver le dossier complet (durée légale de conservation à vérifier)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Évaluer le fournisseur et faire un retour d'expérience",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Intégrer la TVA à l'importation dans le coût de revient",
+          "quality": "bad",
+          "feedback": "La TVA récupérable n'est pas un coût pour une entreprise assujettie."
+        },
+        {
+          "id": "f",
+          "label": "Clôturer sans vérifier l'apurement bancaire",
+          "quality": "bad",
+          "feedback": "Un dossier non apuré reste en anomalie à la banque et à l'Office des Changes."
+        }
+      ],
+      "effects": {
+        "days": 0
+      },
+      "sources": [
+        "engagement-import",
+        "tva-import"
+      ]
+    }
+  ]
+}
