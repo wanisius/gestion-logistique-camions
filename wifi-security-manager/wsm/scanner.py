@@ -107,9 +107,9 @@ def reevaluate(store: Store) -> None:
 class Monitor(threading.Thread):
     """Surveillance périodique en arrière-plan."""
 
-    def __init__(self, store: Store, log=print):
+    def __init__(self, store: Store, log=print, after_scan=None):
         super().__init__(daemon=True, name="wsm-monitor")
-        self.store, self.log = store, log
+        self.store, self.log, self.after_scan = store, log, after_scan
         self.stop_event = threading.Event()
         self.wake = threading.Event()
 
@@ -119,6 +119,8 @@ class Monitor(threading.Thread):
             if s["monitoring"]:
                 try:
                     run_scan(self.store, log=self.log)
+                    if self.after_scan:
+                        self.after_scan()
                 except Exception as e:  # noqa: BLE001 — la surveillance ne doit jamais s'arrêter
                     self.log(f"Erreur pendant la surveillance : {e!r}")
             self.wake.wait(s["scan_interval_minutes"] * 60)

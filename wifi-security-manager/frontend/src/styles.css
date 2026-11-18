@@ -153,3 +153,38 @@ td .btn + .btn { margin-left: 4px; }
 .modal h3 { margin: 0 0 8px; }
 .modal-body p { color: var(--ink-2); }
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+
+.stack { display: grid; gap: 16px; }
+.mobile-access { display: grid; gap: 12px; }
+.mobile-access > .grow, .mobile-access { min-width: 0; }
+@media (min-width: 720px) { .mobile-access:has(.qr) { grid-template-columns: auto 1fr; align-items: start; } .mobile-access:has(.qr) > .row, .mobile-access:has(.qr) > p { grid-column: 1 / -1; } }
+.qr { background: #fff; border-radius: 8px; padding: 4px; image-rendering: pixelated; border: 1px solid var(--border); }
+.steps { margin: 0 0 8px; padding-left: 20px; }
+.steps li { margin-bottom: 4px; }
+.pairing { max-width: 440px; margin: 0 auto; padding: 48px 16px; color: var(--ink); }
+.pairing svg { color: var(--accent); }
+.pairing h1 { font-size: 22px; margin: 8px 0; }
+.pairing ol { padding-left: 20px; }
+.pairing li { margin-bottom: 6px; }
+
+/* Téléphone : barre d'onglets fixe en bas et appareils présentés en fiches. */
+@media (max-width: 640px) {
+  .app { padding-bottom: 72px; }
+  .topbar { padding-top: 12px; }
+  .topbar-right { width: 100%; justify-content: space-between; }
+  .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 0; padding: 0 4px env(safe-area-inset-bottom); }
+  .tab { padding: 14px 10px; border-bottom: 0; border-top: 2px solid transparent; font-size: 13px; }
+  .tab.active { border-top-color: var(--accent); }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .devices-table thead { display: none; }
+  .devices-table, .devices-table tbody, .devices-table tr, .devices-table td { display: block; width: 100%; }
+  .devices-table tr { border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; }
+  .devices-table td { border: 0; padding: 3px 0; display: flex; gap: 12px; justify-content: space-between; align-items: center; text-align: right; }
+  .devices-table td::before { content: attr(data-label); color: var(--ink-2); font: 12.5px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-align: left; flex-shrink: 0; }
+  .devices-table td.cell-name { display: block; text-align: left; padding-bottom: 6px; }
+  .devices-table td.cell-actions { justify-content: flex-end; padding-top: 8px; white-space: normal; }
+  .devices-table td .btn { padding: 8px 12px; }
+  .segmented button { padding: 8px 12px; }
+  .search { min-width: 0; flex-basis: 100%; }
+  .tab { padding: 14px 8px; font-size: 12.5px; }
+}

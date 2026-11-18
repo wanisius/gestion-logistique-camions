@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import qrcode from 'qrcode-generator'
 import { api, deviceLabel, fmtDate } from './api.js'
 import { Card, Category, Confirm, Empty, FindingStatus, Severity, Stat } from './ui.jsx'
 import { ConnectionsPerDay, ScoreHistory, ScoreRing } from './charts.jsx'
@@ -95,7 +96,7 @@ function DeviceRow({ d, onSave, onForget }) {
   const role = d.is_gateway ? 'Passerelle' : d.is_self ? 'Ce PC' : ''
   return (
     <tr className={d.online ? '' : 'offline'}>
-      <td>
+      <td className="cell-name">
         {editing ? (
           <form className="inline" onSubmit={(e) => { e.preventDefault(); save() }}>
             <input autoFocus value={name} maxLength={80} onChange={(e) => setName(e.target.value)} placeholder="Ex. : Téléphone de Sara" />
@@ -109,13 +110,13 @@ function DeviceRow({ d, onSave, onForget }) {
         )}
         <div className="muted small">{[role, d.custom_name && d.hostname, d.model].filter(Boolean).join(' · ')}</div>
       </td>
-      <td className="mono">{d.ip}</td>
-      <td className="mono">{d.mac}</td>
-      <td>{d.vendor || <span className="muted">—</span>}</td>
-      <td><Category value={d.category} /></td>
-      <td>{d.online ? <span className="badge good">● En ligne</span> : <span className="badge neutral">○ Hors ligne</span>}</td>
-      <td className="small">{fmtDate(d.first_seen)}<br /><span className="muted">vu {fmtDate(d.last_seen)}</span></td>
-      <td className="nowrap">
+      <td data-label="IP" className="mono">{d.ip}</td>
+      <td data-label="MAC" className="mono">{d.mac}</td>
+      <td data-label="Fabricant">{d.vendor || <span className="muted">—</span>}</td>
+      <td data-label="Statut"><Category value={d.category} /></td>
+      <td data-label="État">{d.online ? <span className="badge good">● En ligne</span> : <span className="badge neutral">○ Hors ligne</span>}</td>
+      <td data-label="Détection" className="small"><div>{fmtDate(d.first_seen)}<br /><span className="muted">vu {fmtDate(d.last_seen)}</span></div></td>
+      <td className="nowrap cell-actions">
         {d.authorized
           ? <button className="btn small ghost" onClick={() => onSave(d.mac, { authorized: false })}>Retirer l'autorisation</button>
           : <button className="btn small primary" onClick={() => onSave(d.mac, { authorized: true })}>Autoriser</button>}
@@ -153,7 +154,7 @@ export function Devices({ devices, refresh }) {
       </p>
       {list.length === 0 ? <Empty>Aucun appareil ne correspond.</Empty> : (
         <div className="table-wrap">
-          <table>
+          <table className="devices-table">
             <thead><tr><th>Nom</th><th>IP</th><th>MAC</th><th>Fabricant</th><th>Statut</th><th>État</th><th>Première / dernière détection</th><th /></tr></thead>
             <tbody>{list.map((d) => <DeviceRow key={d.mac} d={d} onSave={save} onForget={setForget} />)}</tbody>
           </table>
@@ -380,11 +381,73 @@ export function Alerts({ alerts, refresh }) {
 }
 
 // ===================================================================== Réglages
+function QrCode({ text }) {
+  const src = useMemo(() => {
+    const qr = qrcode(0, 'M')
+    qr.addData(text)
+    qr.make()
+    return qr.createDataURL(5, 4)
+  }, [text])
+  return <img className="qr" src={src} alt="QR code d'appairage du téléphone" width="220" height="220" />
+}
+
+function MobileAccess({ mobile, refresh }) {
+  const [busy, setBusy] = useState(false)
+  const [confirmOn, setConfirmOn] = useState(false)
+  const run = async (fn) => { setBusy(true); try { await fn() } finally { setBusy(false); refresh() } }
+  return (
+    <Card title="Accès depuis Android">
+      <p className="muted small">Consultez et gérez le tableau de bord depuis votre téléphone, connecté au même Wi-Fi.
+        Les analyses restent faites par ce PC, qui doit rester allumé avec le logiciel lancé.</p>
+      {!mobile.enabled ? (
+        <button className="btn primary" disabled={busy} onClick={() => setConfirmOn(true)}>Activer l'accès depuis le téléphone…</button>
+      ) : (
+        <div className="mobile-access">
+          {mobile.listening ? (<>
+            <QrCode text={mobile.url} />
+            <div className="grow">
+              <ol className="steps">
+                <li>Connectez le téléphone au même réseau Wi-Fi que ce PC.</li>
+                <li>Scannez ce QR code avec l'appareil photo (ou Google Lens), puis ouvrez le lien.</li>
+                <li>Dans Chrome : menu <strong>⋮</strong> → <strong>Ajouter à l'écran d'accueil</strong> pour retrouver l'application comme une app.</li>
+              </ol>
+              <p className="small">Adresse : <code>http://{mobile.ip}:{mobile.port}/</code></p>
+              <p className="muted small">Si la page ne s'ouvre pas : à la première activation, Windows demande d'autoriser Python
+                dans le pare-feu. Acceptez pour les <strong>réseaux privés</strong> uniquement, et vérifiez que votre Wi-Fi est
+                bien défini comme réseau privé dans Windows.</p>
+            </div>
+          </>) : <p className="banner">⚠ Accès activé mais indisponible : {mobile.error || 'erreur inconnue'}</p>}
+          <div className="row">
+            <button className="btn ghost" disabled={busy} onClick={() => run(api.revokeMobile)}>Révoquer les téléphones associés</button>
+            <button className="btn ghost" disabled={busy} onClick={() => run(() => api.setMobile(false))}>Désactiver l'accès</button>
+          </div>
+          <p className="muted small">Ce QR code contient une clé d'accès : ne le partagez pas. « Révoquer » génère une nouvelle clé :
+            les téléphones déjà associés devront scanner le nouveau QR code.</p>
+        </div>
+      )}
+      <Confirm open={confirmOn} title="Activer l'accès depuis le téléphone ?" confirmLabel="Activer"
+        onCancel={() => setConfirmOn(false)}
+        onConfirm={() => { setConfirmOn(false); run(() => api.setMobile(true)) }}>
+        <p>Le tableau de bord deviendra joignable depuis votre réseau local (pas depuis Internet), uniquement par les
+          appareils qui ont scanné le QR code. Windows peut afficher une demande d'autorisation du pare-feu : acceptez-la
+          pour les réseaux privés seulement.</p>
+        <p className="muted">Vous pourrez désactiver cet accès ou révoquer les téléphones à tout moment.</p>
+      </Confirm>
+    </Card>
+  )
+}
+
 export function Settings({ state, refresh }) {
   const [s, setS] = useState(state.settings)
   const [saved, setSaved] = useState(false)
   const save = async () => { await api.settings(s); setSaved(true); refresh(); setTimeout(() => setSaved(false), 2000) }
-  return (
+  return (<div className="stack">
+    {state.is_local ? (state.mobile && <MobileAccess mobile={state.mobile} refresh={refresh} />) : (
+      <Card title="Accès depuis Android">
+        <p className="small">Ce téléphone est associé. L'accès se gère depuis le PC (onglet Réglages).</p>
+        <p className="muted small">Les notifications de nouveaux appareils s'affichent sur le PC ; ici, consultez l'onglet Alertes.</p>
+      </Card>
+    )}
     <Card title="Surveillance et notifications">
       <div className="form">
         <label className="check"><input type="checkbox" checked={s.monitoring} onChange={(e) => setS({ ...s, monitoring: e.target.checked })} /> Surveillance périodique activée</label>
@@ -396,7 +459,8 @@ export function Settings({ state, refresh }) {
         <div className="row"><button className="btn primary" onClick={save}>Enregistrer</button>{saved && <span className="muted">Enregistré ✓</span>}</div>
       </div>
       <p className="muted small">Pour surveiller même quand ce tableau de bord est fermé, lancez <code>scripts\installer_surveillance.bat</code> :
-        il crée une tâche planifiée Windows (à votre ouverture de session) que vous pouvez retirer avec <code>scripts\desinstaller_surveillance.bat</code>.</p>
+        il crée une tâche planifiée Windows (à votre ouverture de session) que vous pouvez retirer avec <code>scripts\desinstaller_surveillance.bat</code>.
+        L'accès depuis le téléphone fonctionne aussi dans ce mode.</p>
     </Card>
-  )
+  </div>)
 }

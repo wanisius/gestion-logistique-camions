@@ -22,6 +22,7 @@ DEFAULT_SETTINGS = {
     "ping_sweep": True,
     "notifications": True,
     "monitoring": True,
+    "mobile_access": False,   # accès au tableau de bord depuis un téléphone du réseau local
 }
 
 

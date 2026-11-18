@@ -37,6 +37,24 @@ Backend Python (découverte réseau, sans dépendance externe) + tableau de bord
 4. *(Facultatif)* **Surveillance au démarrage** — `scripts\installer_surveillance.bat` crée une tâche
    planifiée (à l'ouverture de session, sans droits administrateur) ; `scripts\desinstaller_surveillance.bat` la retire.
 
+## Sur Android
+
+Les analyses sont toujours faites par le PC : depuis Android 10, une application ne peut plus lire la table
+ARP ni les adresses MAC des autres appareils. Le téléphone affiche et pilote le tableau de bord du PC.
+
+1. Sur le PC : tableau de bord → **Réglages** → **Accès depuis Android** → *Activer* (confirmation demandée).
+   Au premier lancement, Windows demande d'autoriser Python dans le pare-feu : acceptez pour les
+   **réseaux privés** uniquement (votre Wi-Fi doit être défini comme réseau privé dans Windows).
+2. Sur le téléphone, connecté au même Wi-Fi : scannez le QR code affiché (appareil photo ou Google Lens).
+3. Dans Chrome : menu ⋮ → **Ajouter à l'écran d'accueil** pour l'ouvrir comme une application.
+
+Sécurité : l'accès est désactivé par défaut et n'est joignable que depuis le réseau local (pas depuis Internet).
+Seuls les téléphones ayant scanné le QR code y accèdent. *Révoquer* invalide tous les téléphones associés,
+et l'activation comme l'affichage du QR code ne sont possibles que depuis le PC. La connexion se fait en HTTP
+sur votre réseau local : n'activez pas cet accès sur un Wi-Fi partagé. Le PC doit rester allumé avec le
+logiciel lancé (ou la surveillance installée). Les notifications de nouveaux appareils restent sur le PC ;
+sur le téléphone, consultez l'onglet Alertes.
+
 Conseil : lancez le diagnostic depuis le PC **connecté en Wi-Fi**, sinon le type de chiffrement ne peut pas être lu.
 
 ## Tableau de bord
@@ -49,7 +67,7 @@ Conseil : lancez le diagnostic depuis le PC **connecté en Wi-Fi**, sinon le typ
 | Actions | Corrections proposées → autoriser (avec confirmation) / refuser / marquer appliquée |
 | Historique | Connexions, déconnexions, nouveaux appareils, changements d'IP |
 | Alertes | Nouveaux appareils, risques élevés, changement de MAC de la passerelle (possible usurpation ARP) |
-| Réglages | Intervalle de surveillance, notifications Windows, ping léger |
+| Réglages | Intervalle de surveillance, notifications Windows, ping léger, accès depuis Android (QR code) |
 
 **Classement des appareils** : *connu* = autorisé par vous ; *nouveau* = vu pour la première fois depuis
 moins de 24 h ; *inconnu* = non autorisé depuis plus longtemps. Le premier scan sert de référence (pas de

@@ -147,3 +147,66 @@ class ServerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MobileAccessTests(unittest.TestCase):
+    """Accès depuis un téléphone : simulé par une écoute sur 127.0.0.2."""
+
+    def setUp(self):
+        from http.server import ThreadingHTTPServer
+        from wsm import server
+        self.tmp = tempfile.TemporaryDirectory()
+        store = Store(os.path.join(self.tmp.name, "s.json"))
+        self.httpd = ThreadingHTTPServer(("127.0.0.1", 0), None)
+        self.port = self.httpd.server_address[1]
+        self.app = server.App(store, self.port)
+        self.app.detect_lan_ip = lambda: "127.0.0.2"
+        self.app.handler = self.httpd.RequestHandlerClass = server.make_handler(self.app)
+        threading.Thread(target=self.httpd.serve_forever, daemon=True).start()
+
+    def tearDown(self):
+        self.app.stop_lan()
+        self.httpd.shutdown()
+        self.tmp.cleanup()
+
+    def call(self, host, path, token=None, body=None):
+        req = urllib.request.Request(f"http://{host}:{self.port}{path}",
+                                     data=json.dumps(body).encode() if body is not None else None)
+        if token:
+            req.add_header("X-WSM-Token", token)
+        try:
+            with urllib.request.urlopen(req, timeout=5) as r:
+                raw = r.read()
+                return r.status, json.loads(raw) if path.startswith("/api") else raw.decode()
+        except urllib.error.HTTPError as e:
+            return e.code, None
+        except urllib.error.URLError:
+            return None, None
+
+    def test_disabled_by_default(self):
+        self.assertIsNone(self.call("127.0.0.2", "/api/state")[0])   # personne n'écoute
+
+    def test_pairing_flow(self):
+        code, info = self.call("127.0.0.1", "/api/mobile", self.app.token, {"enabled": True})
+        self.assertEqual(code, 200)
+        self.assertTrue(info["listening"])
+        mtok = info["url"].split("#k=")[1]
+        # Sans jeton, ou avec le jeton du PC : refusé depuis le réseau.
+        self.assertEqual(self.call("127.0.0.2", "/api/state")[0], 401)
+        self.assertEqual(self.call("127.0.0.2", "/api/state", self.app.token)[0], 401)
+        code, st = self.call("127.0.0.2", "/api/state", mtok)
+        self.assertEqual(code, 200)
+        self.assertFalse(st["is_local"])
+        self.assertIsNone(st["mobile"])
+        # La page servie au téléphone ne contient pas le jeton du PC.
+        code, html = self.call("127.0.0.2", "/")
+        if code == 200:
+            self.assertNotIn(self.app.token, html)
+        # Le téléphone ne peut ni lire le QR code ni gérer l'accès mobile.
+        self.assertEqual(self.call("127.0.0.2", "/api/mobile/revoke", mtok, {})[0], 403)
+        # Révocation depuis le PC : l'ancien appairage est invalidé.
+        self.call("127.0.0.1", "/api/mobile/revoke", self.app.token, {})
+        self.assertEqual(self.call("127.0.0.2", "/api/state", mtok)[0], 401)
+        # Désactivation : plus d'écoute réseau.
+        self.call("127.0.0.1", "/api/mobile", self.app.token, {"enabled": False})
+        self.assertIsNone(self.call("127.0.0.2", "/api/state")[0])

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { api, fmtDate } from './api.js'
+import { api, fmtDate, isPaired, UnpairedError } from './api.js'
 import { Dashboard, Devices, Security, Actions, History, Alerts, Settings } from './views.jsx'
 
 const TABS = [
@@ -14,23 +14,43 @@ export default function App() {
   const [events, setEvents] = useState([])
   const [alerts, setAlerts] = useState([])
   const [error, setError] = useState('')
+  const [paired, setPaired] = useState(isPaired())
 
   const refresh = useCallback(async () => {
     try {
       const [s, d, e, a] = await Promise.all([api.state(), api.devices(), api.events(2000), api.alerts()])
       setState(s); setDevices(d); setEvents(e); setAlerts(a); setError('')
-    } catch (err) { setError(err.message) }
+    } catch (err) {
+      if (err instanceof UnpairedError) setPaired(false)
+      else setError(err.message)
+    }
   }, [])
 
-  useEffect(() => { refresh() }, [refresh])
+  useEffect(() => { if (paired) refresh() }, [refresh, paired])
   useEffect(() => {
+    if (!paired) return undefined
     const id = setInterval(refresh, state?.scanning ? 2500 : 20000)
     return () => clearInterval(id)
-  }, [refresh, state?.scanning])
+  }, [refresh, state?.scanning, paired])
   useEffect(() => { try { localStorage.setItem('wsm-tab', tab) } catch { /* stockage indisponible */ } }, [tab])
 
   const scan = async (full) => { await api.scan(full); setState((s) => ({ ...s, scanning: true })); setTimeout(refresh, 800) }
 
+  if (!paired) {
+    return (
+      <div className="pairing">
+        <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z" /></svg>
+        <h1>Appareil non associé</h1>
+        <p>Pour consulter WiFi Security Manager sur ce téléphone :</p>
+        <ol>
+          <li>Sur le PC, ouvrez le tableau de bord, onglet <strong>Réglages</strong>.</li>
+          <li>Dans « Accès depuis Android », activez l'accès.</li>
+          <li>Scannez le QR code affiché avec l'appareil photo de ce téléphone.</li>
+        </ol>
+        <p className="muted small">Si l'accès a été révoqué ou désactivé depuis le PC, il faut scanner un nouveau QR code.</p>
+      </div>
+    )
+  }
   if (!state) {
     return <div className="loading">{error ? `Connexion au service local impossible : ${error}` : 'Chargement…'}</div>
   }
