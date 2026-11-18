@@ -1,0 +1,21 @@
+
+Configuration IP de Windows
+
+   Nom de l'hôte . . . . . . . . . . : PC-SALON
+   Type de noeud. . . . . . . . . .  : Hybride
+
+Carte réseau sans fil Wi-Fi :
+
+   Suffixe DNS propre à la connexion. . . : home
+   Description. . . . . . . . . . . . . . : Intel(R) Wi-Fi 6 AX201 160MHz
+   Adresse physique . . . . . . . . . . . : 3C-22-FB-12-34-56
+   DHCP activé. . . . . . . . . . . . . . : Oui
+   Configuration automatique activée. . . : Oui
+   Adresse IPv4. . . . . . . . . . . . . .: 192.168.1.23(préféré)
+   Masque de sous-réseau. . . . . . . . . : 255.255.255.0
+   Passerelle par défaut. . . . . . . . . : fe80::1%12
+                                       192.168.1.1
+   Serveur DHCP . . . . . . . . . . . . . : 192.168.1.1
+   Serveurs DNS. . .  . . . . . . . . . . : 192.168.1.1
+                                       8.8.8.8
+   NetBIOS sur Tcpip. . . . . . . . . . . : Activé

@@ -1,0 +1,80 @@
+# WiFi Security Manager
+
+Logiciel local pour Windows qui analyse et aide à sécuriser **votre** réseau Wi-Fi domestique.
+Backend Python (découverte réseau, sans dépendance externe) + tableau de bord React servi en local.
+
+## Garanties
+
+- **Analyse non destructive.** Lecture de la table ARP, **un** ping par adresse du sous-réseau local
+  (désactivable), découverte UPnP/SSDP, une requête HTTP sur la page d'accueil de la box et des tests
+  de connexion vers une courte liste de ports **de la passerelle uniquement**. Aucun port n'est sondé sur
+  vos autres appareils, aucune vulnérabilité n'est exploitée.
+- **Aucune modification.** Le logiciel ne bloque aucun appareil, ne change aucun mot de passe, ne redémarre
+  pas le routeur et ne touche à aucune configuration. Les corrections sont *proposées* ; quand vous en
+  autorisez une (confirmation explicite), il vous guide pas à pas et c'est vous qui l'appliquez.
+- **Aucun identifiant.** Il ne demande pas, ne devine pas et ne force jamais les identifiants administrateur.
+- **Aucune clé Wi-Fi.** `netsh wlan show profile ... key=clear` est bloqué dans le code (liste blanche de
+  commandes, voir `wsm/system.py`) ; la clé n'est ni lue, ni affichée, ni stockée.
+- **Local uniquement.** Le tableau de bord écoute sur `127.0.0.1`, vérifie l'en-tête `Host` et exige un jeton
+  aléatoire sur toute l'API. Seule exception réseau sortante : `update-oui`, que vous lancez vous-même.
+
+## Prérequis
+
+- Windows 10 ou 11
+- [Python 3.10+](https://www.python.org/downloads/windows/) (cochez « Add python.exe to PATH »)
+- Rien d'autre : l'interface est déjà compilée dans `frontend/dist`. Node.js ne sert qu'à la modifier.
+
+## Démarrage
+
+1. **Diagnostic** — double-cliquez sur `diagnostic.bat` (ou `py -m wsm diagnose`).
+   Il détecte la configuration réseau (interface, IP, sous-réseau, passerelle, DNS, pare-feu Windows),
+   le Wi-Fi (SSID, WPA2/WPA3, chiffrement), identifie le routeur (marque/modèle via UPnP et page d'accueil),
+   évalue sa compatibilité, inventorie les appareils et produit un rapport Markdown dans
+   `%LOCALAPPDATA%\WiFiSecurityManager\`.
+2. **Tableau de bord** — `lancer.bat` (ou `py -m wsm serve`) ouvre http://127.0.0.1:8765/.
+3. *(Facultatif)* **Fabricants** — `py -m wsm update-oui` télécharge le registre public de l'IEEE pour
+   identifier tous les fabricants à partir des adresses MAC.
+4. *(Facultatif)* **Surveillance au démarrage** — `scripts\installer_surveillance.bat` crée une tâche
+   planifiée (à l'ouverture de session, sans droits administrateur) ; `scripts\desinstaller_surveillance.bat` la retire.
+
+Conseil : lancez le diagnostic depuis le PC **connecté en Wi-Fi**, sinon le type de chiffrement ne peut pas être lu.
+
+## Tableau de bord
+
+| Onglet | Contenu |
+|---|---|
+| Tableau de bord | Score /100 et note A–E, appareils en ligne (connus / nouveaux / inconnus), priorités, alertes, évolution du score, connexions par jour |
+| Appareils | IP, MAC, nom, fabricant, première/dernière détection ; renommer, autoriser, oublier |
+| Sécurité | Routeur et compatibilité, Wi-Fi, redirections UPnP, liste de contrôle, constats expliqués |
+| Actions | Corrections proposées → autoriser (avec confirmation) / refuser / marquer appliquée |
+| Historique | Connexions, déconnexions, nouveaux appareils, changements d'IP |
+| Alertes | Nouveaux appareils, risques élevés, changement de MAC de la passerelle (possible usurpation ARP) |
+| Réglages | Intervalle de surveillance, notifications Windows, ping léger |
+
+**Classement des appareils** : *connu* = autorisé par vous ; *nouveau* = vu pour la première fois depuis
+moins de 24 h ; *inconnu* = non autorisé depuis plus longtemps. Le premier scan sert de référence (pas de
+notification) ; ensuite, chaque nouvel appareil déclenche une alerte et une notification Windows.
+
+## Ce qui est vérifié
+
+| Contrôle | Méthode |
+|---|---|
+| WPA2 / WPA3 / WEP / ouvert, TKIP | `netsh wlan show interfaces` |
+| Faux point d'accès (même SSID, sécurité plus faible) | `netsh wlan show networks mode=bssid` |
+| Telnet, FTP, SMB, SSH, admin HTTP sans HTTPS | connexion TCP vers la passerelle |
+| UPnP et redirections de ports ouvertes | SSDP + lecture SOAP `GetGenericPortMappingEntry` |
+| DNS (serveur inattendu, redirection NXDOMAIN) | configuration Windows + résolution d'un domaine aléatoire |
+| Pare-feu Windows | `Get-NetFirewallProfile` |
+| Usurpation ARP de la passerelle | suivi de sa MAC entre deux analyses |
+| WPS, administration à distance, firmware, pare-feu du routeur, mot de passe admin, réseau invité | **liste de contrôle** : illisibles sans identifiants, vous y répondez dans l'interface |
+
+## Développement
+
+```bash
+python -m unittest discover -s tests -t .     # tests (parseurs FR/EN, analyse, API)
+cd frontend && npm install && npm run dev     # interface en mode dev (API relayée vers :8765)
+cd frontend && npm run build                  # recompile frontend/dist
+```
+
+Arborescence : `wsm/` (backend : `netinfo`, `wifi`, `discovery`, `router`, `analysis`, `store`, `scanner`,
+`server`, `diagnose`, `notify`), `frontend/` (React + Vite), `tests/`, `scripts/`.

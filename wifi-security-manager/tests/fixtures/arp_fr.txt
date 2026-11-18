@@ -1,0 +1,7 @@
+
+Interface : 192.168.1.23 --- 0xc
+  Adresse Internet      Adresse physique      Type
+  192.168.1.1           a4-3e-51-aa-bb-cc     dynamique
+  192.168.1.40          b8-27-eb-01-02-03     dynamique
+  192.168.1.255         ff-ff-ff-ff-ff-ff     statique
+  224.0.0.22            01-00-5e-00-00-16     statique

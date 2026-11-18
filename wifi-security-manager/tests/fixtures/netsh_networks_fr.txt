@@ -1,0 +1,19 @@
+Nom de l'interface : Wi-Fi
+Il y a actuellement 2 réseaux visibles.
+
+SSID 1 : MaisonWifi
+    Type de réseau          : Infrastructure
+    Authentification        : WPA2 - Personnel
+    Chiffrement             : CCMP
+    BSSID 1                 : a4:3e:51:aa:bb:cc
+         Signal             : 87%
+         Type de radio      : 802.11ax
+         Canal              : 36
+
+SSID 2 : MaisonWifi
+    Type de réseau          : Infrastructure
+    Authentification        : Ouvrir
+    Chiffrement             : Aucune
+    BSSID 1                 : de:ad:be:ef:00:01
+         Signal             : 60%
+         Canal              : 6

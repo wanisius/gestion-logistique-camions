@@ -1,0 +1,15 @@
+There is 1 interface on the system:
+
+    Name                   : Wi-Fi
+    Description            : Realtek RTL8852BE WiFi 6 802.11ax PCIe Adapter
+    Physical address       : 3c:22:fb:12:34:56
+    State                  : connected
+    SSID                   : HomeNet
+    BSSID                  : 10:20:30:40:50:60
+    Network type           : Infrastructure
+    Radio type             : 802.11ax
+    Authentication         : WPA3-Personal
+    Cipher                 : CCMP
+    Channel                : 44
+    Signal                 : 74%
+    Profile                : HomeNet
