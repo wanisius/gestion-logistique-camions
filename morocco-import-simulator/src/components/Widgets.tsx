@@ -3,7 +3,7 @@ import { fmtMAD, INCOTERM_SCOPE, type Incoterm } from '../engine/calc';
 import type { GameState, Scenario } from '../engine/types';
 
 export function SupplierCompare({ sc, state }: { sc: Scenario; state: GameState }) {
-  const estimatedSteps = 27; // jours hors fabrication/transit estimés pour les formalités
+  const estimatedSteps = sc.planningDays ?? 27; // jours hors fabrication/transit estimés pour les formalités
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm min-w-[620px]">

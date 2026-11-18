@@ -1,0 +1,3203 @@
+{
+  "id": "boissons",
+  "title": "Scénario 6 — Boissons gazeuses en canettes",
+  "subtitle": "10 conteneurs de sodas pour la saison d'été",
+  "level": "Intermédiaire — agroalimentaire",
+  "available": true,
+  "summary": "Importer 504 000 canettes pleines de boisson gazeuse sucrée (33 cl) en 10 conteneurs 20' pour un distributeur casablancais : autorisation sanitaire, étiquetage, contrôle ONSSA avec analyses, TIC, durabilité, chaleur et stockage FEFO.",
+  "company": {
+    "name": "Oasis Distribution SARL (fictive)",
+    "ice": "002345678000071",
+    "city": "Casablanca — Sidi Bernoussi",
+    "activity": "Importation et distribution de boissons",
+    "rc": "RC Casablanca 512345 (fictif)"
+  },
+  "goods": {
+    "description": "Boisson gazeuse rafraîchissante aromatisée cola, sucrée, en canette aluminium 33 cl, cartons de 24",
+    "quantity": 504000,
+    "unit": "canettes",
+    "containers": 10,
+    "containerType": "20' DV",
+    "perContainer": 50400,
+    "palletsPerContainer": 10,
+    "grossKgPerContainer": 18600,
+    "hsCode": "2202.10",
+    "hsLabel": "Eaux, y compris les eaux minérales et les eaux gazéifiées, additionnées de sucre ou d'autres édulcorants ou aromatisées",
+    "nationalCode": "2202.10.00.90 (fictif)",
+    "litresPerUnit": 0.33
+  },
+  "deadlineDays": 50,
+  "stockoutPenaltyPerDay": 25000,
+  "budgetMAD": 2300000,
+  "planningDays": 26,
+  "fx": {
+    "EUR": 10.85,
+    "USD": 9.95,
+    "MAD": 1
+  },
+  "fxNote": "Cours fictifs indicatifs — en opération réelle, utiliser le cours de la banque / Bank Al-Maghrib du jour.",
+  "incotermPriceAdjust": {
+    "exportFormalities": 60,
+    "fobLoading": 40,
+    "freightMargin": 1.08,
+    "ddpRisk": 300
+  },
+  "fees": {
+    "insuranceRate": 0.0035,
+    "tpiRate": 0.0025,
+    "vatRate": 0.2,
+    "portPerContainer": 1900,
+    "brokerFlat": 5000,
+    "brokerPerContainer": 350,
+    "bankRate": {
+      "credoc": 0.006,
+      "remdoc": 0.003,
+      "mixte": 0.0025,
+      "virement": 0.0015
+    },
+    "bankMin": 1500,
+    "inlandPerContainer": 1500,
+    "freeDaysPort": 10,
+    "demurragePerContainerDay": 500,
+    "excisePerHl": 80
+  },
+  "hideDocs": [
+    "alimentarite"
+  ],
+  "suppliers": [
+    {
+      "id": "ES",
+      "name": "Refrescos del Levante S.A. (fictif)",
+      "country": "Espagne",
+      "flag": "🇪🇸",
+      "city": "Ribarroja (Valencia)",
+      "port": "Valencia",
+      "currency": "EUR",
+      "unitPrice": 0.26,
+      "productionDays": 7,
+      "transitDays": 4,
+      "freightPerContainer": 650,
+      "preCarriagePerContainer": 180,
+      "dutyRate": 0,
+      "dutyStatus": "0 % FICTIF avec preuve d'origine UE — régime des produits agricoles transformés à vérifier sur ADIL",
+      "originProof": "EUR.1 ou déclaration d'origine sur facture",
+      "agreement": "Accord d'association Maroc-UE",
+      "rating": {
+        "qualite": 5,
+        "fiabilite": 5,
+        "certifs": [
+          "FSSC 22000",
+          "IFS Food",
+          "Licence de distribution de la marque pour le Maroc"
+        ]
+      },
+      "notes": "Délai court, lots récents. Étiquette d'origine en espagnol/anglais : étiquetage arabe à prévoir.",
+      "route": [
+        [
+          499,
+          140
+        ],
+        [
+          492,
+          148
+        ],
+        [
+          484,
+          151
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "EG",
+      "name": "Nile Beverages Co. (fictif)",
+      "country": "Égypte",
+      "flag": "🇪🇬",
+      "city": "Alexandrie",
+      "port": "Alexandrie",
+      "currency": "USD",
+      "unitPrice": 0.27,
+      "productionDays": 10,
+      "transitDays": 9,
+      "freightPerContainer": 1100,
+      "preCarriagePerContainer": 150,
+      "dutyRate": 0,
+      "dutyStatus": "0 % FICTIF — Accord d'Agadir (traitement des boissons et preuve d'origine à vérifier)",
+      "originProof": "Certificat d'origine (Accord d'Agadir — modèle à vérifier)",
+      "agreement": "Accord d'Agadir (à vérifier)",
+      "rating": {
+        "qualite": 4,
+        "fiabilite": 3,
+        "certifs": [
+          "ISO 22000"
+        ]
+      },
+      "notes": "Prix proche de l'Espagne, délai total serré par rapport à J+50 et fiabilité de planning moyenne (retards de production fréquents).",
+      "route": [
+        [
+          583,
+          163
+        ],
+        [
+          560,
+          158
+        ],
+        [
+          540,
+          152
+        ],
+        [
+          505,
+          149
+        ],
+        [
+          485,
+          150
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "BR",
+      "name": "Bebidas Atlântico Ltda. (fictif)",
+      "country": "Brésil",
+      "flag": "🇧🇷",
+      "city": "Santos",
+      "port": "Santos",
+      "currency": "USD",
+      "unitPrice": 0.18,
+      "productionDays": 12,
+      "transitDays": 22,
+      "freightPerContainer": 2400,
+      "preCarriagePerContainer": 160,
+      "dutyRate": 0.4,
+      "dutyStatus": "40 % FICTIF — droit commun (taux réel à vérifier sur ADIL)",
+      "originProof": "Certificat d'origine non préférentiel",
+      "agreement": "Aucun — droit commun (à vérifier)",
+      "rating": {
+        "qualite": 3,
+        "fiabilite": 3,
+        "certifs": [
+          "ISO 22000"
+        ]
+      },
+      "notes": "Prix unitaire le plus bas, mais droit commun, transit long en zone chaude et livraison après la saison.",
+      "route": [
+        [
+          371,
+          316
+        ],
+        [
+          392,
+          282
+        ],
+        [
+          425,
+          232
+        ],
+        [
+          452,
+          192
+        ],
+        [
+          470,
+          168
+        ],
+        [
+          479,
+          157
+        ]
+      ]
+    }
+  ],
+  "characters": {
+    "yasmine": {
+      "name": "Yasmine Chraibi",
+      "role": "Directrice commerciale (ta responsable)",
+      "avatar": "👩‍💼"
+    },
+    "benali": {
+      "name": "Youssef Benali",
+      "role": "Transitaire — déclarant en douane agréé",
+      "avatar": "🧑‍💼"
+    },
+    "idrissi": {
+      "name": "Nadia El Idrissi",
+      "role": "Chargée commerce international — Banque Maghreb Commerce (fictive)",
+      "avatar": "🏦"
+    },
+    "agent": {
+      "name": "Omar Fassi",
+      "role": "Agent maritime — MedLine Shipping (fictif)",
+      "avatar": "⚓"
+    },
+    "douane": {
+      "name": "Inspecteur ADII",
+      "role": "Bureau de douane du port (personnage fictif)",
+      "avatar": "🛃"
+    },
+    "onssa": {
+      "name": "Inspectrice ONSSA",
+      "role": "Poste d'inspection frontalier (personnage fictif)",
+      "avatar": "🩺"
+    },
+    "qualite": {
+      "name": "Karima Lahlou",
+      "role": "Responsable qualité et réglementaire",
+      "avatar": "🔬"
+    },
+    "fournisseur": {
+      "name": "Service export du fournisseur",
+      "role": "Commercial export",
+      "avatar": "🤝"
+    },
+    "assureur": {
+      "name": "Leila Bennani",
+      "role": "Courtière en assurance transport",
+      "avatar": "🛡️"
+    },
+    "hicham": {
+      "name": "Hicham",
+      "role": "Responsable entrepôt",
+      "avatar": "📦"
+    },
+    "rachid": {
+      "name": "Rachid",
+      "role": "Transporteur routier",
+      "avatar": "🚛"
+    },
+    "systeme": {
+      "name": "Système",
+      "role": "PortNet / BADR (simulés)",
+      "avatar": "💻"
+    }
+  },
+  "documents": {
+    "besoin": {
+      "fields": [
+        {
+          "label": "Article",
+          "value": "{{goods.description}}"
+        },
+        {
+          "label": "Quantité",
+          "value": "{{goods.quantity}} canettes, soit {{totals.litres}} litres"
+        },
+        {
+          "label": "Conditionnement",
+          "value": "{{goods.containers}} × 20', 10 palettes par conteneur, 210 cartons de 24 par palette"
+        },
+        {
+          "label": "Durabilité",
+          "value": "Au moins 9 mois de durabilité restante à l'expédition (exigence contractuelle)"
+        },
+        {
+          "label": "Étiquetage",
+          "value": "Conforme à la réglementation marocaine (mentions en arabe, origine, importateur)"
+        },
+        {
+          "label": "Échéance",
+          "value": "Livré entrepôt au plus tard à J+{{sc.deadlineDays}} (début de saison)"
+        }
+      ]
+    },
+    "rfq": {
+      "fields": [
+        {
+          "label": "Émetteur",
+          "value": "{{company.name}}"
+        },
+        {
+          "label": "Objet",
+          "value": "{{goods.description}}"
+        },
+        {
+          "label": "Quantité",
+          "value": "{{goods.quantity}} canettes (21 000 cartons)"
+        },
+        {
+          "label": "Incoterm de référence",
+          "value": "FCA terminal du port de départ (Incoterms® 2020)"
+        },
+        {
+          "label": "Exigences",
+          "value": "Durabilité ≥ 9 mois à l'expédition, certificat d'analyse par lot, documents sanitaires exigés par l'ONSSA, étiquetage conforme au Maroc"
+        },
+        {
+          "label": "Réponse attendue sous",
+          "value": "5 jours"
+        }
+      ]
+    },
+    "proforma": {
+      "missedVar": "proformaMissed",
+      "fields": [
+        {
+          "label": "N°",
+          "value": "PF-{{supplier.id}}-2026-207"
+        },
+        {
+          "label": "Vendeur",
+          "value": "{{supplier.name}}, {{supplier.city}} ({{supplier.country}})"
+        },
+        {
+          "label": "Acheteur",
+          "value": "{{company.name}} — ICE {{company.ice}}"
+        },
+        {
+          "label": "Désignation",
+          "value": "{{goods.description}}"
+        },
+        {
+          "label": "Quantité",
+          "value": "{{goods.quantity}} canettes (21 000 cartons de 24)",
+          "check": {
+            "value": "504 000 cartons de 24 canettes",
+            "anomaly": "Confusion d'unité : la commande porte sur 504 000 canettes, soit 21 000 cartons."
+          }
+        },
+        {
+          "label": "Prix unitaire",
+          "value": "{{unitPrice}} {{supplier.currency}} par canette"
+        },
+        {
+          "label": "Montant total",
+          "value": "{{calc.invoiceCurrency}} {{supplier.currency}}"
+        },
+        {
+          "label": "Incoterm",
+          "value": "{{incoterm}} — Incoterms® 2020"
+        },
+        {
+          "label": "Code SH",
+          "value": "{{goods.hsCode}}",
+          "check": {
+            "value": "2201.10",
+            "anomaly": "2201 vise les eaux non sucrées ni aromatisées ; une boisson gazeuse sucrée relève de 2202.10."
+          }
+        },
+        {
+          "label": "Durabilité garantie",
+          "value": "≥ 9 mois à l'expédition",
+          "check": {
+            "value": "≥ 4 mois à l'expédition",
+            "anomaly": "Le contrat exige au moins 9 mois de durabilité restante à l'expédition."
+          }
+        },
+        {
+          "label": "Origine",
+          "value": "{{supplier.country}}"
+        },
+        {
+          "label": "Validité",
+          "value": "30 jours"
+        }
+      ]
+    },
+    "paiement": {
+      "fields": [
+        {
+          "label": "Instrument",
+          "value": "{{payment}}"
+        },
+        {
+          "label": "Montant",
+          "value": "{{calc.invoiceCurrency}} {{supplier.currency}}"
+        },
+        {
+          "label": "Bénéficiaire",
+          "value": "{{supplier.name}}"
+        },
+        {
+          "label": "Documents exigés",
+          "value": "Facture, packing list, B/L complet, preuve d'origine, certificat d'analyse par lot, document sanitaire officiel si exigé par l'ONSSA"
+        }
+      ]
+    },
+    "packing": {
+      "missedVar": "packingMissed",
+      "fields": [
+        {
+          "label": "Conteneurs",
+          "value": "{{goods.containers}} × {{goods.containerType}}"
+        },
+        {
+          "label": "Palettes",
+          "value": "{{totals.pallets}} (10 par conteneur)"
+        },
+        {
+          "label": "Cartons par palette",
+          "value": "210 cartons de 24",
+          "check": {
+            "value": "240 cartons de 24",
+            "anomaly": "100 palettes × 240 × 24 = 576 000 ≠ 504 000 : il faut 210 cartons par palette."
+          }
+        },
+        {
+          "label": "Total canettes",
+          "value": "{{goods.quantity}}"
+        },
+        {
+          "label": "Lots et durabilité",
+          "value": "Lots L2611-01 à L2611-10 — à consommer de préférence avant 11/2027",
+          "check": {
+            "value": "Lots L2611-01 à L2611-10 — date de durabilité non indiquée",
+            "anomaly": "La date de durabilité par lot est indispensable au contrôle ONSSA et à la gestion FEFO."
+          }
+        },
+        {
+          "label": "Poids brut total",
+          "value": "{{totals.grossKg}} kg",
+          "check": {
+            "value": "18 600 kg",
+            "anomaly": "18 600 kg correspond à UN conteneur : le total est de 186 000 kg."
+          }
+        },
+        {
+          "label": "Scellés",
+          "value": "OASC200301 à OASC200310 (un par conteneur)"
+        }
+      ]
+    },
+    "bl": {
+      "missedVar": "blMissed",
+      "fields": [
+        {
+          "label": "N° B/L",
+          "value": "MDLN26BEV00412"
+        },
+        {
+          "label": "Chargeur",
+          "value": "{{supplier.name}}"
+        },
+        {
+          "label": "Destinataire (consignee)",
+          "value": "{{company.name}}",
+          "check": {
+            "value": "Oasis Distribution SA",
+            "anomaly": "La raison sociale exacte est Oasis Distribution SARL : le BAD et la DUM seraient bloqués."
+          }
+        },
+        {
+          "label": "Notify",
+          "value": "Transit Atlas Services (transitaire)"
+        },
+        {
+          "label": "Port de chargement",
+          "value": "{{supplier.port}}"
+        },
+        {
+          "label": "Port de déchargement",
+          "value": "Casablanca",
+          "check": {
+            "value": "Agadir",
+            "anomaly": "Le déchargement est prévu à Casablanca."
+          }
+        },
+        {
+          "label": "Nombre de conteneurs",
+          "value": "{{goods.containers}} × 20' DV",
+          "check": {
+            "value": "9 × 20' DV",
+            "anomaly": "10 conteneurs ont été chargés."
+          }
+        },
+        {
+          "label": "Fret",
+          "value": "Freight {{freightTerm}}"
+        },
+        {
+          "label": "Marchandise",
+          "value": "{{totals.pallets}} palettes — boissons gazeuses en canettes (SH 2202.10)"
+        }
+      ]
+    },
+    "etiquette": {
+      "title": "Maquette d'étiquetage (canette et carton)",
+      "icon": "🏷️",
+      "issuer": "Fournisseur (maquette), validée par l'importateur",
+      "recipient": "Importateur, ONSSA lors du contrôle",
+      "purpose": "Vérifier avant production que l'étiquetage répond aux exigences marocaines pour les produits alimentaires importés.",
+      "when": "Avant fabrication ; contrôlée par l'ONSSA à l'importation",
+      "status": "Exigence réglementaire (décret n° 2-12-389 ; détail des mentions à vérifier)",
+      "related": [
+        "proforma",
+        "admission-onssa"
+      ],
+      "missedVar": "labelMissed",
+      "fields": [
+        {
+          "label": "Dénomination",
+          "value": "Boisson gazeuse rafraîchissante aromatisée cola, sucrée"
+        },
+        {
+          "label": "Langue",
+          "value": "Arabe et français (étiquette complémentaire arabe sur chaque canette et carton)",
+          "check": {
+            "value": "Espagnol / anglais uniquement",
+            "anomaly": "Les mentions doivent figurer en arabe (exigence de l'ancien décret 2-01-1016, reprise à vérifier dans le décret 2-12-389)."
+          }
+        },
+        {
+          "label": "Ingrédients",
+          "value": "Eau gazéifiée, sucre (10,6 g/100 ml), colorant E150d, acidifiant E338, arômes naturels, caféine"
+        },
+        {
+          "label": "Volume",
+          "value": "33 cl"
+        },
+        {
+          "label": "Durabilité et lot",
+          "value": "À consommer de préférence avant : voir fond de canette — n° de lot"
+        },
+        {
+          "label": "Pays d'origine",
+          "value": "Origine : {{supplier.country}}",
+          "check": {
+            "value": "Non indiqué",
+            "anomaly": "Article 11 du décret 2-12-389 : le pays d'origine ou de provenance doit figurer pour les produits importés."
+          }
+        },
+        {
+          "label": "Importateur",
+          "value": "{{company.name}}, {{company.city}}",
+          "check": {
+            "value": "Non mentionné",
+            "anomaly": "L'importateur responsable doit être identifiable sur l'étiquette (mention à vérifier dans le décret)."
+          }
+        },
+        {
+          "label": "Conservation",
+          "value": "À conserver au frais et à l'abri du soleil"
+        }
+      ]
+    },
+    "cert-sanitaire": {
+      "title": "Document sanitaire officiel du pays d'exportation",
+      "issuer": "Autorité sanitaire officielle du pays d'exportation",
+      "recipient": "ONSSA (via l'importateur)",
+      "purpose": "Atteste, selon les exigences de l'ONSSA pour le produit, que la boisson a été produite dans des conditions sanitaires conformes.",
+      "when": "À l'expédition ; présenté au contrôle ONSSA",
+      "status": "Exigence et modèle à confirmer auprès de l'ONSSA pour ce produit",
+      "related": [
+        "cert-analyse",
+        "admission-onssa"
+      ],
+      "fields": [
+        {
+          "label": "Autorité émettrice",
+          "value": "Autorité sanitaire — {{supplier.country}} (fictif)"
+        },
+        {
+          "label": "Exportateur",
+          "value": "{{supplier.name}}"
+        },
+        {
+          "label": "Destinataire",
+          "value": "{{company.name}}"
+        },
+        {
+          "label": "Produit",
+          "value": "{{goods.description}} — lots L2611-01 à L2611-10"
+        },
+        {
+          "label": "Attestation",
+          "value": "Produit fabriqué dans un établissement sous contrôle officiel et propre à la consommation humaine (formulation pédagogique)"
+        }
+      ]
+    },
+    "cert-analyse": {
+      "title": "Certificat d'analyse par lot (fabricant)",
+      "icon": "🧾",
+      "issuer": "Laboratoire qualité du fabricant",
+      "recipient": "Importateur, ONSSA",
+      "purpose": "Résultats d'analyse de chaque lot expédié ; base de la vérification documentaire.",
+      "when": "À l'expédition",
+      "status": "Exigence contractuelle ; utile au contrôle ONSSA",
+      "related": [
+        "cert-sanitaire",
+        "packing"
+      ],
+      "fields": [
+        {
+          "label": "Lots",
+          "value": "L2611-01 à L2611-10"
+        },
+        {
+          "label": "Brix / sucres",
+          "value": "10,6 g / 100 ml"
+        },
+        {
+          "label": "CO₂",
+          "value": "3,8 volumes"
+        },
+        {
+          "label": "pH",
+          "value": "2,5"
+        },
+        {
+          "label": "Microbiologie",
+          "value": "Conforme aux spécifications du fabricant"
+        },
+        {
+          "label": "À consommer de préférence avant",
+          "value": "11/2027"
+        }
+      ]
+    },
+    "autorisation-onssa": {
+      "title": "Autorisation sanitaire de l'entrepôt (ONSSA)",
+      "icon": "🏛️",
+      "issuer": "ONSSA — service provincial",
+      "recipient": "Importateur",
+      "purpose": "Autorise l'établissement de stockage et de distribution de produits alimentaires ; référencée dans les dossiers d'importation.",
+      "when": "Avant la première importation",
+      "status": "Obligatoire pour l'établissement (loi 28-07, décret 2-10-473)",
+      "related": [
+        "admission-onssa"
+      ],
+      "fields": [
+        {
+          "label": "N°",
+          "value": "AS-ONSSA-CAS-2026-0318 (fictif)"
+        },
+        {
+          "label": "Établissement",
+          "value": "{{company.name}} — entrepôt de {{company.city}}"
+        },
+        {
+          "label": "Activité",
+          "value": "Stockage et distribution de boissons"
+        },
+        {
+          "label": "Statut",
+          "value": "Autorisation en vigueur"
+        }
+      ]
+    },
+    "admission-onssa": {
+      "title": "Décision d'admission ONSSA (simulée)",
+      "icon": "🩺",
+      "issuer": "ONSSA — poste d'inspection frontalier",
+      "recipient": "Importateur, déclarant, ADII",
+      "purpose": "Décision sanitaire à l'issue du contrôle : admission, mise en conformité, refoulement ou destruction.",
+      "when": "Après les contrôles et les analyses",
+      "status": "Conditionne la mainlevée douanière dans le jeu",
+      "related": [
+        "cert-sanitaire",
+        "cert-analyse",
+        "etiquette",
+        "mainlevee"
+      ],
+      "fields": [
+        {
+          "label": "Référence",
+          "value": "ONSSA-PIF-CASA-2026-07731 (fictif)"
+        },
+        {
+          "label": "Contrôles",
+          "value": "Documentaire, identité, physique, prélèvement et analyses"
+        },
+        {
+          "label": "Résultats d'analyse",
+          "value": "Conformes"
+        },
+        {
+          "label": "Décision",
+          "value": "Admis"
+        }
+      ]
+    },
+    "bon-livraison": {
+      "fields": [
+        {
+          "label": "Livré",
+          "value": "100 palettes (21 000 cartons)"
+        },
+        {
+          "label": "Réserves",
+          "value": "1 palette percée : 38 canettes fuyantes, 6 cartons souillés (photos jointes)"
+        }
+      ]
+    },
+    "pv-reception": {
+      "fields": [
+        {
+          "label": "Conformité",
+          "value": "Conforme sous réserves"
+        },
+        {
+          "label": "Écarts",
+          "value": "38 canettes fuyantes isolées et détruites, 6 cartons reconditionnés"
+        },
+        {
+          "label": "Lots reçus",
+          "value": "L2611-01 à L2611-10 — rangement FEFO"
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "A1-besoin",
+      "phase": "A",
+      "title": "Exprimer le besoin",
+      "location": "bureau",
+      "actor": "yasmine",
+      "type": "choice",
+      "intro": "Yasmine : « La saison d'été démarre dans 50 jours. Nos clients attendent 21 000 cartons de cola en canette 33 cl. Rédige l'expression de besoin. »",
+      "hint": "Pour une denrée, la durabilité restante et l'étiquetage comptent autant que la quantité.",
+      "explanation": "Pour une denrée alimentaire, l'expression de besoin doit fixer la durabilité minimale restante (on ne vend pas un produit proche de sa date), la conformité de l'étiquetage au marché marocain et les documents sanitaires, en plus de la quantité et du délai.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Spécification complète",
+          "detail": "504 000 canettes 33 cl (21 000 cartons), durabilité ≥ 9 mois à l'expédition, étiquetage conforme au Maroc, certificat d'analyse par lot, livraison avant J+50.",
+          "quality": "best",
+          "feedback": "Parfait : chaque critère servira au contrat, au contrôle ONSSA et à la réception.",
+          "effects": {
+            "days": 1,
+            "docs": [
+              "besoin"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "« 21 000 cartons de cola, livraison avant l'été »",
+          "quality": "ok",
+          "feedback": "Sans exigence de durabilité ni d'étiquetage, tu risques un produit invendable ou bloqué.",
+          "effects": {
+            "days": 1,
+            "docs": [
+              "besoin"
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "label": "« Le moins cher possible, même en fin de stock »",
+          "quality": "bad",
+          "feedback": "Un fin de stock alimentaire = durabilité courte, ventes à perte, risque de non-conformité.",
+          "effects": {
+            "days": 2,
+            "docs": [
+              "besoin"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons",
+        "etiquetage-alimentaire"
+      ]
+    },
+    {
+      "id": "A2-verification",
+      "phase": "A",
+      "title": "Vérifier les fournisseurs",
+      "location": "fournisseurs",
+      "actor": "yasmine",
+      "type": "multi",
+      "intro": "Trois embouteilleurs proposent leur cola : Espagne, Égypte, Brésil. Quelles vérifications fais-tu ? (plusieurs réponses)",
+      "hint": "Sécurité alimentaire, droit de vendre la marque, capacité réelle.",
+      "explanation": "Pour une boisson de marque, il faut vérifier le droit de distribuer la marque au Maroc (sinon risque de contrefaçon ou de conflit avec le distributeur exclusif), la certification sécurité alimentaire (FSSC 22000, IFS, ISO 22000), l'existence légale et la capacité. Acheter un lot déclassé « fin de série » est un piège classique.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Existence légale et références clients",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Certifications de sécurité des aliments (FSSC 22000, IFS, ISO 22000)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Droit de distribuer la marque au Maroc (licence / contrat de distribution)",
+          "quality": "best",
+          "feedback": "Oui : un import parallèle non autorisé expose à des saisies et litiges."
+        },
+        {
+          "id": "d",
+          "label": "Capacité à livrer des lots récents dans le délai",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Accepter un lot déclassé « fin de série » à -40 %",
+          "quality": "bad",
+          "feedback": "Durabilité courte et origine douteuse : piège classique."
+        }
+      ],
+      "effects": {
+        "days": 2,
+        "cost": {
+          "label": "Échantillons et analyses préalables",
+          "amount": 6000,
+          "category": "autres"
+        }
+      },
+      "sources": [
+        "onssa-denrees",
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "A3-autorisation",
+      "phase": "A",
+      "title": "Autorisation sanitaire de l'entrepôt",
+      "location": "labo",
+      "actor": "qualite",
+      "type": "choice",
+      "intro": "Karima (qualité) : « C'est notre première importation de boissons. Notre entrepôt de Sidi Bernoussi a-t-il besoin d'une autorisation de l'ONSSA ? »",
+      "hint": "L'autorisation concerne l'établissement marocain, pas l'usine étrangère.",
+      "explanation": "Les établissements de la chaîne alimentaire, y compris le stockage et la distribution, doivent disposer d'une autorisation ou d'un agrément sanitaire de l'ONSSA (loi 28-07, décret 2-10-473). Le dossier d'importation mentionne l'établissement importateur : l'autorisation doit être obtenue avant la première importation.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Vérifier / obtenir l'autorisation sanitaire auprès du service provincial de l'ONSSA dès maintenant",
+          "quality": "best",
+          "feedback": "La demande avance en parallèle de la négociation. Autorisation obtenue à temps.",
+          "effects": {
+            "docs": [
+              "autorisation-onssa"
+            ],
+            "cost": {
+              "label": "Mise à niveau de l'entrepôt (hygiène, nuisibles)",
+              "amount": 12000,
+              "category": "autres"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Inutile : c'est l'usine du fournisseur qui est contrôlée",
+          "quality": "bad",
+          "feedback": "Faux : l'établissement marocain doit être autorisé. Découvert tardivement, cela te coûte 10 jours.",
+          "effects": {
+            "days": 10,
+            "docs": [
+              "autorisation-onssa"
+            ],
+            "cost": {
+              "label": "Mise à niveau en urgence de l'entrepôt",
+              "amount": 20000,
+              "category": "autres"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "On s'en occupera quand la marchandise sera au port",
+          "quality": "bad",
+          "feedback": "Trop tard : la marchandise attendrait au port. Tu lances la demande en catastrophe (+7 jours).",
+          "effects": {
+            "days": 7,
+            "docs": [
+              "autorisation-onssa"
+            ],
+            "cost": {
+              "label": "Mise à niveau en urgence de l'entrepôt",
+              "amount": 20000,
+              "category": "autres"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "autorisation-sanitaire"
+      ]
+    },
+    {
+      "id": "A4-choix",
+      "phase": "A",
+      "title": "Comparer les offres et choisir",
+      "location": "fournisseurs",
+      "actor": "yasmine",
+      "type": "choice",
+      "widget": "suppliers",
+      "intro": "Les devis sont arrivés (base FCA). Compare le coût complet — TIC et droits compris — et la date de livraison par rapport à J+50 (aujourd'hui : J+{{day}}). Chaque jour de retard fait perdre environ 25 000 MAD de ventes (fictif).",
+      "hint": "Le prix unitaire le plus bas n'est pas le coût le plus bas, et une boisson livrée après la saison se vend mal.",
+      "explanation": "Le coût rendu entrepôt intègre fret, assurance, droits (selon l'origine), TIC et frais. Pour un produit saisonnier, le délai pèse lourd. Un long transit en zone chaude dégrade aussi la qualité.",
+      "options": [
+        {
+          "id": "ES",
+          "label": "🇪🇸 Refrescos del Levante (Espagne)",
+          "detail": "0,26 €/canette — fabrication 7 j — transit 4 j",
+          "quality": "best",
+          "feedback": "Choix robuste : livraison avant la saison, origine préférentielle (taux fictif), certifications complètes.",
+          "effects": {
+            "set": {
+              "supplier": "ES"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        },
+        {
+          "id": "EG",
+          "label": "🇪🇬 Nile Beverages (Égypte)",
+          "detail": "0,27 $/canette — fabrication 10 j — transit 9 j",
+          "quality": "ok",
+          "feedback": "Coût proche de l'Espagne, mais délai très serré et fiabilité moyenne : le moindre retard fait rater le début de saison. Accord d'Agadir à vérifier.",
+          "effects": {
+            "set": {
+              "supplier": "EG"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        },
+        {
+          "id": "BR",
+          "label": "🇧🇷 Bebidas Atlântico (Brésil)",
+          "detail": "0,18 $/canette — fabrication 12 j — transit 22 j",
+          "quality": "bad",
+          "feedback": "Prix bas, mais droit commun (fictif 40 %), long transit sous la chaleur et livraison après le démarrage de la saison.",
+          "effects": {
+            "set": {
+              "supplier": "BR"
+            },
+            "days": 2,
+            "docs": [
+              "devis"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "di-boissons",
+        "origine-agadir",
+        "tic-boissons"
+      ]
+    },
+    {
+      "id": "A5-negociation",
+      "phase": "A",
+      "title": "Négocier durabilité, étiquetage et prix",
+      "location": "fournisseurs",
+      "actor": "fournisseur",
+      "type": "choice",
+      "intro": "Visioconférence avec {{supplier.name}}. Qu'obtiens-tu ?",
+      "hint": "Pour une denrée, la clause de durabilité est aussi importante que le prix.",
+      "explanation": "Le contrat d'achat d'une denrée doit garantir une durabilité minimale restante à l'expédition, l'étiquetage adapté au marché de destination (ou la fourniture d'étiquettes complémentaires) et des lots récents avec certificat d'analyse.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Durabilité ≥ 9 mois à l'expédition, étiquettes complémentaires en arabe fournies, -2 % contre engagement saisonnier",
+          "quality": "best",
+          "feedback": "Accord complet : produit vendable toute la saison et prix amélioré.",
+          "effects": {
+            "set": {
+              "discount": 0.02
+            },
+            "days": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Obtenir -5 % sans parler de durabilité",
+          "quality": "ok",
+          "feedback": "Remise obtenue… sur des lots plus anciens : la durabilité restante sera courte.",
+          "effects": {
+            "set": {
+              "discount": 0.05,
+              "shortDdm": true
+            },
+            "days": 1
+          }
+        },
+        {
+          "id": "c",
+          "label": "Demander une facture minorée pour réduire droits et TIC",
+          "quality": "bad",
+          "feedback": "Fraude (fausse déclaration de valeur). Refus du fournisseur et chute de ta conformité.",
+          "effects": {
+            "set": {
+              "discount": 0
+            },
+            "days": 1,
+            "compliance": -20
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons",
+        "valeur-douane"
+      ]
+    },
+    {
+      "id": "A6-incoterm",
+      "phase": "A",
+      "title": "Choisir l'Incoterm",
+      "location": "bureau",
+      "actor": "yasmine",
+      "type": "choice",
+      "widget": "incoterms",
+      "intro": "Marchandise en conteneurs remise au terminal de {{supplier.port}}. Quel Incoterm 2020 ?",
+      "hint": "Conteneur → règles « tous modes ».",
+      "explanation": "FCA terminal de départ : le vendeur dédouane à l'export et remet le conteneur au transporteur choisi par l'acheteur, qui maîtrise fret et assurance. CIF : le vendeur choisit le navire et ne doit qu'une assurance minimale. EXW : l'acheteur gère l'export. DDP : inapplicable pour un vendeur étranger au Maroc.",
+      "options": [
+        {
+          "id": "FCA",
+          "label": "FCA — {{supplier.port}}, terminal à conteneurs",
+          "quality": "best",
+          "feedback": "Excellent.",
+          "effects": {
+            "set": {
+              "incoterm": "FCA",
+              "freightTerm": "collect"
+            }
+          }
+        },
+        {
+          "id": "CIF",
+          "label": "CIF — Casablanca",
+          "quality": "ok",
+          "feedback": "Simple, mais tu perds le contrôle du navire (et du temps d'exposition à la chaleur).",
+          "effects": {
+            "set": {
+              "incoterm": "CIF",
+              "insurance": "seller-c",
+              "freightTerm": "prepaid"
+            }
+          }
+        },
+        {
+          "id": "EXW",
+          "label": "EXW — usine du fournisseur",
+          "quality": "bad",
+          "feedback": "Tu devras gérer l'export dans le pays du vendeur.",
+          "effects": {
+            "set": {
+              "incoterm": "EXW",
+              "freightTerm": "collect"
+            }
+          }
+        },
+        {
+          "id": "DDP",
+          "label": "DDP — entrepôt Oasis",
+          "quality": "bad",
+          "feedback": "Le vendeur étranger ne peut pas dédouaner au Maroc (déclarant, domiciliation, ONSSA). Il propose du DAP.",
+          "effects": {
+            "set": {
+              "incoterm": "DAP",
+              "freightTerm": "prepaid"
+            },
+            "days": 1
+          }
+        }
+      ],
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "A7-paiement",
+      "phase": "A",
+      "title": "Choisir le mode de règlement",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "widget": "payment",
+      "intro": "Nadia : « Premier achat de boissons avec ce fournisseur, environ {{calc.invoiceCurrency}} {{supplier.currency}}. Quel instrument ? »",
+      "hint": "Payer contre documents permet d'exiger les certificats sanitaires et d'analyse.",
+      "explanation": "Le crédit documentaire permet d'exiger, comme condition de paiement, les documents nécessaires au contrôle ONSSA et au dédouanement. La remise documentaire est moins chère mais sans engagement bancaire.",
+      "options": [
+        {
+          "id": "credoc",
+          "label": "Crédit documentaire irrévocable contre documents",
+          "quality": "best",
+          "feedback": "Sécurisé : pas de paiement sans les documents sanitaires et d'origine.",
+          "effects": {
+            "set": {
+              "payment": "credoc"
+            }
+          }
+        },
+        {
+          "id": "remdoc",
+          "label": "Remise documentaire",
+          "quality": "ok",
+          "feedback": "Moins cher, sans engagement bancaire.",
+          "effects": {
+            "set": {
+              "payment": "remdoc"
+            }
+          }
+        },
+        {
+          "id": "virement",
+          "label": "Virement de 100 % à la commande",
+          "quality": "bad",
+          "feedback": "Tout le risque est pour toi, y compris celui de documents sanitaires manquants.",
+          "effects": {
+            "set": {
+              "payment": "virement"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "modes-reglement",
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "A8-proforma",
+      "phase": "A",
+      "title": "Contrôler la facture pro forma",
+      "location": "bureau",
+      "actor": "fournisseur",
+      "type": "docCheck",
+      "document": "proforma",
+      "intro": "La pro forma servira à la domiciliation. Clique sur chaque champ erroné, puis valide.",
+      "hint": "Unités (canettes ou cartons ?), position tarifaire, clause de durabilité.",
+      "explanation": "La pro forma doit être identique au contrat : quantité dans la bonne unité, position tarifaire exacte, garanties négociées. Une discordance entraîne une correction ou un rejet de la domiciliation.",
+      "effects": {
+        "docs": [
+          "proforma"
+        ],
+        "days": 1
+      },
+      "sources": [
+        "engagement-import",
+        "classement-2202"
+      ]
+    },
+    {
+      "id": "A9-contrat",
+      "phase": "A",
+      "title": "Valider le contrat et le bon de commande",
+      "location": "bureau",
+      "actor": "yasmine",
+      "type": "multi",
+      "intro": "Quelles clauses doivent figurer au contrat ?",
+      "hint": "Pense à ce qui peut mal tourner pour une denrée.",
+      "explanation": "En plus des clauses classiques (Incoterm, paiement, loi applicable), le contrat d'achat d'une boisson fixe la durabilité minimale, les documents sanitaires et d'analyse, l'étiquetage, et ce qui se passe si l'ONSSA refuse le produit (reprise ou remplacement aux frais du vendeur si la non-conformité lui est imputable).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Durabilité minimale restante à l'expédition",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Documents sanitaires et certificat d'analyse par lot",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Étiquetage conforme au Maroc ou étiquettes complémentaires fournies",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Responsabilité du vendeur en cas de refoulement pour non-conformité qui lui est imputable",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Incoterm, paiement, loi applicable et arbitrage",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "f",
+          "label": "Pas de contrat : la pro forma suffit",
+          "quality": "bad",
+          "feedback": "Insuffisant pour gérer un refus sanitaire."
+        }
+      ],
+      "effects": {
+        "days": 1,
+        "docs": [
+          "contrat",
+          "bc"
+        ]
+      },
+      "sources": [
+        "onssa-denrees",
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "B1-sh",
+      "phase": "B",
+      "title": "Classer la boisson (code SH)",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Youssef : « Quelle position SH pour un cola gazeux sucré en canette ? »",
+      "hint": "Eau aromatisée et sucrée.",
+      "explanation": "Les eaux additionnées de sucre ou aromatisées, dont les sodas, relèvent de 2202.10. 2201 vise les eaux non sucrées, 2009 les jus de fruits, 2208 les spiritueux. Le contenant (canette) n'est pas classé séparément : il suit la boisson.",
+      "options": [
+        {
+          "id": "a",
+          "label": "2202.10 — Eaux additionnées de sucre ou aromatisées",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {}
+        },
+        {
+          "id": "b",
+          "label": "2201.10 — Eaux minérales et gazéifiées (non sucrées)",
+          "quality": "bad",
+          "feedback": "Le cola est sucré et aromatisé."
+        },
+        {
+          "id": "c",
+          "label": "2009.90 — Mélanges de jus de fruits",
+          "quality": "bad",
+          "feedback": "Ce n'est pas un jus de fruits."
+        },
+        {
+          "id": "d",
+          "label": "7612.90 — Canettes en aluminium",
+          "quality": "bad",
+          "feedback": "Le contenant suit le contenu : on classe la boisson, pas la canette (règle générale interprétative 5 b)."
+        }
+      ],
+      "sources": [
+        "classement-2202"
+      ]
+    },
+    {
+      "id": "B2-exigences",
+      "phase": "B",
+      "title": "Exigences applicables à une boisson importée",
+      "location": "labo",
+      "actor": "qualite",
+      "type": "multi",
+      "intro": "Karima : « Quelles exigences s'appliquent à notre cola importé ? » (plusieurs réponses)",
+      "hint": "Denrée alimentaire : ONSSA. Boisson sucrée : fiscalité spécifique.",
+      "explanation": "Une boisson est une denrée alimentaire : contrôle sanitaire de l'ONSSA à l'importation, étiquetage conforme (décret 2-12-389), documents sanitaires selon les exigences de l'ONSSA. Elle reste libre à l'importation (engagement d'importation). Les boissons sucrées supportent la TIC. Le contrôle de conformité des produits industriels (MCINET) ne vise pas les denrées.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Contrôle sanitaire de l'ONSSA à l'importation",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Étiquetage conforme à la réglementation marocaine des denrées",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Documents sanitaires et d'analyse exigés par l'ONSSA (liste à confirmer)",
+          "quality": "best",
+          "feedback": "Oui — liste exacte à confirmer auprès de l'ONSSA."
+        },
+        {
+          "id": "d",
+          "label": "Taxe intérieure de consommation (TIC) sur les boissons sucrées",
+          "quality": "best",
+          "feedback": "Oui (barème de l'année à vérifier)."
+        },
+        {
+          "id": "e",
+          "label": "Licence d'importation",
+          "quality": "bad",
+          "feedback": "La boisson est libre à l'importation (dans le jeu) : engagement d'importation."
+        },
+        {
+          "id": "f",
+          "label": "Certificat phytosanitaire",
+          "quality": "bad",
+          "feedback": "Réservé aux végétaux."
+        }
+      ],
+      "effects": {
+        "days": 0
+      },
+      "sources": [
+        "onssa-denrees",
+        "etiquetage-alimentaire",
+        "tic-boissons",
+        "liberte-import"
+      ]
+    },
+    {
+      "id": "B3-origine",
+      "phase": "B",
+      "title": "Justifier l'origine",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "« Quel document d'origine demandes-tu à {{supplier.name}} ? »",
+      "hint": "Il faut un accord pour obtenir une préférence.",
+      "explanation": "Le traitement préférentiel suppose un accord et une preuve d'origine conforme à cet accord (UE : EUR.1 ou déclaration d'origine ; Agadir : modèle à vérifier). Sans accord (Brésil dans le jeu), un certificat d'origine non préférentiel suffit et le droit commun s'applique.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Preuve d'origine préférentielle prévue par l'accord applicable",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "best",
+              "EG": "best",
+              "BR": "bad"
+            }
+          },
+          "feedback": "Pour l'UE et l'Égypte (Agadir), c'est le bon choix ; pour le Brésil, aucun accord dans le jeu.",
+          "effects": {
+            "set": {
+              "originProofOk": true
+            }
+          },
+          "effectsIf": {
+            "bad": {
+              "set": {
+                "originProofOk": false,
+                "mfnRate": 0.4
+              }
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Certificat d'origine non préférentiel",
+          "qualityBy": {
+            "var": "supplier",
+            "map": {
+              "ES": "bad",
+              "EG": "bad",
+              "BR": "best"
+            }
+          },
+          "feedback": "Correct pour le Brésil ; pour l'UE ou l'Égypte, tu perds la préférence (droit commun fictif 40 %).",
+          "effectsIf": {
+            "bad": {
+              "set": {
+                "originProofOk": false,
+                "mfnRate": 0.4
+              }
+            },
+            "best": {
+              "set": {
+                "originProofOk": true
+              }
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Aucune preuve",
+          "quality": "bad",
+          "feedback": "Droit commun appliqué.",
+          "effects": {
+            "set": {
+              "originProofOk": false,
+              "mfnRate": 0.4
+            }
+          }
+        }
+      ],
+      "sources": [
+        "origine-ue",
+        "origine-agadir",
+        "di-boissons"
+      ]
+    },
+    {
+      "id": "B4-etiquette",
+      "phase": "B",
+      "title": "Contrôler la maquette d'étiquetage",
+      "location": "labo",
+      "actor": "qualite",
+      "type": "docCheck",
+      "document": "etiquette",
+      "intro": "Karima : « Voici la maquette proposée par le fournisseur. Repère ce qui ne passerait pas le contrôle à l'importation. »",
+      "hint": "Langue, origine, importateur.",
+      "explanation": "Le décret n° 2-12-389 fixe l'étiquetage des produits alimentaires ; pour un produit importé, il impose notamment le pays d'origine (article 11). Les mentions en arabe et l'identification de l'importateur sont retenues par le jeu (exigences à vérifier dans le texte). Une étiquette non conforme expose à une décision de mise en conformité ou de refoulement.",
+      "effects": {
+        "days": 1,
+        "docs": [
+          "etiquette"
+        ]
+      },
+      "sources": [
+        "etiquetage-alimentaire"
+      ]
+    },
+    {
+      "id": "C1-portnet",
+      "phase": "C",
+      "title": "Créer l'engagement d'importation sur PortNet",
+      "location": "portnet",
+      "actor": "systeme",
+      "type": "form",
+      "intro": "Saisis l'engagement d'importation (simulation pédagogique de PortNet), en concordance avec la pro forma.",
+      "hint": "Reprends exactement le contrat.",
+      "explanation": "L'engagement d'importation reprend les données de la facture pro forma ; la banque vérifie la concordance avant domiciliation.",
+      "form": {
+        "system": "portnet",
+        "fields": [
+          {
+            "id": "type",
+            "label": "Type de titre",
+            "options": [
+              "Engagement d'importation",
+              "Licence d'importation",
+              "Déclaration préalable d'importation"
+            ],
+            "answer": "Engagement d'importation"
+          },
+          {
+            "id": "ice",
+            "label": "Identifiant de l'importateur (ICE)",
+            "options": [
+              "002345678000071",
+              "512345",
+              "1234567"
+            ],
+            "answer": "002345678000071"
+          },
+          {
+            "id": "fournisseur",
+            "label": "Fournisseur",
+            "options": [
+              "Refrescos del Levante S.A. (fictif)",
+              "Nile Beverages Co. (fictif)",
+              "Bebidas Atlântico Ltda. (fictif)"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "Refrescos del Levante S.A. (fictif)",
+                "EG": "Nile Beverages Co. (fictif)",
+                "BR": "Bebidas Atlântico Ltda. (fictif)"
+              }
+            }
+          },
+          {
+            "id": "origine",
+            "label": "Pays d'origine",
+            "options": [
+              "Espagne",
+              "Égypte",
+              "Brésil",
+              "Maroc"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "Espagne",
+                "EG": "Égypte",
+                "BR": "Brésil"
+              }
+            }
+          },
+          {
+            "id": "devise",
+            "label": "Devise",
+            "options": [
+              "EUR",
+              "USD",
+              "MAD"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "EUR",
+                "EG": "USD",
+                "BR": "USD"
+              }
+            }
+          },
+          {
+            "id": "montant",
+            "label": "Montant (selon pro forma)",
+            "options": [
+              "{{calc.invoiceCurrency}}",
+              "{{calc.goodsInvoice}}",
+              "{{calc.cif}}"
+            ],
+            "answer": "{{calc.invoiceCurrency}}"
+          },
+          {
+            "id": "sh",
+            "label": "Nomenclature",
+            "options": [
+              "2202.10.00.90 (fictif)",
+              "2201.10.00.00 (fictif)",
+              "7612.90.00.90 (fictif)"
+            ],
+            "answer": "2202.10.00.90 (fictif)"
+          },
+          {
+            "id": "incoterm",
+            "label": "Incoterm",
+            "options": [
+              "EXW",
+              "FCA",
+              "CIF",
+              "DAP"
+            ],
+            "answer": "{{incoterm}}"
+          },
+          {
+            "id": "banque",
+            "label": "Banque domiciliataire",
+            "options": [
+              "Banque Maghreb Commerce (fictive)",
+              "Bureau de change du port",
+              "Banque du fournisseur"
+            ],
+            "answer": "Banque Maghreb Commerce (fictive)"
+          }
+        ]
+      },
+      "effects": {
+        "days": 1,
+        "docs": [
+          "engagement"
+        ]
+      },
+      "sources": [
+        "engagement-import",
+        "portnet"
+      ]
+    },
+    {
+      "id": "C2-rejet",
+      "phase": "C",
+      "title": "Demande de correction de la banque",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "requires": {
+        "var": "proformaMissed",
+        "in": [
+          true
+        ]
+      },
+      "intro": "Nadia : « La pro forma ne concorde pas avec le contrat (unité de quantité, position tarifaire ou durabilité). Je ne peux pas domicilier. »",
+      "hint": "Seul l'émetteur corrige son document.",
+      "explanation": "La banque vérifie la concordance entre contrat et engagement d'importation. La correction passe par une pro forma rectifiée émise par le fournisseur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Obtenir une pro forma rectifiée et rectifier l'engagement",
+          "quality": "best",
+          "feedback": "Corrigé en 2 jours.",
+          "effects": {
+            "days": 2,
+            "set": {
+              "proformaMissed": false
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Corriger soi-même la pro forma",
+          "quality": "bad",
+          "feedback": "Falsification d'un document de tiers.",
+          "effects": {
+            "days": 2,
+            "compliance": -15
+          }
+        }
+      ],
+      "sources": [
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "C3-domiciliation",
+      "phase": "C",
+      "title": "Domicilier l'engagement",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "multi",
+      "intro": "Nadia : « Quelles pièces me transmettez-vous pour la domiciliation ? »",
+      "hint": "Avant l'expédition, les documents de transport et de douane n'existent pas encore.",
+      "explanation": "La domiciliation s'appuie sur l'engagement d'importation, la pro forma ou le contrat, et le dossier client. La DUM et le B/L serviront plus tard à l'apurement.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Engagement d'importation PortNet",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Pro forma et contrat",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Dossier société (RC, ICE, pouvoirs)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Décision d'admission ONSSA",
+          "quality": "bad",
+          "feedback": "Elle n'existera qu'après le contrôle au port."
+        }
+      ],
+      "effects": {
+        "days": 2,
+        "docs": [
+          "domiciliation"
+        ],
+        "commit": [
+          "bank"
+        ]
+      },
+      "sources": [
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "C4-credoc",
+      "phase": "C",
+      "title": "Documents exigés pour le paiement",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "multi",
+      "requires": {
+        "var": "payment",
+        "in": [
+          "credoc",
+          "remdoc"
+        ]
+      },
+      "intro": "Nadia : « Quels documents le fournisseur devra-t-il présenter pour être payé ? »",
+      "hint": "Ceux dont tu as besoin au port : douane ET ONSSA.",
+      "explanation": "En exigeant les documents sanitaires et d'analyse dans le crédit documentaire, tu t'assures de les recevoir avant de payer et de pouvoir présenter un dossier complet à l'ONSSA.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Facture commerciale et packing list",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Jeu complet de B/L originaux",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Preuve d'origine",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Certificat d'analyse par lot et document sanitaire officiel si exigé",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Décision d'admission ONSSA",
+          "quality": "bad",
+          "feedback": "Émise au Maroc, après le contrôle."
+        }
+      ],
+      "effects": {
+        "docs": [
+          "paiement"
+        ]
+      },
+      "sources": [
+        "modes-reglement",
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "C4-virement",
+      "phase": "C",
+      "title": "Exécuter le paiement",
+      "location": "banque",
+      "actor": "idrissi",
+      "type": "choice",
+      "requires": {
+        "var": "payment",
+        "in": [
+          "virement",
+          "mixte"
+        ]
+      },
+      "intro": "Le fournisseur réclame le paiement prévu. Comment procèdes-tu ?",
+      "hint": "Le paiement doit être rattaché au dossier domicilié.",
+      "explanation": "Le règlement passe par la banque domiciliataire, en référence au dossier, pour être imputé et déclaré à l'Office des Changes.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Ordre de virement via la banque domiciliataire, référencé au dossier",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {
+            "docs": [
+              "paiement"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Payer via un compte à l'étranger d'un proche",
+          "quality": "bad",
+          "feedback": "Infraction à la réglementation des changes.",
+          "effects": {
+            "compliance": -25
+          }
+        }
+      ],
+      "sources": [
+        "engagement-import"
+      ]
+    },
+    {
+      "id": "D1-production",
+      "phase": "D",
+      "title": "Fabrication : exiger des lots récents",
+      "location": "fournisseurs",
+      "actor": "fournisseur",
+      "type": "choice",
+      "scene": "factory",
+      "intro": "{{supplier.name}} propose d'expédier soit une production fraîche ({{supplier.productionDays}} jours), soit tout de suite un stock existant.",
+      "hint": "Rappelle-toi la clause de durabilité.",
+      "explanation": "Une production fraîche garantit la durabilité restante négociée. Un stock ancien fait gagner quelques jours, mais réduit la période de vente et augmente le risque d'invendus.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Production fraîche avec certificat d'analyse par lot",
+          "quality": "best",
+          "feedback": "Lots L2611-01 à -10, durabilité 12 mois.",
+          "effects": {
+            "daysFrom": "production",
+            "docs": [
+              "cert-analyse"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Stock existant (durabilité restante 4 mois) pour gagner du temps",
+          "quality": "bad",
+          "feedback": "Tu gagnes quelques jours, mais la fin de saison sera difficile à écouler.",
+          "effects": {
+            "days": 2,
+            "set": {
+              "shortDdm": true
+            },
+            "docs": [
+              "cert-analyse"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "D1b-retard-production",
+      "phase": "D",
+      "title": "Incident : retard de production chez le fournisseur",
+      "location": "fournisseurs",
+      "actor": "fournisseur",
+      "type": "choice",
+      "requires": {
+        "var": "supplier",
+        "in": [
+          "EG"
+        ]
+      },
+      "chance": {
+        "decouverte": 0.6,
+        "professionnel": 0.7,
+        "expert": 0.95,
+        "examen": 0.7
+      },
+      "intro": "{{supplier.name}} : « Panne sur la ligne de remplissage, nous aurons 5 jours de retard. »",
+      "hint": "La fiabilité d'un fournisseur se paie au moment où le délai est serré.",
+      "explanation": "La fiabilité de planning d'un fournisseur fait partie de son coût réel. Une clause de pénalités de retard et un suivi rapproché de la production limitent le risque, sans le supprimer.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Appliquer la clause de pénalité, exiger un planning de rattrapage et prévenir les clients",
+          "quality": "best",
+          "feedback": "Retard ramené à 4 jours, pénalité déduite de la facture.",
+          "effects": {
+            "days": 4,
+            "cost": {
+              "label": "Pénalité de retard déduite (crédit fournisseur)",
+              "amount": -12000,
+              "category": "autres"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Attendre sans rien dire",
+          "quality": "bad",
+          "feedback": "Le retard glisse à 7 jours.",
+          "effects": {
+            "days": 7
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "D2-chargement",
+      "phase": "D",
+      "title": "Conditions de chargement (chaleur)",
+      "location": "carte",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Expédition en été. Comment protèges-tu les boissons pendant le transport ?",
+      "hint": "Chaleur et soleil dégradent les sodas ; un conteneur réfrigéré coûte cher.",
+      "explanation": "Les boissons gazeuses supportent le conteneur sec standard s'il est propre, sans odeur et protégé des fortes chaleurs (stockage à l'ombre, éventuellement isolation intérieure). Le conteneur réfrigéré est rarement justifié pour ce produit. Un conteneur sale ou odorant peut contaminer les emballages.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Conteneurs secs inspectés (propres, sans odeur), isolation intérieure, pas d'attente au soleil",
+          "quality": "best",
+          "feedback": "Bon compromis coût / qualité.",
+          "effects": {
+            "cost": {
+              "label": "Isolation intérieure des conteneurs",
+              "amount": 6500,
+              "category": "transport"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Conteneurs réfrigérés",
+          "quality": "ok",
+          "feedback": "Efficace mais très coûteux pour un soda.",
+          "effects": {
+            "cost": {
+              "label": "Surcoût conteneurs réfrigérés",
+              "amount": 95000,
+              "category": "transport"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Le premier conteneur disponible, sans inspection",
+          "quality": "bad",
+          "feedback": "Deux conteneurs sentent le solvant : cartons à reconditionner.",
+          "effects": {
+            "cost": {
+              "label": "Reconditionnement de cartons odorants",
+              "amount": 18000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "D3-booking",
+      "phase": "D",
+      "title": "Réserver le transport maritime",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "choice",
+      "requires": {
+        "var": "incoterm",
+        "in": [
+          "EXW",
+          "FCA",
+          "FOB"
+        ]
+      },
+      "intro": "En {{incoterm}}, tu réserves le fret depuis {{supplier.port}}.",
+      "hint": "Moins de jours en mer = moins de chaleur et de retard.",
+      "explanation": "En Incoterm E ou F, l'acheteur choisit le transporteur. Une ligne directe réduit le délai et l'exposition à la chaleur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Ligne directe, réservation confirmée",
+          "quality": "best",
+          "feedback": "Réservé.",
+          "effects": {
+            "docs": [
+              "booking"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Service avec transbordement, moins cher",
+          "quality": "ok",
+          "feedback": "+4 jours de transit.",
+          "effects": {
+            "days": 4,
+            "docs": [
+              "booking"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "D4-assurance",
+      "phase": "D",
+      "title": "Assurer la marchandise",
+      "location": "bureau",
+      "actor": "assureur",
+      "type": "choice",
+      "requires": {
+        "var": "incoterm",
+        "in": [
+          "EXW",
+          "FCA",
+          "FOB",
+          "CFR"
+        ]
+      },
+      "intro": "Leila : « Quelle couverture pour vos boissons ? »",
+      "hint": "Canettes fragiles : chocs, perforations, fuites.",
+      "explanation": "ICC (A) couvre « tous risques » sauf exclusions, dont la casse et les fuites accidentelles ; ICC (C) seulement les événements majeurs.",
+      "options": [
+        {
+          "id": "a",
+          "label": "ICC (A), 110 % CIF",
+          "quality": "best",
+          "feedback": "Adapté.",
+          "effects": {
+            "set": {
+              "insurance": "icc-a"
+            },
+            "docs": [
+              "assurance"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "ICC (C)",
+          "quality": "ok",
+          "feedback": "Les fuites et chocs ordinaires ne seront pas couverts.",
+          "effects": {
+            "set": {
+              "insurance": "icc-c"
+            },
+            "docs": [
+              "assurance"
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "label": "Pas d'assurance",
+          "quality": "bad",
+          "feedback": "Risque entièrement à ta charge.",
+          "effects": {
+            "set": {
+              "insurance": "none"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "reserves"
+      ]
+    },
+    {
+      "id": "D5-packing",
+      "phase": "D",
+      "title": "Contrôler la liste de colisage",
+      "location": "bureau",
+      "actor": "fournisseur",
+      "type": "docCheck",
+      "document": "packing",
+      "intro": "La packing list arrive avant chargement. Repère les anomalies.",
+      "hint": "Multiplie palettes × cartons × canettes ; vérifie poids et dates.",
+      "explanation": "La packing list doit concorder avec la facture et le B/L et indiquer les lots et leurs dates de durabilité, indispensables au contrôle ONSSA et à la gestion FEFO.",
+      "effects": {
+        "docs": [
+          "packing"
+        ]
+      },
+      "sources": [
+        "sscc",
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "D6-export",
+      "phase": "D",
+      "title": "Formalités d'export et documents d'expédition",
+      "location": "carte",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Conteneurs chargés et scellés. Qui accomplit le dédouanement export (Incoterm {{incoterm}}) ?",
+      "hint": "Seul EXW laisse l'export à l'acheteur.",
+      "explanation": "Sauf en EXW, le vendeur dédouane à l'export. Il remet ensuite les documents : facture, origine, document sanitaire, certificat d'analyse, B/L.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Le vendeur",
+          "qualityBy": {
+            "var": "incoterm",
+            "map": {
+              "EXW": "bad",
+              "FCA": "best",
+              "FOB": "best",
+              "CIF": "best",
+              "DAP": "best"
+            }
+          },
+          "feedback": "Vrai sauf en EXW.",
+          "effectsIf": {
+            "bad": {
+              "days": 3,
+              "commit": [
+                "preCarriage"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Moi, via un transitaire dans le pays de départ",
+          "qualityBy": {
+            "var": "incoterm",
+            "map": {
+              "EXW": "best",
+              "FCA": "bad",
+              "FOB": "bad",
+              "CIF": "bad",
+              "DAP": "bad"
+            }
+          },
+          "feedback": "Seulement en EXW.",
+          "effectsIf": {
+            "best": {
+              "days": 2,
+              "commit": [
+                "preCarriage"
+              ]
+            }
+          }
+        }
+      ],
+      "effects": {
+        "docs": [
+          "facture",
+          "origine",
+          "cert-sanitaire",
+          "bl"
+        ]
+      },
+      "sources": [
+        "incoterms"
+      ]
+    },
+    {
+      "id": "E1-transit",
+      "phase": "E",
+      "title": "Transport maritime",
+      "location": "carte",
+      "actor": "agent",
+      "type": "scene",
+      "scene": "map",
+      "intro": "Le navire quitte {{supplier.port}} avec tes 10 conteneurs ({{supplier.transitDays}} jours de mer).",
+      "explanation": "Pendant le transit, l'importateur suit l'ETA et prépare en parallèle le dossier ONSSA et la DUM, pour réduire le temps passé au port.",
+      "effects": {
+        "daysFrom": "transit",
+        "commit": [
+          "goods",
+          "insurance"
+        ]
+      },
+      "sources": [
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "E2-retard",
+      "phase": "E",
+      "title": "Incident : vague de chaleur et retard",
+      "location": "carte",
+      "actor": "agent",
+      "type": "choice",
+      "chance": {
+        "decouverte": 0.35,
+        "professionnel": 0.5,
+        "expert": 0.9,
+        "examen": 0.6
+      },
+      "intro": "Omar : « Escale prolongée de 2 jours, températures supérieures à 40 °C sur le quai. »",
+      "hint": "Anticipe le contrôle de la marchandise à l'arrivée.",
+      "explanation": "Un aléa de transport non imputable au vendeur. La bonne réaction : informer, replanifier, préparer un contrôle visuel renforcé à l'arrivée et documenter pour l'assurance.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Informer les clients, préparer un contrôle renforcé à l'arrivée, aviser l'assureur",
+          "quality": "best",
+          "feedback": "Bonne anticipation.",
+          "effects": {
+            "days": 2
+          }
+        },
+        {
+          "id": "b",
+          "label": "Réclamer des pénalités au fournisseur",
+          "quality": "bad",
+          "feedback": "Rejeté : la marchandise a été remise à temps au transporteur.",
+          "effects": {
+            "days": 3
+          }
+        }
+      ],
+      "sources": [
+        "incoterms",
+        "conservation-boissons"
+      ]
+    },
+    {
+      "id": "F1-arrivee",
+      "phase": "F",
+      "title": "Arrivée et déchargement",
+      "location": "port",
+      "actor": "agent",
+      "type": "scene",
+      "scene": "port",
+      "intro": "Le navire accoste à Casablanca ; les portiques déchargent tes 10 conteneurs.",
+      "explanation": "Le transporteur ou son agent dépose le manifeste ; les conteneurs restent sous douane au terminal. La franchise de stationnement commence.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F2-bl",
+      "phase": "F",
+      "title": "Vérifier le connaissement",
+      "location": "transitaire",
+      "actor": "benali",
+      "type": "docCheck",
+      "document": "bl",
+      "intro": "Youssef : « Vérifie le B/L avant de lancer la DUM et le dossier ONSSA. »",
+      "hint": "Destinataire, port, nombre de conteneurs.",
+      "explanation": "Une erreur sur le B/L bloque le BAD, l'apurement du manifeste et les dossiers douane et ONSSA.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F3-correction-bl",
+      "phase": "F",
+      "title": "Blocage : B/L non conforme",
+      "location": "port",
+      "actor": "agent",
+      "type": "choice",
+      "requires": {
+        "var": "blMissed",
+        "in": [
+          true
+        ]
+      },
+      "intro": "Omar : « Le B/L ne concorde pas avec le manifeste. Pas de BAD en l'état. »",
+      "hint": "Le transporteur corrige son document.",
+      "explanation": "Une anomalie non détectée bloque la chaîne et consomme la franchise au terminal.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Demander un B/L rectifié au transporteur et informer le transitaire",
+          "quality": "ok",
+          "feedback": "Débloqué en 3 jours.",
+          "effects": {
+            "portDays": 3
+          }
+        },
+        {
+          "id": "b",
+          "label": "Attendre",
+          "quality": "bad",
+          "feedback": "6 jours perdus.",
+          "effects": {
+            "portDays": 6
+          }
+        }
+      ],
+      "sources": [
+        "bad"
+      ]
+    },
+    {
+      "id": "F4-bad",
+      "phase": "F",
+      "title": "Obtenir le bon à délivrer",
+      "location": "port",
+      "actor": "agent",
+      "type": "choice",
+      "intro": "Comment obtiens-tu le BAD ?",
+      "hint": "Il est émis par l'agent maritime, via PortNet.",
+      "explanation": "L'agent maritime émet le BAD contre remise du B/L original et paiement des sommes dues (fret « collect », frais d'agence).",
+      "options": [
+        {
+          "id": "a",
+          "label": "Remettre le B/L original et régler les frais → BAD électronique PortNet",
+          "quality": "best",
+          "feedback": "BAD émis.",
+          "effects": {
+            "commit": [
+              "freight"
+            ],
+            "docs": [
+              "bad"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Le demander à l'ONSSA",
+          "quality": "bad",
+          "feedback": "L'ONSSA n'émet pas le BAD.",
+          "effects": {
+            "commit": [
+              "freight"
+            ],
+            "docs": [
+              "bad"
+            ],
+            "portDays": 1
+          }
+        }
+      ],
+      "sources": [
+        "bad",
+        "portnet"
+      ]
+    },
+    {
+      "id": "G1-dum",
+      "phase": "G",
+      "title": "Préparer la DUM (simulation BADR)",
+      "location": "douane",
+      "actor": "benali",
+      "type": "form",
+      "intro": "Renseigne la DUM dans le simulateur pédagogique BADR.",
+      "hint": "Colis = palettes ; poids total des 10 conteneurs.",
+      "explanation": "La DUM reprend le régime, la position, l'origine, la valeur, l'Incoterm, les colis et poids et la référence du titre d'importation. Elle doit concorder avec facture, packing list, B/L et manifeste.",
+      "form": {
+        "system": "badr",
+        "fields": [
+          {
+            "id": "regime",
+            "label": "Régime",
+            "options": [
+              "Mise à la consommation",
+              "Admission temporaire",
+              "Transit",
+              "Entrepôt"
+            ],
+            "answer": "Mise à la consommation"
+          },
+          {
+            "id": "sh",
+            "label": "Position tarifaire",
+            "options": [
+              "2202.10.00.90 (fictif)",
+              "2201.10.00.00 (fictif)",
+              "7612.90.00.90 (fictif)"
+            ],
+            "answer": "2202.10.00.90 (fictif)"
+          },
+          {
+            "id": "origine",
+            "label": "Origine",
+            "options": [
+              "Espagne",
+              "Égypte",
+              "Brésil",
+              "Maroc"
+            ],
+            "answer": {
+              "var": "supplier",
+              "map": {
+                "ES": "Espagne",
+                "EG": "Égypte",
+                "BR": "Brésil"
+              }
+            }
+          },
+          {
+            "id": "valeur",
+            "label": "Valeur facture (devise)",
+            "options": [
+              "{{calc.invoiceCurrency}}",
+              "{{calc.cif}}",
+              "{{calc.vd}}"
+            ],
+            "answer": "{{calc.invoiceCurrency}}"
+          },
+          {
+            "id": "incoterm",
+            "label": "Condition de livraison",
+            "options": [
+              "EXW",
+              "FCA",
+              "CIF",
+              "DAP"
+            ],
+            "answer": "{{incoterm}}"
+          },
+          {
+            "id": "colis",
+            "label": "Nombre de colis (palettes)",
+            "options": [
+              "100",
+              "10",
+              "21 000"
+            ],
+            "answer": "100"
+          },
+          {
+            "id": "poids",
+            "label": "Poids brut total (kg)",
+            "options": [
+              "186 000",
+              "18 600",
+              "166 320"
+            ],
+            "answer": "186 000"
+          },
+          {
+            "id": "volume",
+            "label": "Volume (hectolitres, base de la TIC)",
+            "options": [
+              "1 663,2",
+              "166 320",
+              "504"
+            ],
+            "answer": "1 663,2"
+          }
+        ]
+      },
+      "effects": {
+        "portDays": 1,
+        "docs": [
+          "dum"
+        ]
+      },
+      "sources": [
+        "badr-dum",
+        "tic-boissons"
+      ]
+    },
+    {
+      "id": "H1-dossier",
+      "phase": "H",
+      "title": "Constituer le dossier ONSSA",
+      "location": "labo",
+      "actor": "onssa",
+      "type": "multi",
+      "intro": "L'inspectrice ONSSA attend le dossier de demande de contrôle. Que fournis-tu ?",
+      "hint": "Documents commerciaux, sanitaires, étiquetage et l'autorisation de ton entrepôt.",
+      "explanation": "Le dossier de contrôle sanitaire réunit les documents commerciaux et de transport, les documents sanitaires et d'analyse, l'étiquetage et la référence de l'établissement importateur autorisé. La liste officielle exacte est à confirmer auprès de l'ONSSA.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Facture, packing list (lots et dates) et B/L",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Document sanitaire officiel et certificats d'analyse",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Étiquetage (spécimen ou maquette validée)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Référence de l'autorisation sanitaire de l'entrepôt",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Mainlevée douanière",
+          "quality": "bad",
+          "feedback": "Elle vient après la décision ONSSA dans ce circuit."
+        },
+        {
+          "id": "f",
+          "label": "Certificat phytosanitaire",
+          "quality": "bad",
+          "feedback": "Non applicable à une boisson transformée."
+        }
+      ],
+      "sources": [
+        "onssa-denrees",
+        "autorisation-sanitaire"
+      ]
+    },
+    {
+      "id": "H2-controle",
+      "phase": "H",
+      "title": "Contrôles ONSSA et prélèvements",
+      "location": "labo",
+      "actor": "onssa",
+      "type": "scene",
+      "scene": "onssa",
+      "intro": "L'inspectrice procède aux contrôles. Des échantillons scellés partent au laboratoire.",
+      "explanation": "Contrôle documentaire, contrôle d'identité (lots, marquages), contrôle physique (état des canettes, étiquettes), prélèvement d'échantillons et analyses. Le découpage exact et les délais d'analyse relèvent des procédures de l'ONSSA (modèle pédagogique).",
+      "effects": {
+        "portDays": 2,
+        "cost": {
+          "label": "Frais d'analyses de laboratoire (fictif)",
+          "amount": 4800,
+          "category": "autres"
+        }
+      },
+      "sources": [
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "H3-etiquetage",
+      "phase": "H",
+      "title": "Non-conformité : étiquetage",
+      "location": "labo",
+      "actor": "onssa",
+      "type": "choice",
+      "requires": {
+        "var": "labelMissed",
+        "in": [
+          true
+        ]
+      },
+      "intro": "L'inspectrice : « L'étiquetage n'est pas conforme (langue, origine ou importateur manquants). » Que demandes-tu ?",
+      "hint": "Le produit n'est pas dangereux : le défaut est corrigeable.",
+      "explanation": "Une non-conformité d'étiquetage, sans risque sanitaire, peut dans le jeu faire l'objet d'une mise en conformité sous contrôle (étiquette complémentaire) avant admission (hypothèse pédagogique). Elle coûte du temps au port et de la main-d'œuvre. La détecter sur la maquette avant production l'aurait évitée.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Demander la mise en conformité : étiquettes complémentaires en arabe posées sous contrôle",
+          "quality": "ok",
+          "feedback": "Accepté : 5 jours et 0,12 MAD par canette.",
+          "effects": {
+            "portDays": 5,
+            "cost": {
+              "label": "Étiquetage complémentaire sous contrôle (504 000 canettes)",
+              "amount": 60480,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Contester : les clients comprennent l'anglais",
+          "quality": "bad",
+          "feedback": "Rejeté. Tu finis par demander la mise en conformité, 8 jours plus tard.",
+          "effects": {
+            "portDays": 8,
+            "cost": {
+              "label": "Étiquetage complémentaire sous contrôle (504 000 canettes)",
+              "amount": 60480,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Demander le refoulement vers le fournisseur",
+          "quality": "bad",
+          "feedback": "Disproportionné pour un défaut corrigeable : saison perdue.",
+          "effects": {
+            "days": 30,
+            "cost": {
+              "label": "Refoulement et réexpédition",
+              "amount": 150000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "etiquetage-alimentaire",
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "H4-decision",
+      "phase": "H",
+      "title": "Décision sanitaire",
+      "location": "labo",
+      "actor": "onssa",
+      "type": "choice",
+      "intro": "Les analyses sont conformes. Question de l'inspectrice pour vérifier ta compréhension : si un contaminant dangereux avait été détecté, quelle issue ?",
+      "hint": "Un danger sanitaire ne se corrige pas avec une étiquette.",
+      "explanation": "Selon la nature de la non-conformité, l'ONSSA décide l'admission, la mise en conformité (défaut corrigeable, comme un étiquetage), le refoulement ou la destruction (produit dangereux). Ici, le produit est admis : le certificat d'admission permet de poursuivre le dédouanement.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Refoulement ou destruction, aux frais de l'importateur (recours contractuel contre le vendeur)",
+          "quality": "best",
+          "feedback": "Exact. Ton lot, lui, est admis.",
+          "effects": {
+            "docs": [
+              "admission-onssa"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Ré-étiquetage puis vente",
+          "quality": "bad",
+          "feedback": "Non : on ne corrige pas un danger sanitaire. Ton lot est admis.",
+          "effects": {
+            "docs": [
+              "admission-onssa"
+            ]
+          }
+        },
+        {
+          "id": "c",
+          "label": "Vente rapide à prix réduit",
+          "quality": "bad",
+          "feedback": "Interdit par la loi 28-07. Ton lot est admis.",
+          "effects": {
+            "docs": [
+              "admission-onssa"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "G2-calcul",
+      "phase": "G",
+      "title": "Calculer droits, TIC et TVA",
+      "location": "douane",
+      "actor": "benali",
+      "type": "calc",
+      "intro": "Youssef : « Calcule la liquidation. TIC fictive : {{sc.fees.excisePerHl}} MAD/hl sur {{totals.hl}} hl. Tolérance 1 %. »",
+      "hint": "VD = CIF en MAD. DI = VD × taux. TPI = VD × 0,25 %. TIC = hl × 80. TVA = (VD + DI + TPI + TIC) × 20 %.",
+      "explanation": "La TIC s'ajoute aux droits et entre, dans le jeu, dans l'assiette de la TVA. Contrairement à la TVA, elle n'est pas récupérable : elle augmente le coût de revient. Les taux réels sont à vérifier pour l'année de l'opération.",
+      "calc": [
+        {
+          "id": "vd",
+          "label": "Valeur en douane (MAD)"
+        },
+        {
+          "id": "di",
+          "label": "Droit d'importation (MAD)"
+        },
+        {
+          "id": "tpi",
+          "label": "TPI (MAD)"
+        },
+        {
+          "id": "tic",
+          "label": "TIC (MAD)"
+        },
+        {
+          "id": "tva",
+          "label": "TVA (MAD)"
+        }
+      ],
+      "sources": [
+        "valeur-douane",
+        "tic-boissons",
+        "tva-import",
+        "di-boissons"
+      ]
+    },
+    {
+      "id": "G3-circuit",
+      "phase": "G",
+      "title": "Circuit de contrôle douanier",
+      "location": "douane",
+      "actor": "systeme",
+      "type": "scene",
+      "scene": "circuit",
+      "intro": "La DUM est enregistrée ; l'analyse de risque de la douane l'oriente vers un circuit…",
+      "explanation": "Les critères d'orientation relèvent de l'analyse de risque de l'ADII et ne sont pas publics : le jeu les tire au hasard.",
+      "effects": {
+        "portDays": 1
+      },
+      "sources": [
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G4-documentaire",
+      "phase": "G",
+      "title": "Contrôle documentaire douanier",
+      "location": "douane",
+      "actor": "douane",
+      "type": "choice",
+      "requires": {
+        "var": "circuit",
+        "in": [
+          "documentaire",
+          "visite"
+        ]
+      },
+      "intro": "L'inspecteur demande la preuve d'origine, la facture et la décision ONSSA.",
+      "hint": "Réponds avec les pièces, via le déclarant.",
+      "explanation": "En contrôle documentaire, l'inspecteur vérifie la concordance de la DUM et des pièces. Une preuve d'origine non valable entraîne l'application du droit commun.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Transmettre les pièces via le transitaire",
+          "qualityBy": {
+            "var": "originProofOk",
+            "map": {
+              "true": "best",
+              "false": "bad"
+            }
+          },
+          "feedback": "Si la preuve d'origine est valable, le taux préférentiel est confirmé ; sinon droit commun.",
+          "effects": {
+            "portDays": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Contester la demande",
+          "quality": "bad",
+          "feedback": "2 jours perdus.",
+          "effects": {
+            "portDays": 2
+          }
+        }
+      ],
+      "sources": [
+        "badr-dum"
+      ]
+    },
+    {
+      "id": "G5-visite",
+      "phase": "G",
+      "title": "Visite physique",
+      "location": "terminal",
+      "actor": "douane",
+      "type": "choice",
+      "requires": {
+        "var": "circuit",
+        "in": [
+          "visite"
+        ]
+      },
+      "intro": "Circuit visite : 2 conteneurs à examiner.",
+      "hint": "Date via PortNet, positionnement, présence du déclarant.",
+      "explanation": "Le déclarant propose une date via PortNet, la douane la valide, le terminal positionne les conteneurs, le déclarant assiste.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Organiser la visite via PortNet et y assister",
+          "quality": "best",
+          "feedback": "Visite conforme.",
+          "effects": {
+            "portDays": 1,
+            "cost": {
+              "label": "Positionnement pour visite",
+              "amount": 2500,
+              "category": "port"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Ne pas se présenter",
+          "quality": "bad",
+          "feedback": "Visite reportée.",
+          "effects": {
+            "portDays": 3,
+            "cost": {
+              "label": "Positionnement pour visite (x2)",
+              "amount": 5000,
+              "category": "port"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "portnet"
+      ]
+    },
+    {
+      "id": "G6-paiement",
+      "phase": "G",
+      "title": "Payer et obtenir la mainlevée",
+      "location": "douane",
+      "actor": "benali",
+      "type": "choice",
+      "intro": "Décision ONSSA favorable obtenue, liquidation définitive. Comment payer ?",
+      "hint": "Paiement électronique.",
+      "explanation": "Le paiement des droits, de la TIC et de la TVA (ou leur garantie) conditionne la mainlevée, qui s'obtient en ligne sauf visite physique.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Paiement électronique puis mainlevée en ligne",
+          "quality": "best",
+          "feedback": "Mainlevée obtenue.",
+          "effects": {
+            "commit": [
+              "duties",
+              "tpi",
+              "excise",
+              "vat",
+              "broker"
+            ],
+            "docs": [
+              "quittance",
+              "mainlevee"
+            ],
+            "portDays": 1
+          }
+        },
+        {
+          "id": "b",
+          "label": "Attendre un avis par courrier",
+          "quality": "bad",
+          "feedback": "3 jours perdus.",
+          "effects": {
+            "commit": [
+              "duties",
+              "tpi",
+              "excise",
+              "vat",
+              "broker"
+            ],
+            "docs": [
+              "quittance",
+              "mainlevee"
+            ],
+            "portDays": 3
+          }
+        }
+      ],
+      "sources": [
+        "badr-dum",
+        "tic-boissons"
+      ]
+    },
+    {
+      "id": "I1-sortie",
+      "phase": "I",
+      "title": "Sortie du terminal",
+      "location": "terminal",
+      "actor": "benali",
+      "type": "multi",
+      "intro": "Que faut-il pour sortir les conteneurs ?",
+      "hint": "Douane, agent maritime, terminal, rendez-vous.",
+      "explanation": "Mainlevée, BAD, paiement des frais portuaires et rendez-vous d'enlèvement PortNet. Pour une denrée, la décision ONSSA favorable précède la mainlevée dans le jeu.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Mainlevée douanière",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Bon à délivrer",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Frais portuaires réglés",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Rendez-vous d'enlèvement PortNet",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Facture du client final",
+          "quality": "bad",
+          "feedback": "Sans rapport."
+        }
+      ],
+      "effects": {
+        "commit": [
+          "port"
+        ],
+        "docs": [
+          "bon-sortie"
+        ]
+      },
+      "sources": [
+        "portnet"
+      ]
+    },
+    {
+      "id": "I2-planning",
+      "phase": "I",
+      "title": "Planifier les enlèvements",
+      "location": "camions",
+      "actor": "rachid",
+      "type": "choice",
+      "scene": "trucks",
+      "intro": "L'entrepôt reçoit 4 conteneurs par jour. Franchise du terminal : 10 jours (déjà utilisés : {{portDays}} j, contrôles ONSSA inclus).",
+      "hint": "Aligne les enlèvements sur la capacité de réception.",
+      "explanation": "Les contrôles sanitaires consomment une partie de la franchise : il faut enlever vite, sans saturer la réception. Au-delà, les surestaries s'appliquent.",
+      "options": [
+        {
+          "id": "a",
+          "label": "4 conteneurs par jour (3 jours)",
+          "quality": "best",
+          "feedback": "Fluide.",
+          "effects": {
+            "portDays": 3,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "label": "Les 10 le même jour",
+          "quality": "bad",
+          "feedback": "Camions en attente, palettes au soleil dans la cour.",
+          "effects": {
+            "portDays": 1,
+            "days": 2,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ],
+            "cost": {
+              "label": "Attente des camions",
+              "amount": 15000,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "1 conteneur par jour",
+          "quality": "ok",
+          "feedback": "10 jours au terminal : surestaries.",
+          "effects": {
+            "portDays": 10,
+            "settleDemurrage": true,
+            "commit": [
+              "inland"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "surestaries"
+      ]
+    },
+    {
+      "id": "I3-stockage",
+      "phase": "I",
+      "title": "Stocker les boissons",
+      "location": "entrepot",
+      "actor": "hicham",
+      "type": "choice",
+      "scene": "warehouse",
+      "intro": "Hicham : « Il fait 38 °C. Où et comment je range les 100 palettes ? »",
+      "hint": "Chaleur, soleil, dates.",
+      "explanation": "Stocker à l'abri du soleil et de la chaleur, par lot, en rotation FEFO (premier périmé, premier sorti) : on écoule d'abord les lots à la date la plus proche. C'est aussi une condition d'hygiène de l'autorisation sanitaire.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Entrepôt couvert ventilé, rangement par lot, sortie FEFO",
+          "quality": "best",
+          "feedback": "Parfait.",
+          "effects": {}
+        },
+        {
+          "id": "b",
+          "label": "Cour extérieure sous bâche pour libérer de la place",
+          "quality": "bad",
+          "feedback": "Chaleur : goût altéré et canettes déformées sur 2 palettes.",
+          "effects": {
+            "cost": {
+              "label": "Palettes déclassées (chaleur)",
+              "amount": 26000,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "c",
+          "label": "Sortie FIFO par date d'arrivée sans regarder les dates",
+          "quality": "ok",
+          "feedback": "FIFO ≠ FEFO : risque d'écouler d'abord les lots les plus longs."
+        }
+      ],
+      "sources": [
+        "conservation-boissons",
+        "autorisation-sanitaire"
+      ]
+    },
+    {
+      "id": "I4-reception",
+      "phase": "I",
+      "title": "Réception : canettes endommagées",
+      "location": "entrepot",
+      "actor": "hicham",
+      "type": "choice",
+      "scene": "warehouse",
+      "intro": "Une palette percée : 38 canettes fuyantes, 6 cartons collants. Que fais-tu ?",
+      "hint": "Une canette percée n'est plus un aliment vendable.",
+      "explanation": "Les canettes percées ou bombées sont isolées et retirées de la vente (risque sanitaire), les réserves sont portées sur le bon de livraison, puis un PV de réception et une déclaration de sinistre préservent les recours.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Isoler et détruire les canettes fuyantes, reconditionner les cartons, réserves + PV + déclaration d'assurance",
+          "quality": "best",
+          "feedback": "Correct.",
+          "effects": {
+            "days": 1,
+            "docs": [
+              "bon-livraison",
+              "pv-reception"
+            ]
+          },
+          "effectsVar": {
+            "var": "insurance",
+            "map": {
+              "icc-a": {
+                "cost": {
+                  "label": "Franchise d'assurance (avarie indemnisée)",
+                  "amount": 1500,
+                  "category": "autres"
+                }
+              },
+              "icc-c": {
+                "cost": {
+                  "label": "Avarie non couverte en ICC (C)",
+                  "amount": 3200,
+                  "category": "autres"
+                }
+              },
+              "seller-c": {
+                "cost": {
+                  "label": "Avarie non couverte (assurance minimale du vendeur)",
+                  "amount": 3200,
+                  "category": "autres"
+                }
+              },
+              "none": {
+                "cost": {
+                  "label": "Avarie non assurée",
+                  "amount": 3200,
+                  "category": "autres"
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Essuyer les canettes et les remettre en vente",
+          "quality": "bad",
+          "feedback": "Mise sur le marché d'un produit potentiellement altéré : faute sanitaire grave.",
+          "effects": {
+            "days": 1,
+            "compliance": -25,
+            "docs": [
+              "bon-livraison",
+              "pv-reception"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "reserves",
+        "onssa-denrees"
+      ]
+    },
+    {
+      "id": "I5-ddm",
+      "phase": "I",
+      "title": "Durabilité courte sur une partie du stock",
+      "location": "entrepot",
+      "actor": "yasmine",
+      "type": "choice",
+      "requires": {
+        "var": "shortDdm",
+        "in": [
+          true
+        ]
+      },
+      "intro": "Yasmine : « Une partie des lots expire dans 4 mois. Les grossistes refusent les produits à moins de 3 mois. Que fait-on ? »",
+      "hint": "La date est une information légale : on ne la modifie jamais.",
+      "explanation": "Une durabilité courte est un problème commercial, conséquence de la négociation ou du choix du stock. On réagit par une réclamation contractuelle et un plan d'écoulement FEFO. Modifier une date de durabilité est une fraude.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Réclamation au fournisseur et plan de vente promotionnel FEFO",
+          "quality": "ok",
+          "feedback": "Pertes limitées.",
+          "effects": {
+            "cost": {
+              "label": "Remises promotionnelles sur lots courts",
+              "amount": 45000,
+              "category": "penalites"
+            }
+          }
+        },
+        {
+          "id": "b",
+          "label": "Faire réimprimer une date plus lointaine",
+          "quality": "bad",
+          "feedback": "Fraude sur l'étiquetage alimentaire.",
+          "effects": {
+            "compliance": -30,
+            "cost": {
+              "label": "Retrait et destruction ordonnés",
+              "amount": 90000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "conservation-boissons",
+        "etiquetage-alimentaire"
+      ]
+    },
+    {
+      "id": "I6-retour",
+      "phase": "I",
+      "title": "Restituer les conteneurs vides",
+      "location": "camions",
+      "actor": "rachid",
+      "type": "choice",
+      "intro": "Les conteneurs sont vidés.",
+      "hint": "La détention court au-delà de la franchise.",
+      "explanation": "Restituer les vides au dépôt désigné dans la franchise évite les frais de détention.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Restituer dans la franchise avec état contradictoire",
+          "quality": "best",
+          "feedback": "Aucun frais."
+        },
+        {
+          "id": "b",
+          "label": "Garder 3 conteneurs comme stockage tampon",
+          "quality": "bad",
+          "feedback": "Détention facturée.",
+          "effects": {
+            "cost": {
+              "label": "Détention de 3 conteneurs",
+              "amount": 18000,
+              "category": "penalites"
+            }
+          }
+        }
+      ],
+      "sources": [
+        "surestaries"
+      ]
+    },
+    {
+      "id": "I7-cloture",
+      "phase": "I",
+      "title": "Clôturer le dossier",
+      "location": "bureau",
+      "actor": "yasmine",
+      "type": "multi",
+      "intro": "Comment clôtures-tu l'opération ?",
+      "hint": "Banque, coût de revient (attention aux taxes), traçabilité.",
+      "explanation": "Clôture : apurement du dossier domicilié, coût de revient intégrant DI, TPI et TIC (non récupérables) mais pas la TVA récupérable, archivage des documents sanitaires et de traçabilité par lot (indispensables en cas de rappel), évaluation du fournisseur.",
+      "options": [
+        {
+          "id": "a",
+          "label": "Vérifier l'imputation de la DUM et des paiements (apurement)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "b",
+          "label": "Coût de revient avec DI, TPI et TIC, hors TVA récupérable",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "c",
+          "label": "Archiver documents sanitaires et traçabilité par lot (rappel éventuel)",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "d",
+          "label": "Évaluer le fournisseur",
+          "quality": "best",
+          "feedback": "Oui."
+        },
+        {
+          "id": "e",
+          "label": "Récupérer la TIC comme la TVA",
+          "quality": "bad",
+          "feedback": "La TIC n'est pas récupérable : c'est un coût."
+        }
+      ],
+      "sources": [
+        "tic-boissons",
+        "tva-import",
+        "engagement-import"
+      ]
+    }
+  ],
+  "stockoutLabel": "Ventes perdues"
+}

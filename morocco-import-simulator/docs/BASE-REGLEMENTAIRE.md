@@ -152,6 +152,19 @@ Les boîtes et récipients similaires en aluminium d’une contenance ≤ 300 li
 
 **Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma) · [OMD — Nomenclature du SH](https://www.wcoomd.org)
 
+### Classement tarifaire des boissons gazeuses sucrées
+
+*Statut : Sources secondaires — à confirmer — vérifié le 2026-11-18*
+
+Les eaux, y compris minérales et gazéifiées, additionnées de sucre ou d’autres édulcorants ou aromatisées relèvent de la sous-position SH 2202.10 (boissons de type soda).
+
+- 2201 : eaux non sucrées ni aromatisées ; 2009 : jus de fruits non fermentés ; 2208 : boissons spiritueuses.
+- Sous-position nationale à 10 chiffres du jeu (2202.10.00.90) : FICTIVE, à rechercher dans ADIL.
+
+**Fondement :** Système harmonisé (OMD) ; tarif marocain.
+
+**Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma) · [OMD — Nomenclature du SH](https://www.wcoomd.org)
+
 ## Fiscalité
 
 ### TVA à l’importation
@@ -189,6 +202,33 @@ Le taux de DI dépend de la position tarifaire à 10 chiffres et de l’origine.
 - Scénario 4 : 0 % pour l'origine UE prouvée (démantèlement des produits industriels dans l'accord d'association — à vérifier), 17,5 % fictif pour le droit commun.
 
 **Fondement :** Tarif des droits de douane (loi de finances) ; accords préférentiels.
+
+**Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma)
+
+### TIC sur les boissons non alcoolisées sucrées
+
+*Statut : À vérifier — vérifié le 2026-11-18*
+
+Les boissons non alcoolisées sucrées supportent une taxe intérieure de consommation (TIC), majorée par la LF 2019 puis modulée selon la teneur en sucre. Le barème en vigueur en 2026 n'a pas pu être vérifié.
+
+- LF 2019 : majoration de 50 % de la TIC sur les boissons sucrées ; à partir de 2020, une progressivité selon la teneur en sucre a été évoquée par la presse (tranches 5–10 g / 100 ml et au-delà).
+- La TIC est perçue par la douane à l’importation. Contrairement à la TVA, elle n’est pas récupérable : elle entre dans le coût de revient.
+- Le jeu utilise un taux FICTIF de 80 MAD par hectolitre et inclut la TIC dans l’assiette de la TVA (règle à vérifier).
+
+**Fondement :** Lois de finances successives (TIC) — barème de l’année de l’opération à consulter.
+
+**Sources :** [Médias24 — boissons sucrées et TIC](https://medias24.com/2018/12/17/boissons-sucrees-les-deputes-annulent-la-progressivite-de-la-tic/) · [Ecoactu — PLF 2019 : majoration de 50 % de la TIC](https://ecoactu.ma/plf-2019-boissons-sucrees-majoration-de-50-de-la-tic/) · [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma)
+
+### Droits d’importation des boissons (scénario 6)
+
+*Statut : Hypothèse pédagogique — vérifié le 2026-11-18*
+
+Les boissons sont des produits agricoles transformés : leur traitement préférentiel dépend de chaque accord (UE, Agadir…) et n'a pas pu être vérifié. Tous les taux du scénario sont FICTIFS.
+
+- Espagne (UE) : 0 % fictif avec preuve d’origine. Égypte (Accord d’Agadir) : 0 % fictif avec certificat d’origine. Brésil : 40 % fictif (droit commun).
+- Vérifier dans ADIL le taux de droit commun et les taux préférentiels par accord pour la position exacte.
+
+**Fondement :** Tarif des droits de douane ; accords préférentiels.
 
 **Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma)
 
@@ -232,6 +272,18 @@ Le Maroc n'a pas d'accord tarifaire préférentiel avec la Chine : le droit comm
 
 **Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma)
 
+### Origine Égypte — Accord d'Agadir
+
+*Statut : À vérifier — vérifié le 2026-11-18*
+
+L'Accord d'Agadir lie le Maroc, l'Égypte, la Tunisie et la Jordanie (zone de libre-échange). La preuve d'origine applicable et le traitement des boissons sont à vérifier.
+
+- Le jeu suppose un traitement préférentiel sous preuve d’origine : hypothèse à confirmer sur ADIL.
+
+**Fondement :** Accord d'Agadir et protocole sur les règles d'origine.
+
+**Sources :** [ADII — douane.gov.ma (ADIL, tarif, guides)](https://www.douane.gov.ma)
+
 ## Conformité & SPS
 
 ### Contrôle de conformité des produits industriels
@@ -271,6 +323,50 @@ L'ONSSA contrôle à l'importation les produits alimentaires, animaux, végétau
 **Fondement :** Loi n° 25-08 (création de l’ONSSA) ; loi n° 28-07 ; textes d’application.
 
 **Sources :** [ONSSA — contrôles à l’importation](https://www.onssa.gov.ma)
+
+### Contrôle ONSSA des denrées alimentaires importées
+
+*Statut : Sources secondaires — à confirmer — vérifié le 2026-11-18*
+
+Les produits alimentaires importés sont soumis au contrôle sanitaire de l'ONSSA aux postes frontières : vérification documentaire, inspection physique, analyses en laboratoire ; l'ONSSA délivre des certificats d'admission ou refoule les produits non conformes.
+
+- La loi n° 28-07 interdit l’importation de tout produit alimentaire susceptible de présenter un risque pour la santé.
+- Le découpage en contrôle documentaire, d'identité et physique (avec prélèvement) est présenté dans le jeu comme modèle pédagogique : il correspond à la pratique décrite par la presse marocaine et aux standards internationaux, la procédure officielle détaillée de l'ONSSA n'ayant pas pu être consultée.
+- Liste exacte des documents sanitaires exigés pour une boisson gazeuse (certificat sanitaire officiel, certificat d'analyse…) : à confirmer auprès de l'ONSSA.
+- Dans le jeu, la mainlevée douanière n'est délivrée qu'après la décision favorable de l'ONSSA.
+
+**Fondement :** Loi n° 28-07 relative à la sécurité sanitaire des produits alimentaires ; loi n° 25-08 (ONSSA) ; textes d’application.
+
+**Sources :** [ONSSA — contrôles à l’importation](https://www.onssa.gov.ma) · [La Vie Éco — contrôles ONSSA à l’importation](https://www.lavieeco.com/au-royaume/onssa-les-viandes-rouges-importees-repondent-aux-normes-nationales-et-internationales/) · [Le Matin — dispositif de contrôle ONSSA](https://lematin.ma/economie/viandes-rouges-importees-el-bouari-detaille-le-dispositif-de-controle/358228)
+
+### Autorisation / agrément sanitaire de l'établissement
+
+*Statut : Sources secondaires — à confirmer — vérifié le 2026-11-18*
+
+Les établissements de la chaîne alimentaire (dont stockage et distribution) doivent disposer d'une autorisation ou d'un agrément sanitaire de l'ONSSA ; sans elle, l'entreprise est non conforme.
+
+- La demande se dépose auprès des services provinciaux de l'ONSSA. Délais et pièces : à vérifier.
+- L'agrément peut être suspendu puis retiré en cas de non-conformités persistantes.
+- Le dossier ONSSA d'importation mentionne l'établissement importateur : l'entrepôt doit être autorisé AVANT la première importation (hypothèse de prudence du jeu).
+
+**Fondement :** Loi n° 28-07 ; décret n° 2-10-473 (agrément et autorisation sanitaires) ; arrêté publié au BO en janvier 2026 sur les visites sanitaires.
+
+**Sources :** [ONSSA — contrôles à l’importation](https://www.onssa.gov.ma) · [Hespress — obligation d’autorisation sanitaire](https://fr.hespress.com/265453-265453.html) · [Ecoactu — autorisation sanitaire agroalimentaire](https://ecoactu.ma/onssa-autorisation-sanitaire-agroalimentaire/)
+
+### Étiquetage des produits alimentaires
+
+*Statut : À vérifier — vérifié le 2026-11-18*
+
+Le décret n° 2-12-389 (en vigueur depuis 2014) fixe les conditions d'étiquetage des produits alimentaires. Pour les produits importés, l'étiquette doit mentionner le pays d'origine ou de provenance (article 11).
+
+- Exigence de mentions en langue arabe : prévue par l'ancien décret n° 2-01-1016 (article 5) ; sa reprise exacte dans le décret 2-12-389 n'a pas pu être vérifiée dans le texte : à confirmer.
+- Mentions usuelles retenues dans le jeu : dénomination, ingrédients et additifs, volume, date de durabilité, lot, pays d’origine, importateur, conditions de conservation.
+- Le décret n° 2-19-13 (23 mai 2019) relatif à la qualité et à la sécurité sanitaire de certaines boissons commercialisées renvoie au 2-12-389 et peut ajouter des mentions propres aux boissons : texte non consulté, à vérifier.
+- La mise en conformité d'un étiquetage (étiquette complémentaire) sous contrôle de l'autorité est une hypothèse pédagogique du jeu.
+
+**Fondement :** Décret n° 2-12-389 du 22 avril 2013 ; décret n° 2-19-13 du 23 mai 2019 (boissons) ; loi n° 28-07.
+
+**Sources :** [UNEP LEAP — décret n° 2-12-389](https://leap.unep.org/en/countries/ma/national-legislation/decret-ndeg-2-12-389-du-11-joumada-ii-1434-22-avril-2013-fixant) · [FAOLEX — textes marocains](https://faolex.fao.org/docs/pdf/Mor176818.pdf)
 
 ## Incoterms
 
@@ -321,6 +417,18 @@ En cas de dommage ou de manquant, les réserves doivent être précises, écrite
 - Délais : selon la convention applicable (Règles de Hambourg/La Haye-Visby pour le maritime, CMR pour la route) et la police — à vérifier au cas par cas.
 
 **Fondement :** Conventions internationales de transport ; Code de commerce maritime.
+
+### Durabilité, chaleur et stockage des boissons en canette
+
+*Statut : Hypothèse pédagogique — vérifié le 2026-11-18*
+
+La qualité d'une boisson gazeuse en canette se dégrade à la chaleur et à la lumière ; la date de durabilité minimale restante conditionne la vente. Les seuils du jeu sont contractuels et fictifs.
+
+- Exiger contractuellement une durabilité restante minimale à l’expédition (ex. 9 mois).
+- Stocker à l’abri du soleil et des fortes chaleurs, rotation FEFO (premier périmé, premier sorti).
+- Une canette bombée, percée ou fuyante est retirée de la vente.
+
+**Fondement :** Bonnes pratiques d’hygiène et de stockage ; exigences contractuelles.
 
 ### Données fictives du scénario
 

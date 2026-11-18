@@ -3,7 +3,8 @@
 //   valeur en douane ≈ valeur transactionnelle + transport + assurance jusqu'au point d'entrée au Maroc (base CIF)
 //   DI  = VD × taux DI
 //   TPI = VD × taux TPI (taxe parafiscale à l'importation)
-//   TVA = (VD + DI + TPI) × taux TVA
+//   TIC = quantité × TIC unitaire (boissons, selon le produit)
+//   TVA = (VD + DI + TPI + TIC) × taux TVA
 // Les taux réels doivent être vérifiés sur ADIL (douane.gov.ma) à la date de l'opération.
 
 export const INCOTERMS = ['EXW', 'FCA', 'FOB', 'CFR', 'CIF', 'CPT', 'CIP', 'DAP', 'DDP'] as const;
@@ -37,6 +38,7 @@ export interface CalcInput {
   dutyRate: number;
   tpiRate: number;
   vatRate: number;
+  excisePerUnit: number; // TIC en MAD par unité (0 si non applicable)
   portPerContainer: number; // MAD
   brokerFlat: number; // MAD
   brokerPerContainer: number; // MAD
@@ -59,6 +61,7 @@ export interface CalcResult {
   vd: number;
   di: number;
   tpi: number;
+  tic: number;
   tva: number;
   port: number;
   broker: number;
@@ -106,19 +109,20 @@ export function computeImport(i: CalcInput): CalcResult {
 
   const di = vd * i.dutyRate;
   const tpi = vd * i.tpiRate;
-  const tva = (vd + di + tpi) * i.vatRate;
+  const tic = i.quantity * (i.excisePerUnit ?? 0);
+  const tva = (vd + di + tpi + tic) * i.vatRate;
   const port = i.portPerContainer * n;
   const broker = i.brokerFlat + i.brokerPerContainer * n;
   const bank = Math.max(i.bankMin, goodsInvoice * i.bankRate);
   const inland = s.inland ? 0 : i.inlandPerContainer * n;
   const extra = i.extraCosts;
 
-  const totalCash = goodsInvoice + preCarriage + freight + insurance + di + tpi + tva + port + broker + bank + inland + extra;
+  const totalCash = goodsInvoice + preCarriage + freight + insurance + di + tpi + tic + tva + port + broker + bank + inland + extra;
   const costPrice = totalCash - tva;
   return {
     goodsInvoice: r2(goodsInvoice), invoiceCurrency: r2(invoiceCurrency), preCarriage: r2(preCarriage), freight: r2(freight),
     insurance: r2(insurance), freightInValue: r2(freightInValue), insuranceInValue: r2(insuranceInValue), fob: r2(fob),
-    cif: r2(cif), vd: r2(vd), di: r2(di), tpi: r2(tpi), tva: r2(tva), port: r2(port), broker: r2(broker), bank: r2(bank),
+    cif: r2(cif), vd: r2(vd), di: r2(di), tpi: r2(tpi), tic: r2(tic), tva: r2(tva), port: r2(port), broker: r2(broker), bank: r2(bank),
     inland: r2(inland), extra: r2(extra), totalCash: r2(totalCash), costPrice: r2(costPrice),
     unitCost: i.quantity ? costPrice / i.quantity : 0, warnings,
   };

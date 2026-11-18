@@ -36,7 +36,7 @@ export default function Evaluation({ sc, state, onRestart }: { sc: Scenario; sta
     line(`${state.playerName} - ${sc.title} - mode ${MODE_INFO[state.mode].label}`);
     line(`Note globale : ${g.global}/100 - ${g.mention}`, 12, 8);
     line(`Décisions : ${g.pct} % - Conformité : ${Math.round(state.compliance)} % - Délai : J+${state.day} / J+${sc.deadlineDays} - Dépenses : ${fmtMAD(t.spent)} / ${fmtMAD(sc.budgetMAD)}`);
-    line(`Coût de revient (hors TVA) : ${fmtMAD(t.costPrice)} soit ${(t.costPrice / sc.goods.quantity).toFixed(4)} MAD par canette`);
+    line(`Coût de revient (hors TVA) : ${fmtMAD(t.costPrice)} soit ${(t.costPrice / sc.goods.quantity).toFixed(4)} MAD par unité (${sc.goods.unit})`);
     line('Scores par phase', 12, 7);
     for (const [k, v] of Object.entries(phases)) line(`  ${k} - ${PHASES[k]} : ${v.p}/${v.m}`);
     line('Erreurs et explications', 12, 7);
@@ -79,7 +79,7 @@ export default function Evaluation({ sc, state, onRestart }: { sc: Scenario; sta
             {cats.map(([c, v]) => <tr key={c} className="border-b border-ink-600/60"><td className="py-1">{CAT_LABEL[c as CostCategory]}</td><td className="text-right font-mono">{fmtMAD(v)}</td></tr>)}
             <tr><td className="pt-2 font-semibold">Décaissement total</td><td className="pt-2 text-right font-mono font-semibold">{fmtMAD(t.spent)}</td></tr>
             <tr><td className="font-semibold text-sand-400">Coût de revient (hors TVA récupérable)</td><td className="text-right font-mono text-sand-400">{fmtMAD(t.costPrice)}</td></tr>
-            <tr><td>Par canette</td><td className="text-right font-mono">{(t.costPrice / sc.goods.quantity).toFixed(4)} MAD</td></tr>
+            <tr><td>Par unité ({sc.goods.unit})</td><td className="text-right font-mono">{(t.costPrice / sc.goods.quantity).toFixed(4)} MAD</td></tr>
           </tbody></table>
         </div>
       </div>

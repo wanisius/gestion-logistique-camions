@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { GameState, Scenario, Step } from '../engine/types';
-import { DOCUMENTS } from '../data/documents';
+import { docsFor } from '../data/documents';
 import DocViewer from '../components/DocViewer';
 import { GLOSSARY, QUIZ } from '../data/glossary';
 import { K, KNOWLEDGE, STATUS_LABEL, type KStatus } from '../data/knowledge';
@@ -10,6 +10,7 @@ import { tpl } from '../engine/game';
 export function Library({ sc, state }: { sc: Scenario; state: GameState }) {
   const [open, setOpen] = useState<string | null>(null);
   const [filter, setFilter] = useState<'tous' | 'obtenus' | 'exemples'>('tous');
+  const DOCUMENTS = docsFor(sc);
   const docs = DOCUMENTS.filter((d) => filter === 'tous' || (filter === 'obtenus' ? state.docs.includes(d.id) : d.usage === 'exemple'));
   const cur = DOCUMENTS.find((d) => d.id === open);
   return (

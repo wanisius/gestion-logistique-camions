@@ -37,8 +37,17 @@ Android / tablette : servir `dist/` (ou ouvrir le fichier autonome) dans Chrome.
 - HUD : budget, calendrier/échéance, conformité, score. Bureau virtuel avec 12 espaces cliquables, messagerie, tableau de missions.
 - Bibliothèque de 28 documents (émetteur, destinataire, utilité, moment, statut, liens), export **PDF** pédagogique.
 - **Calculateur** interactif : FOB → CIF → valeur en douane → DI, TPI, TVA → coût de revient rendu usine et unitaire ; Incoterm, change, quantités et frais modifiables.
-- Glossaire (44 termes), quiz, historique des erreurs, base réglementaire filtrable, évaluation finale détaillée (PDF).
+- Glossaire (50 termes), quiz, historique des erreurs, base réglementaire filtrable, évaluation finale détaillée (PDF).
 - Sauvegarde automatique (navigateur), plusieurs parties, export/import de sauvegarde en JSON.
+
+**Scénario 6 — Boissons gazeuses en canettes** (jouable de bout en bout) : 504 000 canettes pleines de cola 33 cl en 10 conteneurs 20' pour un distributeur, fournisseurs Espagne / Égypte / Brésil. Ce scénario introduit :
+
+- l'**autorisation sanitaire ONSSA** de l'entrepôt avant la première importation ;
+- le **contrôle de la maquette d'étiquetage** (arabe, pays d'origine, importateur) et, si une anomalie est manquée, une non-conformité au contrôle ONSSA ;
+- le **contrôle ONSSA animé** (documentaire, identité, physique, prélèvement, analyses) et la décision admission / mise en conformité / refoulement / destruction ;
+- la **TIC** sur les boissons sucrées (taux fictif), non récupérable, intégrée au calcul des droits ;
+- la **durabilité restante** (clause contractuelle, lots récents), la chaleur au transport et au stockage, la rotation **FEFO**, les canettes endommagées ;
+- un incident de fiabilité propre au fournisseur égyptien (retard de production).
 
 Les scénarios 1, 2, 3 et 5 sont annoncés dans le catalogue et restent **en préparation**.
 
@@ -57,7 +66,7 @@ src/
 ```
 
 ### Ajouter un scénario
-1. Créer `src/data/scenarios/<id>.json` conforme au type `Scenario` (`src/engine/types.ts`) : marchandise, fournisseurs, frais, personnages, étapes.
+1. Créer `src/data/scenarios/<id>.json` conforme au type `Scenario` (`src/engine/types.ts`) : marchandise, fournisseurs, frais (dont `excisePerHl` pour une TIC), personnages, étapes, et si besoin `documents` (nouveaux documents ou surcharge des modèles intégrés, avec variantes `check` erronées pour les contrôles) et `hideDocs`.
 2. L'enregistrer dans `src/data/scenarios/index.ts` (`SCENARIOS` + `CATALOG`).
 3. `npm test` vérifie automatiquement l'intégrité (sources, lieux, acteurs, documents, explications).
 

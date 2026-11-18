@@ -1,7 +1,7 @@
 import { jsPDF } from 'jspdf';
 import type { DocDef, DocField } from '../data/documents';
 import { pdfSafe } from './pdfSafe';
-import { DOC } from '../data/documents';
+import { docOf } from '../data/documents';
 import type { GameState, Scenario } from '../engine/types';
 
 export function downloadPdf(doc: DocDef, fields: DocField[], sc: Scenario) {
@@ -72,7 +72,7 @@ export default function DocViewer({ doc, sc, state, check = false, flagged, onTo
           {[['Émetteur', doc.issuer], ['Destinataire', doc.recipient], ['Utilité', doc.purpose], ['Moment', doc.when], ['Statut réglementaire', doc.status]].map(([k, v]) => (
             <div key={k} className="card p-2"><div className="label">{k}</div><div>{v}</div></div>
           ))}
-          <div className="card p-2"><div className="label">Documents liés</div><div>{doc.related.length ? doc.related.map((r) => DOC[r]?.title ?? r).join(' · ') : '—'}</div></div>
+          <div className="card p-2"><div className="label">Documents liés</div><div>{doc.related.length ? doc.related.map((r) => docOf(sc, r)?.title ?? r).join(' · ') : '—'}</div></div>
         </div>
       )}
       {!check && <button className="btn-ghost text-sm" onClick={() => downloadPdf(doc, fields, sc)}>⬇️ Télécharger le PDF pédagogique</button>}

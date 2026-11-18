@@ -4,14 +4,14 @@ import { applyResolution, calcFromVars, currentStep, grade, newGame, POINTS, res
 import type { Effects, GameState, Quality, Scenario, Step } from './types';
 import { SCENARIOS } from '../data/scenarios';
 import { K } from '../data/knowledge';
-import { DOC } from '../data/documents';
+import { docOf } from '../data/documents';
 import { SPACES } from '../data/spaces';
 
 const sc: Scenario = SCENARIOS.canettes;
 
 const base: CalcInput = {
   quantity: 1000, containers: 1, unitPrice: 10, currency: 'EUR', fxRate: 10, incoterm: 'FCA', incotermAdjustPerContainer: 0,
-  freightPerContainer: 1000, preCarriagePerContainer: 200, insuranceRate: 0.01, insured: true, dutyRate: 0.1, tpiRate: 0.0025, vatRate: 0.2,
+  freightPerContainer: 1000, preCarriagePerContainer: 200, insuranceRate: 0.01, insured: true, dutyRate: 0.1, tpiRate: 0.0025, vatRate: 0.2, excisePerUnit: 0,
   portPerContainer: 0, brokerFlat: 0, brokerPerContainer: 0, bankRate: 0, bankMin: 0, inlandPerContainer: 0, extraCosts: 0,
 };
 
@@ -43,7 +43,7 @@ describe('calcul des droits et taxes', () => {
   });
 });
 
-describe('intégrité du scénario JSON', () => {
+describe.each(Object.values(SCENARIOS))('intégrité du scénario $id', (sc) => {
   it('chaque étape référence des sources, lieux, acteurs et documents existants', () => {
     const ids = new Set<string>();
     for (const s of sc.steps) {
@@ -52,8 +52,8 @@ describe('intégrité du scénario JSON', () => {
       expect(SPACES[s.location], `${s.id} lieu`).toBeTruthy();
       expect(sc.characters[s.actor], `${s.id} acteur`).toBeTruthy();
       for (const src of s.sources ?? []) expect(K[src], `${s.id} source ${src}`).toBeTruthy();
-      if (s.document) expect(DOC[s.document], `${s.id} doc`).toBeTruthy();
-      for (const e of [s.effects, ...(s.options ?? []).map((o) => o.effects)]) for (const d of e?.docs ?? []) expect(DOC[d] || d === 'booking' || d === 'bat' || d === 'inspection' || d === 'mandat', `${s.id} doc ${d}`).toBeTruthy();
+      if (s.document) expect(docOf(sc, s.document), `${s.id} doc`).toBeTruthy();
+      for (const e of [s.effects, ...(s.options ?? []).map((o) => o.effects)]) for (const d of e?.docs ?? []) expect(docOf(sc, d) || d === 'booking' || d === 'bat' || d === 'inspection' || d === 'mandat', `${s.id} doc ${d}`).toBeTruthy();
       if (s.type === 'choice' || s.type === 'multi') {
         expect(s.options?.length).toBeGreaterThan(1);
         for (const o of s.options!) expect(o.feedback.length).toBeGreaterThan(2);
@@ -61,16 +61,25 @@ describe('intégrité du scénario JSON', () => {
       expect(s.explanation.length, `${s.id} explication`).toBeGreaterThan(20);
     }
   });
-  it('les documents à contrôler contiennent des anomalies', () => {
+  it('les documents à contrôler contiennent des anomalies et aucun modèle non résolu', () => {
     const st = newGame(sc, 'decouverte', 't', () => 0);
-    st.vars = { supplier: 'ES', incoterm: 'FCA' };
-    for (const id of ['proforma', 'packing', 'bl']) expect(DOC[id].fields(sc, st, true).some((f) => f.anomaly)).toBe(true);
-    for (const id of ['proforma', 'packing', 'bl']) expect(DOC[id].fields(sc, st, false).some((f) => f.anomaly)).toBe(false);
+    st.vars = { supplier: 'ES', incoterm: 'FCA', freightTerm: 'collect', payment: 'credoc' };
+    for (const id of sc.steps.filter((x) => x.type === 'docCheck').map((x) => x.document!)) {
+      const d = docOf(sc, id)!;
+      expect(d.fields(sc, st, true).some((f) => f.anomaly), id).toBe(true);
+      expect(d.fields(sc, st, false).some((f) => f.anomaly), id).toBe(false);
+      expect(d.missedVar, id).toBeTruthy();
+    }
+    for (const d of Object.keys(sc.documents ?? {})) for (const f of docOf(sc, d)!.fields(sc, st, false)) expect(f.value, `${d}/${f.label}`).not.toMatch(/\{\{|—$/);
+  });
+  it('les modèles de texte se résolvent', () => {
+    const vars = { supplier: sc.suppliers[0].id, incoterm: 'FCA', discount: 0.02 };
+    for (const s of sc.steps) expect(tpl(s.intro, sc, { ...vars, day: 3, portDays: 1 }), s.id).not.toMatch(/\{\{| — $/);
   });
 });
 
 /** Joue une partie complète avec une stratégie ("best" ou "bad"). */
-function play(strategy: 'best' | 'bad', mode: GameState['mode'] = 'professionnel', circuit = 'visite') {
+function play(strategy: 'best' | 'bad', mode: GameState['mode'] = 'professionnel', circuit = 'visite', sc: Scenario = SCENARIOS.canettes) {
   let st = newGame(sc, mode, 'Test', () => 0); // tous les incidents actifs
   let guard = 0;
   let step: Step | undefined;
@@ -88,7 +97,7 @@ function play(strategy: 'best' | 'bad', mode: GameState['mode'] = 'professionnel
       const chosen = step.options!.filter((o) => (resolveQuality(o, st.vars) === 'best') === (strategy === 'best'));
       Object.assign(r, { quality: strategy, points: strategy === 'best' ? 10 : 0, max: 10, effects: chosen.flatMap((o) => pickEffects(o, resolveQuality(o, st.vars))) });
     } else if (step.type === 'docCheck') {
-      Object.assign(r, { quality: strategy, points: strategy === 'best' ? 10 : 0, max: 10, effects: [{ set: { [DOC[step.document!].missedVar!]: strategy === 'bad' } }] });
+      Object.assign(r, { quality: strategy, points: strategy === 'best' ? 10 : 0, max: 10, effects: [{ set: { [docOf(sc, step.document!)!.missedVar!]: strategy === 'bad' } }] });
     } else if (step.type === 'form' || step.type === 'calc') {
       Object.assign(r, { quality: strategy, points: strategy === 'best' ? 10 : 0, max: 10, effects: strategy === 'bad' ? [{ days: 2 }] : [] });
     } else if (step.scene === 'circuit') {
@@ -129,5 +138,30 @@ describe('partie complète (scénario 4)', () => {
     const vars = { supplier: 'ES', incoterm: 'FCA', discount: 0.02 };
     for (const s of sc.steps) expect(tpl(s.intro, sc, { ...vars, day: 3, portDays: 1 })).not.toMatch(/\{\{|—$/);
     expect(calcFromVars(sc, vars, 0).invoiceCurrency).toBeCloseTo(4080000 * 0.092 * 0.98, 0);
+  });
+});
+
+describe('partie complète (scénario 6 — boissons)', () => {
+  const bsc = SCENARIOS.boissons;
+  it('stratégie optimale : à temps, dans le budget, TIC payée et non récupérable', () => {
+    const st = play('best', 'professionnel', 'visite', bsc);
+    const t = totals(st);
+    expect(st.finished).toBe(true);
+    expect(st.day).toBeLessThanOrEqual(bsc.deadlineDays);
+    expect(t.spent).toBeLessThanOrEqual(bsc.budgetMAD);
+    const tic = st.ledger.find((l) => l.label.includes('TIC'))!;
+    expect(tic.amount).toBeCloseTo(504000 * 0.33 * 0.8, -1);
+    expect(t.costPrice).toBeGreaterThan(tic.amount); // la TIC reste dans le coût de revient
+    expect(st.docs).toContain('admission-onssa');
+    expect(grade(st, bsc).global).toBeGreaterThanOrEqual(90);
+  });
+  it('mauvaise stratégie : Brésil, étiquette non conforme, retard et pénalités', () => {
+    const st = play('bad', 'professionnel', 'visite', bsc);
+    const ids = st.log.map((l) => l.stepId);
+    expect(st.vars.supplier).toBe('BR');
+    expect(ids).toContain('H3-etiquetage');
+    expect(ids).toContain('I5-ddm');
+    expect(st.day).toBeGreaterThan(bsc.deadlineDays);
+    expect(grade(st, bsc).global).toBeLessThan(45);
   });
 });

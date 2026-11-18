@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Effects, GameState, Option, Quality, Scenario, Step } from '../engine/types';
 import { calcFromVars, POINTS, resolveQuality, supplierOf, tpl, type Resolution } from '../engine/game';
 import { fmtMAD } from '../engine/calc';
-import { DOC } from '../data/documents';
+import { docOf } from '../data/documents';
 import { K, STATUS_LABEL } from '../data/knowledge';
 import DocViewer from './DocViewer';
 import WorldMap from './WorldMap';
-import { CircuitScene, CIRCUITS, FactoryScene, LabScene, PortScene, TrucksScene, WarehouseScene, type CircuitId } from './Scenes';
+import { CircuitScene, CIRCUITS, FactoryScene, LabScene, OnssaScene, PortScene, TrucksScene, WarehouseScene, type CircuitId } from './Scenes';
 import { IncotermTable, PaymentCompare, SupplierCompare } from './Widgets';
 
 export const PHASES: Record<string, string> = {
@@ -74,13 +74,14 @@ export default function StepPlayer({ sc, state, step, onResolve, onOpenCalc }: {
       }, 1800);
       return () => clearTimeout(t);
     }
-    if (step.type === 'scene' && step.scene !== 'map' && step.scene !== 'circuit') {
+    if (step.type === 'scene' && step.scene !== 'map' && step.scene !== 'circuit' && step.scene !== 'onssa') {
       const t = setTimeout(() => setSceneDone(true), 2500);
       return () => clearTimeout(t);
     }
   }, [step.id, step.scene, step.type, state.mode]);
 
-  const docDef = step.document ? DOC[step.document] : undefined;
+  const onssaDone = useCallback(() => setSceneDone(true), []);
+  const docDef = step.document ? docOf(sc, step.document) : undefined;
   const docFields = useMemo(() => (docDef ? docDef.fields(sc, state, true) : []), [docDef, sc, state]);
   const expected = useMemo(() => calcFromVars(sc, state.vars, 0), [sc, state.vars]);
   const hintPenalty = hintPaid ? 2 : 0;
@@ -196,6 +197,7 @@ export default function StepPlayer({ sc, state, step, onResolve, onOpenCalc }: {
       {step.scene === 'lab' && <LabScene />}
       {step.scene === 'factory' && <FactoryScene days={sup.productionDays} />}
       {step.scene === 'circuit' && <CircuitScene result={circuit} />}
+      {step.scene === 'onssa' && <OnssaScene onDone={onssaDone} />}
 
       {step.hint && state.mode !== 'expert' && !exam && !locked && (
         hintShown ? <div className="rounded-lg bg-sand-400/15 border border-sand-400/40 p-3 text-sm">💡 {T(step.hint)}</div>

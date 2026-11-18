@@ -1,5 +1,5 @@
 import type { GameState, Scenario } from '../engine/types';
-import { calcFromVars, supplierOf } from '../engine/game';
+import { calcFromVars, supplierOf, tpl } from '../engine/game';
 import { fmtNum } from '../engine/calc';
 
 export interface DocField { label: string; value: string; anomaly?: string }
@@ -205,7 +205,7 @@ export const DOCUMENTS: DocDef[] = [
         { label: 'Accord', value: sup.agreement },
         { label: 'Exportateur', value: sup.name },
         { label: 'Destinataire', value: sc.company.name },
-        { label: 'Marchandise', value: `${sc.goods.hsCode} — ${fmtNum(sc.goods.quantity, 0)} canettes` },
+        { label: 'Marchandise', value: `${sc.goods.hsCode} — ${fmtNum(sc.goods.quantity, 0)} ${sc.goods.unit}` },
       ];
     },
   },
@@ -284,8 +284,9 @@ export const DOCUMENTS: DocDef[] = [
       return [
         { label: 'DI', value: `${fmtNum(calc.di, 0)} MAD (taux ${fmtNum(rate * 100, 1)} %)` },
         { label: 'TPI', value: `${fmtNum(calc.tpi, 0)} MAD (${sc.fees.tpiRate * 100} %)` },
+        ...(calc.tic > 0 ? [{ label: 'TIC', value: `${fmtNum(calc.tic, 0)} MAD (${sc.fees.excisePerHl} MAD/hl, fictif)` }] : []),
         { label: 'TVA', value: `${fmtNum(calc.tva, 0)} MAD (${sc.fees.vatRate * 100} %)` },
-        { label: 'Total', value: `${fmtNum(calc.di + calc.tpi + calc.tva, 0)} MAD` },
+        { label: 'Total', value: `${fmtNum(calc.di + calc.tpi + calc.tic + calc.tva, 0)} MAD` },
       ];
     },
   },
@@ -339,3 +340,38 @@ export const DOCUMENTS: DocDef[] = [
 ];
 
 export const DOC = Object.fromEntries(DOCUMENTS.map((x) => [x.id, x]));
+
+/** Documents d'un scénario : modèles intégrés, surchargés ou complétés par `scenario.documents` (JSON). */
+export function docsFor(sc: Scenario): DocDef[] {
+  const extra = sc.documents ?? {};
+  const hidden = new Set(sc.hideDocs ?? []);
+  const merged = DOCUMENTS.filter((d) => !hidden.has(d.id)).map((d) => (extra[d.id] ? mergeDoc(d.id, d, extra[d.id]) : d));
+  for (const [id, x] of Object.entries(extra)) if (!DOC[id]) merged.push(mergeDoc(id, undefined, x));
+  return merged;
+}
+
+export function docOf(sc: Scenario, id: string): DocDef | undefined {
+  return docsFor(sc).find((d) => d.id === id);
+}
+
+function mergeDoc(id: string, base: DocDef | undefined, x: NonNullable<Scenario['documents']>[string]): DocDef {
+  return {
+    id,
+    title: x.title ?? base?.title ?? id,
+    icon: x.icon ?? base?.icon ?? '📄',
+    issuer: x.issuer ?? base?.issuer ?? '—',
+    recipient: x.recipient ?? base?.recipient ?? '—',
+    purpose: x.purpose ?? base?.purpose ?? '—',
+    when: x.when ?? base?.when ?? '—',
+    status: x.status ?? base?.status ?? '—',
+    related: x.related ?? base?.related ?? [],
+    usage: x.usage ?? (base?.usage === 'exemple' && x.fields ? 'scenario' : base?.usage ?? 'scenario'),
+    missedVar: x.missedVar ?? base?.missedVar,
+    fields: x.fields
+      ? (sc, s, check) => x.fields!.map((f) => {
+          const vars = { ...s.vars, day: s.day };
+          return check && f.check ? { label: f.label, value: tpl(f.check.value, sc, vars), anomaly: f.check.anomaly } : { label: f.label, value: tpl(f.value, sc, vars) };
+        })
+      : base?.fields ?? (() => []),
+  };
+}

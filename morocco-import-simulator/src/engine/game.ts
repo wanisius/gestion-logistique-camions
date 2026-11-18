@@ -19,7 +19,13 @@ export function supplierOf(sc: Scenario, vars: GameState['vars']): Supplier {
 export function tpl(text: string, sc: Scenario, vars: GameState['vars']): string {
   const sup = supplierOf(sc, vars);
   const calc = calcFromVars(sc, vars, 0);
-  const ctx: Record<string, unknown> = { ...vars, supplier: sup, company: sc.company, goods: sc.goods, calc, sc };
+  const g = sc.goods;
+  const litres = g.quantity * (g.litresPerUnit ?? 0);
+  const ctx: Record<string, unknown> = {
+    ...vars, supplier: sup, company: sc.company, goods: g, calc, sc,
+    unitPrice: sup.unitPrice * (1 - Number(vars.discount ?? 0)),
+    totals: { pallets: g.palletsPerContainer * g.containers, grossKg: g.grossKgPerContainer * g.containers, litres, hl: litres / 100, perPallet: g.quantity / (g.palletsPerContainer * g.containers) },
+  };
   return text.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (_, path: string) => {
     const v = path.split('.').reduce<unknown>((o, k) => (o && typeof o === 'object' ? (o as Record<string, unknown>)[k] : undefined), ctx);
     if (typeof v === 'number') return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 3 }).format(v);
@@ -65,6 +71,7 @@ export function calcInputFromVars(sc: Scenario, vars: GameState['vars'], extraCo
     dutyRate: vars.originProofOk === false ? Number(vars.mfnRate ?? sup.dutyRate) : sup.dutyRate,
     tpiRate: sc.fees.tpiRate,
     vatRate: sc.fees.vatRate,
+    excisePerUnit: ((sc.fees.excisePerHl ?? 0) * (sc.goods.litresPerUnit ?? 0)) / 100,
     portPerContainer: sc.fees.portPerContainer,
     brokerFlat: sc.fees.brokerFlat,
     brokerPerContainer: sc.fees.brokerPerContainer,
@@ -90,6 +97,7 @@ const COMMIT_MAP: Record<CommitKey, { label: string; key: keyof CalcResult; cate
   insurance: { label: 'Prime d’assurance transport', key: 'insurance', category: 'assurance' },
   duties: { label: "Droit d'importation (DI)", key: 'di', category: 'droits' },
   tpi: { label: 'Taxe parafiscale à l’importation (TPI)', key: 'tpi', category: 'droits' },
+  excise: { label: 'Taxe intérieure de consommation (TIC)', key: 'tic', category: 'droits' },
   vat: { label: 'TVA à l’importation (récupérable)', key: 'tva', category: 'tva' },
   port: { label: 'Frais portuaires et de manutention', key: 'port', category: 'port' },
   broker: { label: 'Honoraires du transitaire', key: 'broker', category: 'transitaire' },
@@ -194,7 +202,7 @@ export function finalize(sc: Scenario, s: GameState): GameState {
   if (s.finished) return s;
   const late = Math.max(0, s.day - sc.deadlineDays);
   const ledger = [...s.ledger];
-  if (late > 0) ledger.push({ label: `Arrêt de ligne : ${late} jour(s) de retard × ${sc.stockoutPenaltyPerDay.toLocaleString('fr-FR')} MAD`, amount: late * sc.stockoutPenaltyPerDay, category: 'penalites', day: s.day });
+  if (late > 0) ledger.push({ label: `${sc.stockoutLabel ?? 'Arrêt de ligne'} : ${late} jour(s) de retard × ${sc.stockoutPenaltyPerDay.toLocaleString('fr-FR')} MAD`, amount: late * sc.stockoutPenaltyPerDay, category: 'penalites', day: s.day });
   return { ...s, ledger, finished: true };
 }
 

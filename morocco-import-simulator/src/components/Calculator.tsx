@@ -15,6 +15,7 @@ const FIELDS: { k: NumKey; label: string; pct?: boolean; step?: number }[] = [
   { k: 'insuranceRate', label: "Taux d'assurance", pct: true, step: 0.0005 },
   { k: 'dutyRate', label: "Droit d'importation (DI)", pct: true, step: 0.025 },
   { k: 'tpiRate', label: 'TPI', pct: true, step: 0.0005 },
+  { k: 'excisePerUnit', label: 'TIC par unité (MAD)', step: 0.001 },
   { k: 'vatRate', label: 'TVA import', pct: true, step: 0.01 },
   { k: 'portPerContainer', label: 'Frais portuaires / conteneur (MAD)' },
   { k: 'brokerFlat', label: 'Honoraires transitaire forfait (MAD)' },
@@ -24,13 +25,14 @@ const FIELDS: { k: NumKey; label: string; pct?: boolean; step?: number }[] = [
   { k: 'extraCosts', label: 'Autres coûts / pénalités (MAD)' },
 ];
 
-const BAR: { key: 'goodsInvoice' | 'preCarriage' | 'freight' | 'insurance' | 'di' | 'tpi' | 'port' | 'broker' | 'bank' | 'inland' | 'extra'; label: string; color: string }[] = [
+const BAR: { key: 'goodsInvoice' | 'preCarriage' | 'freight' | 'insurance' | 'di' | 'tpi' | 'tic' | 'port' | 'broker' | 'bank' | 'inland' | 'extra'; label: string; color: string }[] = [
   { key: 'goodsInvoice', label: 'Marchandise', color: '#3b9ad6' },
   { key: 'preCarriage', label: 'Pré-acheminement', color: '#7cc0ea' },
   { key: 'freight', label: 'Fret', color: '#2a9d8f' },
   { key: 'insurance', label: 'Assurance', color: '#8d5fd3' },
   { key: 'di', label: 'DI', color: '#c1440e' },
   { key: 'tpi', label: 'TPI', color: '#f97316' },
+  { key: 'tic', label: 'TIC', color: '#db2777' },
   { key: 'port', label: 'Port', color: '#e9c46a' },
   { key: 'broker', label: 'Transitaire', color: '#d9a23a' },
   { key: 'bank', label: 'Banque', color: '#64748b' },
@@ -88,7 +90,8 @@ export default function Calculator({ sc, state }: { sc: Scenario; state: GameSta
               ['= Valeur CIF / valeur en douane', fmtMAD(r.vd)],
               [`DI (${fmtNum(inp.dutyRate * 100, 2)} %)`, fmtMAD(r.di)],
               [`TPI (${fmtNum(inp.tpiRate * 100, 2)} %)`, fmtMAD(r.tpi)],
-              [`TVA (${fmtNum(inp.vatRate * 100, 0)} %) sur VD+DI+TPI`, fmtMAD(r.tva)],
+              ...(r.tic > 0 || inp.excisePerUnit > 0 ? [['TIC (taxe intérieure de consommation)', fmtMAD(r.tic)]] : []),
+              [`TVA (${fmtNum(inp.vatRate * 100, 0)} %) sur VD+DI+TPI${r.tic > 0 ? '+TIC' : ''}`, fmtMAD(r.tva)],
               ['Frais portuaires', fmtMAD(r.port)],
               ['Transitaire', fmtMAD(r.broker)],
               ['Banque', fmtMAD(r.bank)],

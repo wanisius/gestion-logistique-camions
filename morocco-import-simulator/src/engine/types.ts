@@ -32,7 +32,7 @@ export type CostCategory =
   | 'transitaire' | 'banque' | 'national' | 'penalites' | 'autres';
 
 export type CommitKey =
-  | 'goods' | 'freight' | 'insurance' | 'duties' | 'vat' | 'tpi' | 'port' | 'broker' | 'bank' | 'inland' | 'preCarriage';
+  | 'goods' | 'freight' | 'insurance' | 'duties' | 'vat' | 'tpi' | 'excise' | 'port' | 'broker' | 'bank' | 'inland' | 'preCarriage';
 
 export interface QualityBy { var: string; map: Record<string, Quality> }
 
@@ -60,7 +60,7 @@ export interface FormField {
 }
 
 export interface CalcField {
-  id: 'cif' | 'vd' | 'di' | 'tpi' | 'tva' | 'totalCash';
+  id: 'cif' | 'vd' | 'di' | 'tpi' | 'tic' | 'tva' | 'totalCash';
   label: string;
 }
 
@@ -79,7 +79,7 @@ export interface Step {
   document?: string;
   form?: { system: 'portnet' | 'badr' | 'banque'; fields: FormField[] };
   calc?: CalcField[];
-  scene?: 'map' | 'port' | 'trucks' | 'warehouse' | 'lab' | 'circuit' | 'factory';
+  scene?: 'map' | 'port' | 'trucks' | 'warehouse' | 'lab' | 'circuit' | 'factory' | 'onssa';
   widget?: 'suppliers' | 'incoterms' | 'payment';
   /** Étape facultative déclenchée aléatoirement (incident). Probabilité par mode. */
   chance?: Partial<Record<Mode, number>>;
@@ -131,9 +131,13 @@ export interface Scenario {
     hsCode: string;
     hsLabel: string;
     nationalCode: string;
+    /** Volume unitaire en litres (boissons : sert au calcul de la TIC). */
+    litresPerUnit?: number;
   };
   deadlineDays: number;
   stockoutPenaltyPerDay: number;
+  /** Libellé de la pénalité de retard (ex. « Arrêt de ligne », « Ventes perdues »). */
+  stockoutLabel?: string;
   budgetMAD: number;
   fx: Record<string, number>;
   fxNote: string;
@@ -150,10 +154,26 @@ export interface Scenario {
     inlandPerContainer: number;
     freeDaysPort: number;
     demurragePerContainerDay: number;
+    /** TIC en MAD par hectolitre (0 ou absent si non applicable). */
+    excisePerHl?: number;
   };
+  /** Jours de formalités estimés hors fabrication et transit (comparateur fournisseurs). */
+  planningDays?: number;
+  /** Documents propres au scénario (nouveaux ou surcharges des modèles intégrés). */
+  documents?: Record<string, ScenarioDoc>;
+  /** Documents intégrés à masquer dans la bibliothèque de ce scénario. */
+  hideDocs?: string[];
   suppliers: Supplier[];
   characters: Record<string, { name: string; role: string; avatar: string }>;
   steps: Step[];
+}
+
+export interface ScenarioDocField { label: string; value: string; check?: { value: string; anomaly: string } }
+export interface ScenarioDoc {
+  title?: string; icon?: string; issuer?: string; recipient?: string; purpose?: string; when?: string; status?: string;
+  related?: string[]; missedVar?: string; usage?: 'scenario' | 'exemple';
+  /** Champs (valeurs avec {{modèles}}). `check` = variante erronée utilisée dans les contrôles documentaires. */
+  fields?: ScenarioDocField[];
 }
 
 export interface LogEntry {

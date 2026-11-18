@@ -133,3 +133,31 @@ export function CircuitScene({ result }: { result?: CircuitId }) {
     </div>
   );
 }
+
+const ONSSA_STAGES = [
+  { icon: '📑', label: 'Contrôle documentaire', desc: 'Certificats, facture, étiquetage, autorisation sanitaire' },
+  { icon: '🔎', label: "Contrôle d'identité", desc: 'Lots, marquages et scellés conformes aux documents' },
+  { icon: '📦', label: 'Contrôle physique', desc: 'État des canettes et des cartons, étiquettes' },
+  { icon: '🧪', label: 'Prélèvement', desc: 'Échantillons scellés envoyés au laboratoire' },
+  { icon: '🔬', label: 'Analyse en laboratoire', desc: 'Paramètres physico-chimiques et microbiologiques' },
+];
+
+export function OnssaScene({ onDone }: { onDone?: () => void }) {
+  const [k, setK] = useState(0);
+  useEffect(() => {
+    if (k >= ONSSA_STAGES.length) { onDone?.(); return; }
+    const t = setTimeout(() => setK((x) => x + 1), 700);
+    return () => clearTimeout(t);
+  }, [k, onDone]);
+  return (
+    <div className="rounded-xl border border-ink-600 bg-ink-700 p-3 grid gap-2 sm:grid-cols-5">
+      {ONSSA_STAGES.map((s, i) => (
+        <div key={s.label} className={`rounded-lg p-2 text-center text-xs transition ${i < k ? 'bg-emerald-700' : i === k ? 'bg-sand-400 text-ink-900 scale-105' : 'bg-ink-800 opacity-60'}`}>
+          <div className={`text-2xl ${i === k ? 'anim-bob' : ''}`}>{i < k ? '✅' : s.icon}</div>
+          <div className="font-semibold mt-1">{s.label}</div>
+          <div className="opacity-90">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
