@@ -4,7 +4,7 @@
   "subtitle": "10 conteneurs de sodas pour la saison d'été",
   "level": "Intermédiaire — agroalimentaire",
   "available": true,
-  "summary": "Importer 504 000 canettes pleines de boisson gazeuse sucrée (33 cl) en 10 conteneurs 20' pour un distributeur casablancais : autorisation sanitaire, étiquetage, contrôle ONSSA avec analyses, TIC, durabilité, chaleur et stockage FEFO.",
+  "summary": "Importer 506 880 canettes pleines de boisson gazeuse sucrée (33 cl) en 10 conteneurs 20' pour un distributeur casablancais : autorisation sanitaire, étiquetage, contrôle ONSSA avec analyses, TIC, durabilité, chaleur et stockage FEFO.",
   "company": {
     "name": "Oasis Distribution SARL (fictive)",
     "ice": "002345678000071",
@@ -13,14 +13,14 @@
     "rc": "RC Casablanca 512345 (fictif)"
   },
   "goods": {
-    "description": "Boisson gazeuse rafraîchissante aromatisée cola, sucrée, en canette aluminium 33 cl, cartons de 24",
-    "quantity": 504000,
+    "description": "Boisson gazeuse rafraîchissante aromatisée cola, sucrée, en canette aluminium 33 cl, packs de 6 sous film, cartons de 4 packs (24 canettes)",
+    "quantity": 506880,
     "unit": "canettes",
     "containers": 10,
     "containerType": "20' DV",
-    "perContainer": 50400,
-    "palletsPerContainer": 10,
-    "grossKgPerContainer": 18600,
+    "perContainer": 50688,
+    "palletsPerContainer": 16,
+    "grossKgPerContainer": 18240,
     "hsCode": "2202.10",
     "hsLabel": "Eaux, y compris les eaux minérales et les eaux gazéifiées, additionnées de sucre ou d'autres édulcorants ou aromatisées",
     "nationalCode": "2202.10.00.90 (fictif)",
@@ -287,11 +287,11 @@
         },
         {
           "label": "Quantité",
-          "value": "{{goods.quantity}} canettes, soit {{totals.litres}} litres"
+          "value": "{{goods.quantity}} canettes (84 480 packs de 6, 21 120 cartons), soit {{totals.litres}} litres"
         },
         {
           "label": "Conditionnement",
-          "value": "{{goods.containers}} × 20', 10 palettes par conteneur, 210 cartons de 24 par palette"
+          "value": "{{goods.containers}} × 20', 16 palettes par conteneur (2 niveaux de 8), 528 packs de 6 par palette (132 cartons de 4 packs)"
         },
         {
           "label": "Durabilité",
@@ -319,7 +319,7 @@
         },
         {
           "label": "Quantité",
-          "value": "{{goods.quantity}} canettes (21 000 cartons)"
+          "value": "{{goods.quantity}} canettes : packs de 6 sous film, cartons de 4 packs, 528 packs par palette"
         },
         {
           "label": "Incoterm de référence",
@@ -356,10 +356,10 @@
         },
         {
           "label": "Quantité",
-          "value": "{{goods.quantity}} canettes (21 000 cartons de 24)",
+          "value": "{{goods.quantity}} canettes (84 480 packs de 6 — 21 120 cartons de 4 packs)",
           "check": {
-            "value": "504 000 cartons de 24 canettes",
-            "anomaly": "Confusion d'unité : la commande porte sur 504 000 canettes, soit 21 000 cartons."
+            "value": "506 880 packs de 6 canettes",
+            "anomaly": "Confusion d'unité : la commande porte sur 506 880 canettes, soit 84 480 packs de 6 (21 120 cartons de 4 packs)."
           }
         },
         {
@@ -429,19 +429,23 @@
         },
         {
           "label": "Palettes",
-          "value": "{{totals.pallets}} (10 par conteneur)"
+          "value": "{{totals.pallets}} (16 par conteneur, 2 niveaux de 8)"
         },
         {
-          "label": "Cartons par palette",
-          "value": "210 cartons de 24",
+          "label": "Unités",
+          "value": "Pack de 6 canettes sous film ; carton de 4 packs (24 canettes)"
+        },
+        {
+          "label": "Packs par palette",
+          "value": "528 packs (132 cartons, 3 168 canettes)",
           "check": {
-            "value": "240 cartons de 24",
-            "anomaly": "100 palettes × 240 × 24 = 576 000 ≠ 504 000 : il faut 210 cartons par palette."
+            "value": "552 packs (138 cartons, 3 312 canettes)",
+            "anomaly": "160 palettes × 552 × 6 = 529 920 ≠ 506 880 : il faut 528 packs par palette."
           }
         },
         {
-          "label": "Total canettes",
-          "value": "{{goods.quantity}}"
+          "label": "Total",
+          "value": "{{goods.quantity}} canettes — 84 480 packs — 21 120 cartons"
         },
         {
           "label": "Lots et durabilité",
@@ -453,11 +457,15 @@
         },
         {
           "label": "Poids brut total",
-          "value": "{{totals.grossKg}} kg",
+          "value": "{{totals.grossKg}} kg (≈ 1 140 kg par palette)",
           "check": {
-            "value": "18 600 kg",
-            "anomaly": "18 600 kg correspond à UN conteneur : le total est de 186 000 kg."
+            "value": "18 240 kg",
+            "anomaly": "18 240 kg correspond à UN conteneur : le total est de 182 400 kg."
           }
+        },
+        {
+          "label": "SSCC",
+          "value": "Une étiquette SSCC par palette (160)"
         },
         {
           "label": "Scellés",
@@ -718,11 +726,11 @@
       "fields": [
         {
           "label": "Livré",
-          "value": "100 palettes (21 000 cartons)"
+          "value": "160 palettes (21 120 cartons, 84 480 packs)"
         },
         {
           "label": "Réserves",
-          "value": "1 palette percée : 38 canettes fuyantes, 6 cartons souillés (photos jointes)"
+          "value": "1 palette percée : 38 canettes fuyantes, 9 packs et 6 cartons souillés (photos jointes)"
         }
       ]
     },
@@ -734,7 +742,7 @@
         },
         {
           "label": "Écarts",
-          "value": "38 canettes fuyantes isolées et détruites, 6 cartons reconditionnés"
+          "value": "38 canettes fuyantes isolées et détruites, 9 packs refilmés, 6 cartons reconditionnés"
         },
         {
           "label": "Lots reçus",
@@ -751,14 +759,14 @@
       "location": "bureau",
       "actor": "yasmine",
       "type": "choice",
-      "intro": "Yasmine : « La saison d'été démarre dans 50 jours. Nos clients attendent 21 000 cartons de cola en canette 33 cl. Rédige l'expression de besoin. »",
+      "intro": "Yasmine : « La saison d'été démarre dans 50 jours. Nos clients attendent 84 480 packs de 6 canettes de cola 33 cl (21 120 cartons de 4 packs). Rédige l'expression de besoin. »",
       "hint": "Pour une denrée, la durabilité restante et l'étiquetage comptent autant que la quantité.",
       "explanation": "Pour une denrée alimentaire, l'expression de besoin doit fixer la durabilité minimale restante (on ne vend pas un produit proche de sa date), la conformité de l'étiquetage au marché marocain et les documents sanitaires, en plus de la quantité et du délai.",
       "options": [
         {
           "id": "a",
           "label": "Spécification complète",
-          "detail": "504 000 canettes 33 cl (21 000 cartons), durabilité ≥ 9 mois à l'expédition, étiquetage conforme au Maroc, certificat d'analyse par lot, livraison avant J+50.",
+          "detail": "506 880 canettes 33 cl en packs de 6 (cartons de 4 packs, 528 packs par palette), durabilité ≥ 9 mois à l'expédition, étiquetage conforme au Maroc, certificat d'analyse par lot, livraison avant J+50.",
           "quality": "best",
           "feedback": "Parfait : chaque critère servira au contrat, au contrôle ONSSA et à la réception.",
           "effects": {
@@ -770,7 +778,7 @@
         },
         {
           "id": "b",
-          "label": "« 21 000 cartons de cola, livraison avant l'été »",
+          "label": "« 21 120 cartons de cola, livraison avant l'été »",
           "quality": "ok",
           "feedback": "Sans exigence de durabilité ni d'étiquetage, tu risques un produit invendable ou bloqué.",
           "effects": {
@@ -2320,7 +2328,7 @@
       "actor": "benali",
       "type": "form",
       "intro": "Renseigne la DUM dans le simulateur pédagogique BADR.",
-      "hint": "Colis = palettes ; poids total des 10 conteneurs.",
+      "hint": "Colis = palettes (16 par conteneur) ; poids total des 10 conteneurs ; volume = canettes × 0,33 l.",
       "explanation": "La DUM reprend le régime, la position, l'origine, la valeur, l'Incoterm, les colis et poids et la référence du titre d'importation. Elle doit concorder avec facture, packing list, B/L et manifeste.",
       "form": {
         "system": "badr",
@@ -2389,31 +2397,31 @@
             "id": "colis",
             "label": "Nombre de colis (palettes)",
             "options": [
-              "100",
-              "10",
-              "21 000"
+              "160",
+              "16",
+              "21 120"
             ],
-            "answer": "100"
+            "answer": "160"
           },
           {
             "id": "poids",
             "label": "Poids brut total (kg)",
             "options": [
-              "186 000",
-              "18 600",
-              "166 320"
+              "182 400",
+              "18 240",
+              "167 270"
             ],
-            "answer": "186 000"
+            "answer": "182 400"
           },
           {
             "id": "volume",
             "label": "Volume (hectolitres, base de la TIC)",
             "options": [
-              "1 663,2",
-              "166 320",
-              "504"
+              "1 672,7",
+              "167 270",
+              "507"
             ],
-            "answer": "1 663,2"
+            "answer": "1 672,7"
           }
         ]
       },
@@ -2528,8 +2536,8 @@
           "effects": {
             "portDays": 5,
             "cost": {
-              "label": "Étiquetage complémentaire sous contrôle (504 000 canettes)",
-              "amount": 60480,
+              "label": "Étiquetage complémentaire sous contrôle (506 880 canettes)",
+              "amount": 60826,
               "category": "penalites"
             }
           }
@@ -2542,8 +2550,8 @@
           "effects": {
             "portDays": 8,
             "cost": {
-              "label": "Étiquetage complémentaire sous contrôle (504 000 canettes)",
-              "amount": 60480,
+              "label": "Étiquetage complémentaire sous contrôle (506 880 canettes)",
+              "amount": 60826,
               "category": "penalites"
             }
           }
@@ -2951,7 +2959,7 @@
       "actor": "hicham",
       "type": "choice",
       "scene": "warehouse",
-      "intro": "Hicham : « Il fait 38 °C. Où et comment je range les 100 palettes ? »",
+      "intro": "Hicham : « Il fait 38 °C. Où et comment je range les 160 palettes ? »",
       "hint": "Chaleur, soleil, dates.",
       "explanation": "Stocker à l'abri du soleil et de la chaleur, par lot, en rotation FEFO (premier périmé, premier sorti) : on écoule d'abord les lots à la date la plus proche. C'est aussi une condition d'hygiène de l'autorisation sanitaire.",
       "options": [
@@ -2995,13 +3003,13 @@
       "actor": "hicham",
       "type": "choice",
       "scene": "warehouse",
-      "intro": "Une palette percée : 38 canettes fuyantes, 6 cartons collants. Que fais-tu ?",
+      "intro": "Une palette percée : 38 canettes fuyantes, 9 packs et 6 cartons collants. Que fais-tu ?",
       "hint": "Une canette percée n'est plus un aliment vendable.",
       "explanation": "Les canettes percées ou bombées sont isolées et retirées de la vente (risque sanitaire), les réserves sont portées sur le bon de livraison, puis un PV de réception et une déclaration de sinistre préservent les recours.",
       "options": [
         {
           "id": "a",
-          "label": "Isoler et détruire les canettes fuyantes, reconditionner les cartons, réserves + PV + déclaration d'assurance",
+          "label": "Isoler et détruire les canettes fuyantes, refilmer les packs, reconditionner les cartons, réserves + PV + déclaration d'assurance",
           "quality": "best",
           "feedback": "Correct.",
           "effects": {

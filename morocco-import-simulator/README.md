@@ -40,7 +40,7 @@ Android / tablette : servir `dist/` (ou ouvrir le fichier autonome) dans Chrome.
 - Glossaire (50 termes), quiz, historique des erreurs, base réglementaire filtrable, évaluation finale détaillée (PDF).
 - Sauvegarde automatique (navigateur), plusieurs parties, export/import de sauvegarde en JSON.
 
-**Scénario 6 — Boissons gazeuses en canettes** (jouable de bout en bout) : 504 000 canettes pleines de cola 33 cl en 10 conteneurs 20' pour un distributeur, fournisseurs Espagne / Égypte / Brésil. Ce scénario introduit :
+**Scénario 6 — Boissons gazeuses en canettes** (jouable de bout en bout) : 506 880 canettes pleines de cola 33 cl (packs de 6, cartons de 4 packs, 528 packs par palette) en 10 conteneurs 20' pour un distributeur, fournisseurs Espagne / Égypte / Brésil. Ce scénario introduit :
 
 - l'**autorisation sanitaire ONSSA** de l'entrepôt avant la première importation ;
 - le **contrôle de la maquette d'étiquetage** (arabe, pays d'origine, importateur) et, si une anomalie est manquée, une non-conformité au contrôle ONSSA ;

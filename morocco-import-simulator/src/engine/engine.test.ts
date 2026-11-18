@@ -150,7 +150,7 @@ describe('partie complète (scénario 6 — boissons)', () => {
     expect(st.day).toBeLessThanOrEqual(bsc.deadlineDays);
     expect(t.spent).toBeLessThanOrEqual(bsc.budgetMAD);
     const tic = st.ledger.find((l) => l.label.includes('TIC'))!;
-    expect(tic.amount).toBeCloseTo(504000 * 0.33 * 0.8, -1);
+    expect(tic.amount).toBeCloseTo(bsc.goods.quantity * 0.33 * 0.8, -1);
     expect(t.costPrice).toBeGreaterThan(tic.amount); // la TIC reste dans le coût de revient
     expect(st.docs).toContain('admission-onssa');
     expect(grade(st, bsc).global).toBeGreaterThanOrEqual(90);
