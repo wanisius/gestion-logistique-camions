@@ -22,6 +22,11 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--no-monitor", action="store_true", help="pas de scan périodique")
     sub.add_parser("monitor", help="surveillance en arrière-plan, sans ouvrir le navigateur (démarrage de Windows)")
     sub.add_parser("update-oui", help="télécharger la base des fabricants (IEEE, public)")
+    a = sub.add_parser("audit", help="audit défensif des services exposés (réseau autorisé uniquement)")
+    a.add_argument("--autorise", action="store_true", help="confirme que vous êtes autorisé à auditer ce réseau")
+    a.add_argument("--ports", choices=["standard", "web"], default="standard", help="jeu de ports à tester")
+    a.add_argument("--rate", type=float, default=0.0, help="délai (s) entre hôtes, pour ménager l'IDS")
+    a.add_argument("--no-ping", action="store_true", help="n'envoyer aucun ping (table ARP seule)")
     args = p.parse_args(argv)
 
     if args.cmd == "diagnose":
@@ -31,6 +36,9 @@ def main(argv: list[str] | None = None) -> int:
         # Même processus que le tableau de bord : un seul écrivain pour les données.
         from .server import serve
         serve(open_browser=False, monitor=True)
+    elif args.cmd == "audit":
+        from .auditcli import run as run_audit
+        run_audit(authorized=args.autorise, ports=args.ports, rate=args.rate, no_ping=args.no_ping)
     elif args.cmd == "update-oui":
         from .oui import update_database
         print("Téléchargement du registre OUI de l'IEEE…")

@@ -86,6 +86,22 @@ notification) ; ensuite, chaque nouvel appareil déclenche une alerte et une not
 | Usurpation ARP de la passerelle | suivi de sa MAC entre deux analyses |
 | WPS, administration à distance, firmware, pare-feu du routeur, mot de passe admin, réseau invité | **liste de contrôle** : illisibles sans identifiants, vous y répondez dans l'interface |
 
+## Audit d'entreprise (réseau autorisé uniquement)
+
+> ⚠️ **N'utilisez cette commande que sur un réseau dont vous êtes responsable, ou que vous êtes mandaté par écrit pour auditer.** Un scan de services peut déclencher les alertes du pare-feu/IDS (WatchGuard, FortiGate…) : prévenez l'équipe sécurité et convenez d'une plage horaire.
+
+En plus du diagnostic domestique, l'outil propose un **audit défensif des services exposés** :
+
+```bash
+py -m wsm audit --autorise            # jeu de ports standard
+py -m wsm audit --autorise --rate 0.3 # ralenti, pour ménager l'IDS
+py -m wsm audit --autorise --ports web
+```
+
+Il recense, pour chaque hôte, les **ports de service ouverts** (connexion TCP simple), lit la **bannière** que le service annonce de lui-même, et classe les expositions par risque (Telnet, RDP, SMB, bases de données, interfaces d'administration…). Le rapport est écrit dans `%LOCALAPPDATA%\WiFiSecurityManager\audit_services_*.md`.
+
+**Ce que l'audit ne fait jamais** : aucun essai d'identifiants (il *signale* les interfaces d'administration à vérifier manuellement, sans tester le moindre mot de passe), aucune exploitation de faille, aucune coupure ni modification d'appareil. C'est un état des lieux de ce qui est exposé, destiné à être corrigé.
+
 ## Développement
 
 ```bash
