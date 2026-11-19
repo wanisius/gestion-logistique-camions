@@ -14,6 +14,9 @@ ICON = {"risque": "✗", "à_vérifier": "?", "ok": "✓"}
 def build_report(store: Store) -> str:
     s = store.state
     n, w, r, sc = s.get("network", {}), s.get("wifi", {}), s.get("router", {}), s.get("score") or {}
+    # Pas de guillemets identiques imbriqués dans les f-strings : interdit avant Python 3.12.
+    firewall = ", ".join(f"{k}={'actif' if v else 'INACTIF'}"
+                         for k, v in (n.get("pc_firewall") or {}).items()) or "non lu"
     L = [f"# Diagnostic WiFi Security Manager — {datetime.now():%d/%m/%Y %H:%M}", ""]
     L += ["## 1. Configuration réseau du PC", "",
           f"- Interface : **{n.get('interface') or '?'}** ({n.get('interface_type')})",
@@ -22,7 +25,7 @@ def build_report(store: Store) -> str:
           f"- Sous-réseau : **{n.get('subnet') or '?'}**",
           f"- Passerelle : **{n.get('gateway') or '?'}** (MAC {n.get('gateway_mac') or s.get('gateway_mac') or '?'})",
           f"- DNS : {', '.join(n.get('dns_servers') or []) or '?'}",
-          f"- Pare-feu Windows : {', '.join(f'{k}={'actif' if v else 'INACTIF'}' for k, v in (n.get('pc_firewall') or {}).items()) or 'non lu'}"]
+          f"- Pare-feu Windows : {firewall}"]
     if n.get("errors"):
         L += [f"- ⚠ {e}" for e in n["errors"]]
     L += ["", "## 2. Connexion Wi-Fi", ""]
