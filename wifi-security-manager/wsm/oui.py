@@ -25,6 +25,7 @@ _BUILTIN = {
     "001788": "Philips Lighting (Hue)", "00044B": "NVIDIA", "00E04C": "Realtek",
     "001B21": "Intel", "000DB9": "PC Engines", "50C7BF": "TP-Link", "00095B": "Netgear",
     "0014BF": "Cisco-Linksys", "001D7E": "Cisco-Linksys", "0012FB": "Samsung",
+    "000121": "WatchGuard Technologies",
     "0024D4": "Freebox SAS", "F4CAE5": "Freebox SAS", "286C07": "Xiaomi",
 }
 

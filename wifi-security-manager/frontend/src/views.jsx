@@ -186,7 +186,7 @@ export function Security({ state, setState }) {
           <dt>Fabricant / modèle</dt><dd>{[r.vendor, r.model].filter(Boolean).join(' · ') || 'non publié'}</dd>
           <dt>Identifié via</dt><dd>{(r.identification_sources || []).join(', ') || '—'}</dd>
           <dt>Interface d'administration</dt>
-          <dd>{r.https?.reachable ? `HTTPS ✓` : r.http?.reachable ? 'HTTP seulement' : 'non détectée'}
+          <dd>{r.https?.reachable ? `HTTPS ✓ (port ${r.https.port || 443})` : r.http?.reachable ? `HTTP seulement (port ${r.http.port || 80})` : 'non détectée'}
             {(r.https?.title || r.http?.title) && ` — « ${r.https?.title || r.http?.title} »`}</dd>
           <dt>Ports ouverts (passerelle)</dt>
           <dd>{Object.entries(r.open_ports || {}).map(([p, v]) => `${p} ${v}`).join(' · ') || 'aucun parmi ceux testés'}</dd>
@@ -260,8 +260,7 @@ const ACTION_LABEL = { 'proposée': 'Proposée', 'autorisée': 'Autorisée par v
 export function Actions({ state, refresh }) {
   const [confirm, setConfirm] = useState(null)
   const set = async (id, status, ok = false) => { await api.setAction(id, status, ok); refresh() }
-  const gw = state.network.gateway
-  const adminUrl = gw ? (state.router.https?.reachable ? `https://${gw}` : `http://${gw}`) : null
+  const adminUrl = state.admin_url || null
   const actions = [...state.actions].sort((a, b) => SEV_ORDER[a.severity] - SEV_ORDER[b.severity])
   return (
     <Card title="Actions de sécurisation proposées">

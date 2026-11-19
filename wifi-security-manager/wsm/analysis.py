@@ -48,11 +48,21 @@ class Finding:
         return {**asdict(self), "penalty": round(self.penalty(), 1)}
 
 
-def _admin_url(router: dict) -> str:
+def admin_url(router: dict) -> str:
+    """Adresse de l'interface d'administration détectée (HTTPS de préférence, port inclus)."""
     gw = router.get("gateway", "")
     if not gw:
-        return "l'adresse de votre passerelle"
-    return f"https://{gw}" if router.get("https", {}).get("reachable") else f"http://{gw}"
+        return ""
+    for scheme, default in (("https", 443), ("http", 80)):
+        info = router.get(scheme) or {}
+        if info.get("reachable"):
+            port = info.get("port") or default
+            return f"{scheme}://{gw}" + ("" if port == default else f":{port}")
+    return f"http://{gw}"
+
+
+def _admin_url(router: dict) -> str:
+    return admin_url(router) or "l'adresse de votre passerelle"
 
 
 def _checklist_finding(key: str, answers: dict, severity: str, title_ok: str, title_bad: str,
@@ -220,7 +230,8 @@ def evaluate(network: dict, wifi: dict, router: dict, devices: list[dict], answe
     if odd:
         f.append(Finding("dns_local", "DNS", "moyen", "risque", "Serveur DNS local inattendu",
                          f"Le PC utilise {', '.join(s['server'] for s in odd)} comme DNS, qui n'est pas la passerelle. "
-                         "C'est normal avec un Pi-hole/AdGuard Home ; sinon cela peut indiquer un serveur DHCP pirate.",
+                         "C'est normal sur un réseau d'entreprise (serveur DNS interne) ou avec un Pi-hole/AdGuard Home ; "
+                         "sinon cela peut indiquer un serveur DHCP pirate.",
                          "Vérifiez que cette adresse correspond à un équipement que vous avez installé.",
                          ["Repérez l'appareil dans l'inventaire et nommez-le s'il est légitime."]))
     if dns.get("nxdomain_redirect"):

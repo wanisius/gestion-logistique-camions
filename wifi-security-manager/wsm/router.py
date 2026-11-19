@@ -57,6 +57,10 @@ BRANDS = [
     (r"sagemcom|f@st", "Sagemcom", "Sagemcom"),
     (r"technicolor|thomson", "Technicolor", "Technicolor"),
     (r"unifi|ubiquiti|ubnt", "Ubiquiti UniFi", "Ubiquiti"),
+    (r"watchguard|fireware|firebox", "WatchGuard Firebox", "WatchGuard"),
+    (r"fortigate|fortinet", "FortiGate", "Fortinet"),
+    (r"sonicwall", "SonicWall", "SonicWall"),
+    (r"pfsense", "pfSense", "Netgate"),
     (r"mikrotik|routeros", "MikroTik", "MikroTik"),
     (r"luci|openwrt", "OpenWrt", "OpenWrt"),
     (r"dd-wrt", "DD-WRT", "DD-WRT"),
@@ -267,6 +271,19 @@ def http_probe(host: str, port: int, use_tls: bool) -> dict:
     }
 
 
+_TLS_HINTS = ("plain http request was sent to https port",        # nginx
+              "client sent an http request to an https server",  # Go
+              "requires tls", "speaking plain http to an ssl-enabled server")  # Apache
+
+
+def needs_tls(res: dict) -> bool:
+    """La réponse HTTP indique que ce port attend en réalité du HTTPS."""
+    if not res.get("reachable"):
+        return False
+    text = f"{res.get('title', '')} {res.get('body_hint', '')}".lower()
+    return any(h in text for h in _TLS_HINTS)
+
+
 def tcp_open(host: str, port: int, timeout: float = 0.8) -> bool:
     try:
         with socket.create_connection((host, port), timeout=timeout):
@@ -394,10 +411,17 @@ def analyze(gateway: str, gateway_vendor: str = "", upnp_devices: list[UpnpDevic
         if r.upnp_igd:
             r.port_mappings = upnp_port_mappings(gw_dev)
     r.open_ports = scan_gateway_ports(gateway)
-    if "80" in r.open_ports or "8080" in r.open_ports:
-        r.http = http_probe(gateway, 80 if "80" in r.open_ports else 8080, False)
-    if "443" in r.open_ports or "8443" in r.open_ports:
-        r.https = http_probe(gateway, 443 if "443" in r.open_ports else 8443, True)
+    for port, tls in ((80, False), (8080, False), (443, True), (8443, True)):
+        if str(port) not in r.open_ports:
+            continue
+        res = http_probe(gateway, port, tls)
+        if not tls and needs_tls(res):
+            # Port HTTPS sur un numéro « HTTP » (ex. pare-feu d'entreprise sur 8080).
+            res, tls = http_probe(gateway, port, True), True
+        res["port"] = port
+        target = "https" if tls else "http"
+        if res.get("reachable") and not getattr(r, target).get("reachable"):
+            setattr(r, target, res)
     brand, vendor = identify_brand(
         r.http.get("title", ""), r.http.get("server", ""), r.http.get("realm", ""), r.http.get("body_hint", ""),
         r.https.get("title", ""), r.https.get("server", ""), r.https.get("body_hint", ""),

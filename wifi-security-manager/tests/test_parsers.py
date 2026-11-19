@@ -109,3 +109,26 @@ class Safety(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GatewayWebInterface(unittest.TestCase):
+    def test_https_on_8080_detected(self):
+        res = {"reachable": True, "status": 400, "title": "400 The plain HTTP request was sent to HTTPS port"}
+        self.assertTrue(router.needs_tls(res))
+        self.assertFalse(router.needs_tls({"reachable": True, "title": "Livebox"}))
+        self.assertFalse(router.needs_tls({"reachable": False}))
+
+    def test_admin_url_keeps_port(self):
+        from wsm import analysis
+        gw = "192.168.22.1"
+        self.assertEqual(analysis.admin_url({"gateway": gw, "https": {"reachable": True, "port": 8080}}),
+                         "https://192.168.22.1:8080")
+        self.assertEqual(analysis.admin_url({"gateway": gw, "https": {"reachable": True, "port": 443}}),
+                         "https://192.168.22.1")
+        self.assertEqual(analysis.admin_url({"gateway": gw, "http": {"reachable": True, "port": 80}}),
+                         "http://192.168.22.1")
+
+    def test_enterprise_firewall_brand(self):
+        from wsm import oui
+        self.assertEqual(oui.vendor("00:01:21:48:94:91"), "WatchGuard Technologies")
+        self.assertEqual(router.identify_brand("WatchGuard Technologies")[0], "WatchGuard Firebox")

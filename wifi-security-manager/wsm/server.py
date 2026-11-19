@@ -172,6 +172,7 @@ class App:
         return {
             "version": __version__, "is_local": is_local, "scanning": self.scanning, "last_scan": s.get("last_scan"),
             "network": s.get("network", {}), "wifi": s.get("wifi", {}), "router": s.get("router", {}),
+            "admin_url": analysis.admin_url(s.get("router", {})),
             "score": s.get("score"), "score_history": s.get("score_history", [])[-100:],
             "findings": s.get("findings", []), "settings": s["settings"],
             "checklist": [{**c, "answer": (s["checklist"].get(c["key"]) or {}).get("value", "inconnu")}

@@ -41,8 +41,8 @@ def build_report(store: Store) -> str:
           f"- Marque / gamme : **{r.get('brand') or 'non identifiée'}**",
           f"- Fabricant : {r.get('vendor') or '?'} — Modèle : **{r.get('model') or 'non publié'}**",
           f"- Sources d'identification : {', '.join(r.get('identification_sources') or []) or 'aucune'}",
-          f"- Interface web : HTTP {'oui' if r.get('http', {}).get('reachable') else 'non'}"
-          f" / HTTPS {'oui' if r.get('https', {}).get('reachable') else 'non'}"
+          f"- Interface web : HTTP {'oui (port ' + str(r['http'].get('port', 80)) + ')' if r.get('http', {}).get('reachable') else 'non'}"
+          f" / HTTPS {'oui (port ' + str(r['https'].get('port', 443)) + ')' if r.get('https', {}).get('reachable') else 'non'}"
           f" — titre : « {r.get('https', {}).get('title') or r.get('http', {}).get('title') or ''} »",
           f"- Ports ouverts sur la passerelle (réseau local) : "
           f"{', '.join(f'{p} ({v})' for p, v in r.get('open_ports', {}).items()) or 'aucun parmi ceux testés'}",
